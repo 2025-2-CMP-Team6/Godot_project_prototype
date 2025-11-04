@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b068ejneligop"]
+
+[ext_resource type="Script" uid="uid://cwcpyslhk0dfb" path="res://Skill_Melee.gd" id="1_1iwp7"]
+
+[node name="Skill_Melee" type="Node"]
+script = ExtResource("1_1iwp7")

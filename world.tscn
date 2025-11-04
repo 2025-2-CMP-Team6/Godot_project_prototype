@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dodw35vp4duix"]
+
+[ext_resource type="PackedScene" uid="uid://en1mqsrf58ka" path="res://player.tscn" id="1_f3sb7"]
+[ext_resource type="Texture2D" uid="uid://bq86qdbosfr7h" path="res://grid.jpg" id="2_fj7yv"]
+[ext_resource type="Texture2D" uid="uid://bwf4bpn28sj77" path="res://icon.svg" id="3_tlwt5"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_f3sb7")]
+position = Vector2(152, 144)
+
+[node name="TargetIcon" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(208, 472)
+texture = ExtResource("3_tlwt5")
+
+[node name="ParallaxLayer" type="Parallax2D" parent="."]
+z_index = -10
+repeat_size = Vector2(1300, 1300)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+z_index = -10
+texture_repeat = 2
+position = Vector2(1096, 648)
+texture = ExtResource("2_fj7yv")
+region_enabled = true
+region_rect = Rect2(0, 0, 4000, 4000)

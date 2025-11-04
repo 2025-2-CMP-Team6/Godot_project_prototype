@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://en1mqsrf58ka"]
+
+[ext_resource type="Texture2D" uid="uid://bwf4bpn28sj77" path="res://icon.svg" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://wkfijdxl0av1" path="res://player.gd" id="1_onrkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onrkg"]
+bg_color = Color(0.6751306, 0.77538246, 1.2880678, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 12
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4flbx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="RecoveryTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnticipationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashDurationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SkillCastTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StateDebugLabel" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 64.0
+offset_top = -64.0
+offset_right = 104.0
+offset_bottom = -41.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="StaminaBar" type="ProgressBar" parent="."]
+offset_left = -56.0
+offset_top = 72.0
+offset_right = 56.0
+offset_bottom = 88.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_onrkg")
+value = 100.0
+show_percentage = false
+
+[node name="Skill1Slot" type="Node" parent="."]
+
+[node name="Skill2Slot" type="Node" parent="."]
+
+[node name="Skill3Slot" type="Node" parent="."]
