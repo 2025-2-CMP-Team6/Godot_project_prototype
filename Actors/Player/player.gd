@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const BaseSkill = preload("res://BaseSkill.gd")
+const BaseSkill = preload("res://SkillDatas/BaseSkill.gd")
 
 # [조작감 세팅 - 이동]
 @export var max_speed: float = 400.0     # 평소 최고 속도
@@ -74,7 +74,7 @@ func _ready():
 	
 	# ★ 테스트용: 1번 슬롯에 '평타' 스킬 강제 장착
 	# (BaseSkill.gd를 상속받는 Skill_Melee.tscn 씬이 res:// 경로에 있어야 함)
-	equip_skill("res://Skill_Melee.tscn", 1) 
+	equip_skill("res://SkillDatas/Skill_Melee.tscn", 1) 
 	
 	change_state(State.IDLE)
 
