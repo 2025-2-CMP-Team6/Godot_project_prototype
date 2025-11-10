@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://hwvrl37b2dlk"]
 
-[ext_resource type="Script" uid="uid://chrq3r3tre42w" path="res://UI/skill_ui.gd" id="1_6m8pb"]
+[ext_resource type="Script" uid="uid://chrq3r3tre42w" path="res://UI/SkillUI.gd" id="1_6m8pb"]
 [ext_resource type="Script" uid="uid://bghevohiykay4" path="res://UI/InventoryDropArea.gd" id="2_5m5hr"]
 [ext_resource type="Script" uid="uid://cpwt2xbarsbmf" path="res://UI/EquipSlot.gd" id="3_5m5hr"]
 

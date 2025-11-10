@@ -8,6 +8,7 @@ script = ExtResource("1_47a4o")
 teleport_distance = 200.0
 slide_speed = 1000.0
 slide_friction = 8000.0
+slash_visual_texture = ExtResource("2_f6qxk")
 skill_name = "벽력일섬 "
 skill_icon = ExtResource("2_f6qxk")
 cast_duration = 15.0

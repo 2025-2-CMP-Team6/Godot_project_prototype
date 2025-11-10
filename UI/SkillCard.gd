@@ -1,27 +1,23 @@
-# ui/SkillCard.gd
+# SkillCard.gd
 extends PanelContainer
 
-# SkillUI.gd가 이 카드에 채워줄 스킬 정보입니다.
+#region 변수
 var skill_path: String
 var skill_icon: Texture
 var skill_name: String
 var skill_description: String
-var skill_type: int # 스킬 타입 (1, 2, 3)
+var skill_type: int
 
-# (호버 효과를 위한 스타일)
 var hover_stylebox: StyleBoxFlat
 var default_stylebox: StyleBoxFlat
+#endregion
 
+#region UI 설정
 func _ready():
-	# 호버 스타일
 	hover_stylebox = StyleBoxFlat.new()
 	hover_stylebox.bg_color = Color(1, 1, 1, 0.15)
-	hover_stylebox.corner_radius_top_left = 4
-	hover_stylebox.corner_radius_top_right = 4
-	hover_stylebox.corner_radius_bottom_left = 4
-	hover_stylebox.corner_radius_bottom_right = 4
+	hover_stylebox.set_corner_radius_all(4)
 
-	# 기본 스타일
 	default_stylebox = StyleBoxFlat.new()
 	default_stylebox.bg_color = Color(0, 0, 0, 0)
 	
@@ -55,8 +51,9 @@ func setup_card_ui():
 	if default_stylebox:
 		add_theme_stylebox_override("panel", default_stylebox)
 
+#endregion
 
-# 드래그 시작 시, 장착 슬롯에서 타입을 확인할 수 있도록 데이터를 구성합니다.
+#region 드래그 앤 드롭
 func _get_drag_data(at_position):
 	var drag_data = {
 		"type": "skill",
@@ -72,8 +69,9 @@ func _get_drag_data(at_position):
 	set_drag_preview(preview)
 	return drag_data
 
+#endregion
 
-# --- 호버 효과 ---
+#region 호버 효과
 func _on_mouse_entered():
 	if hover_stylebox:
 		add_theme_stylebox_override("panel", hover_stylebox)
@@ -81,3 +79,4 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	if default_stylebox:
 		add_theme_stylebox_override("panel", default_stylebox)
+#endregion

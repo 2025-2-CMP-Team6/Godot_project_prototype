@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://en1mqsrf58ka" path="res://Actors/Player/player.tscn" id="1_4717r"]
 [ext_resource type="PackedScene" uid="uid://10p01la5f8rw" path="res://Actors/Enemies/enemy.tscn" id="3_4717r"]
-[ext_resource type="PackedScene" uid="uid://hwvrl37b2dlk" path="res://UI/skill_ui.tscn" id="3_h5o24"]
+[ext_resource type="PackedScene" uid="uid://hwvrl37b2dlk" path="res://UI/SkillUI.tscn" id="3_h5o24"]
 [ext_resource type="Texture2D" uid="uid://bq86qdbosfr7h" path="res://graphics/grid.jpg" id="3_mmdvd"]
 
 [node name="Node2D" type="Node2D"]
