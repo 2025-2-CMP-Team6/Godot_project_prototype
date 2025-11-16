@@ -14,13 +14,17 @@ class_name BaseSkill
 @export var ends_on_condition: bool = false
 @export var damage: float = 10.0
 @export var max_cast_range: float = 0.0
-
-# ★ 'ignore_gravity' 대신 이 변수가 있어야 합니다.
 @export var gravity_multiplier: float = 1.0
 #endregion
 
 var cooldown_timer: Timer
 var is_active: bool = false
+
+# ★ (추가) 이 스킬 노드의 현재 레벨 (SkillInstance로부터 받아옴)
+var current_level: int = 0
+
+# ★ (추가) 이 스킬이 참조하는 인벤토리의 원본 데이터 (SkillInstance)
+var skill_instance_ref: SkillInstance = null
 
 func _ready():
 	cooldown_timer = Timer.new()

@@ -74,6 +74,8 @@ func _draw():
 
 #region 초기화 (Initialization)
 func _ready():
+	await InventoryManager.ready
+	
 	if duration_timer: duration_timer.timeout.connect(_on_dash_duration_timeout)
 	if cooldown_timer: cooldown_timer.timeout.connect(_on_dash_cooldown_timeout)
 	if i_frames_timer: i_frames_timer.timeout.connect(_on_i_frames_timeout)
@@ -196,10 +198,7 @@ func state_logic_skill_casting(delta: float):
 
 #region 입력 처리 (Input Handling)
 func handle_inputs():
-	# (오류가 발생했던 205번째 줄)
 	if Input.is_action_just_pressed("ui_inventory"):
-		# (수정) 이제 skill_ui가 'SkillUI' 타입임을 알기 때문에
-		#        refresh_ui() 함수를 정상적으로 호출할 수 있습니다.
 		if skill_ui:
 			skill_ui.visible = not skill_ui.visible
 			is_input_locked = skill_ui.visible
@@ -228,7 +227,6 @@ func handle_inputs():
 #endregion
 
 #region 스킬 관련 기능 (Skill Functions)
-# (이하 함수들은 이전과 동일)
 func find_nearest_enemy() -> Node2D:
 	var all_enemies = get_tree().get_nodes_in_group("enemies")
 	var nearest_enemy: Node2D = null

@@ -1,10 +1,12 @@
 # SkillCard.gd
 extends PanelContainer
-# (class_name을 추가하는 것이 좋습니다)
 class_name SkillCard
 
 #region 변수
-var skill_path: String
+# ★ (수정) 'skill_path' 대신 'SkillInstance' 객체를 직접 저장합니다.
+var skill_instance: SkillInstance
+
+# (내부 변수)
 var skill_icon: Texture
 var skill_name: String
 var skill_description: String
@@ -23,23 +25,36 @@ func _ready():
 	default_stylebox = StyleBoxFlat.new()
 	default_stylebox.bg_color = Color(0, 0, 0, 0)
 	
-	# ★ (수정) _ready()에서 setup_card_ui() 호출을 '삭제'합니다.
-	# setup_card_ui()는 이제 SkillUI.gd의 refresh_ui()에서만 호출됩니다.
-	# setup_card_ui() 
-	
-	# (수정) _ready가 아닌 setup_card_ui에서 연결하므로 이 코드는 setup_card_ui로 이동
-	# mouse_entered.connect(_on_mouse_entered)
-	# mouse_exited.connect(_on_mouse_exited)
-	
 	if default_stylebox:
 		add_theme_stylebox_override("panel", default_stylebox)
 
-
+# (수정) setup_card_ui가 SkillInstance를 기반으로 작동하도록 변경
 func setup_card_ui():
-	tooltip_text = skill_description
+	if not is_instance_valid(skill_instance):
+		print("SkillCard 오류: SkillInstance가 없습니다.")
+		return
+
+	# 1. SkillInstance의 경로로 원본 스킬 리소스를 로드
+	var skill_scene = load(skill_instance.skill_path)
+	if not skill_scene:
+		print("SkillCard 오류: 경로를 로드할 수 없음: " + skill_instance.skill_path)
+		return
+		
+	var skill_template = skill_scene.instantiate() as BaseSkill
+	if not is_instance_valid(skill_template):
+		print("SkillCard 오류: BaseSkill이 아님: " + skill_instance.skill_path)
+		return
+
+	# 2. 내부 변수 채우기
+	skill_icon = skill_template.skill_icon
+	skill_name = skill_template.skill_name
+	skill_description = skill_template.skill_description
+	skill_type = skill_template.type
 	
-	# (수정) VBox가 중복 생성되는 것을 방지
-	var vbox = $VBoxContainer as VBoxContainer
+	tooltip_text = skill_description
+
+	# 3. UI 노드 생성/업데이트
+	var vbox = get_node_or_null("VBoxContainer") as VBoxContainer
 	if not is_instance_valid(vbox):
 		vbox = VBoxContainer.new()
 		vbox.name = "VBoxContainer"
@@ -55,7 +70,7 @@ func setup_card_ui():
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		vbox.add_child(icon)
 	
-	icon.texture = skill_icon # 아이콘 텍스처 설정
+	icon.texture = skill_icon
 	
 	var name_label = vbox.get_node_or_null("NameLabel") as Label
 	if not is_instance_valid(name_label):
@@ -65,25 +80,30 @@ func setup_card_ui():
 		name_label.custom_minimum_size = Vector2(160, 0)
 		vbox.add_child(name_label)
 
-	name_label.text = skill_name # 이름 설정
+	# ★ (수정) 스킬 이름과 함께 레벨을 표시합니다.
+	if skill_instance.level > 0:
+		name_label.text = skill_name + " + " + str(skill_instance.level)
+	else:
+		name_label.text = skill_name
 	
-	# ★ (수정) _ready()에서 여기로 이동
-	#    (시그널이 아직 연결되지 않았을 때만 연결)
+	# 4. 시그널 연결 (중복 방지)
 	if not mouse_entered.is_connected(_on_mouse_entered):
 		mouse_entered.connect(_on_mouse_entered)
 	if not mouse_exited.is_connected(_on_mouse_exited):
 		mouse_exited.connect(_on_mouse_exited)
 	
+	skill_template.queue_free() # 임시 로드한 템플릿 삭제
+	
 	if default_stylebox:
 		add_theme_stylebox_override("panel", default_stylebox)
-
 #endregion
 
 #region 드래그 앤 드롭
 func _get_drag_data(at_position):
+	# ★ (수정) 'path' 대신 'SkillInstance' 객체와 타입을 함께 전달
 	var drag_data = {
-		"type": "skill",
-		"path": skill_path,
+		"type": "skill_instance", # (타입 이름 변경)
+		"instance": skill_instance,
 		"skill_type_int": skill_type
 	}
 	
@@ -94,7 +114,6 @@ func _get_drag_data(at_position):
 	
 	set_drag_preview(preview)
 	return drag_data
-
 #endregion
 
 #region 호버 효과

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://hwvrl37b2dlk"]
+[gd_scene load_steps=8 format=3 uid="uid://hwvrl37b2dlk"]
 
 [ext_resource type="Script" uid="uid://chrq3r3tre42w" path="res://UI/SkillUI.gd" id="1_6m8pb"]
 [ext_resource type="Script" uid="uid://bghevohiykay4" path="res://UI/InventoryDropArea.gd" id="2_5m5hr"]
 [ext_resource type="Script" uid="uid://cpwt2xbarsbmf" path="res://UI/EquipSlot.gd" id="3_5m5hr"]
+[ext_resource type="Texture2D" uid="uid://lr1kpc6otqdj" path="res://graphics/emptySkill.jpg" id="4_4qi14"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6m8pb"]
 content_margin_left = 8.0
@@ -23,7 +24,7 @@ TooltipPanel/styles/panel = SubResource("StyleBoxFlat_6m8pb")
 
 [sub_resource type="LabelSettings" id="LabelSettings_6m8pb"]
 
-[node name="SkillUI" type="CanvasLayer" node_paths=PackedStringArray("inventory_grid", "equipped_slot_1", "equipped_slot_2", "equipped_slot_3", "inventory_drop_area", "tab_container")]
+[node name="SkillUI" type="CanvasLayer" node_paths=PackedStringArray("inventory_grid", "equipped_slot_1", "equipped_slot_2", "equipped_slot_3", "inventory_drop_area", "tab_container", "upgrade_base_slot", "upgrade_material_slot", "upgrade_button", "upgrade_info_label")]
 script = ExtResource("1_6m8pb")
 inventory_grid = NodePath("Panel/SkillContainer/InventoryGrid")
 equipped_slot_1 = NodePath("Panel/TabContainer/equiped/MarginContainer/EquippedSlots/Slot1")
@@ -31,6 +32,10 @@ equipped_slot_2 = NodePath("Panel/TabContainer/equiped/MarginContainer/EquippedS
 equipped_slot_3 = NodePath("Panel/TabContainer/equiped/MarginContainer/EquippedSlots/Slot3")
 inventory_drop_area = NodePath("Panel/SkillContainer")
 tab_container = NodePath("Panel/TabContainer")
+upgrade_base_slot = NodePath("Panel/TabContainer/upgrade/HBoxContainer/UpgradeBaseSlot")
+upgrade_material_slot = NodePath("Panel/TabContainer/upgrade/HBoxContainer/UpgradeMaterialSlot")
+upgrade_button = NodePath("Panel/TabContainer/upgrade/UpgradeButton")
+upgrade_info_label = NodePath("Panel/TabContainer/upgrade/UpgradeInfoLabel")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 654.0
@@ -70,10 +75,11 @@ offset_top = -0.99554443
 offset_right = 1201.3335
 offset_bottom = 389.24283
 scale = Vector2(0.9986842, 1)
-current_tab = 0
+current_tab = 1
 drag_to_rearrange_enabled = true
 
 [node name="equiped" type="PanelContainer" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -99,6 +105,7 @@ layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="Panel/TabContainer/equiped/MarginContainer/EquippedSlots/Slot1/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 horizontal_alignment = 1
 
 [node name="Slot2" type="PanelContainer" parent="Panel/TabContainer/equiped/MarginContainer/EquippedSlots"]
@@ -114,6 +121,7 @@ layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="Panel/TabContainer/equiped/MarginContainer/EquippedSlots/Slot2/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 horizontal_alignment = 1
 
 [node name="Slot3" type="PanelContainer" parent="Panel/TabContainer/equiped/MarginContainer/EquippedSlots"]
@@ -129,12 +137,56 @@ layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="Panel/TabContainer/equiped/MarginContainer/EquippedSlots/Slot3/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 horizontal_alignment = 1
 
 [node name="upgrade" type="PanelContainer" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/upgrade"]
+layout_mode = 2
+
+[node name="UpgradeBaseSlot" type="PanelContainer" parent="Panel/TabContainer/upgrade/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_5m5hr")
+slot_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeBaseSlot"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeBaseSlot/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeBaseSlot/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+horizontal_alignment = 1
+
+[node name="UpgradeMaterialSlot" type="PanelContainer" parent="Panel/TabContainer/upgrade/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_5m5hr")
+slot_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeMaterialSlot"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeMaterialSlot/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeMaterialSlot/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+horizontal_alignment = 1
+
+[node name="UpgradeButton" type="Button" parent="Panel/TabContainer/upgrade"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+icon = ExtResource("4_4qi14")
+
+[node name="UpgradeInfoLabel" type="Label" parent="Panel/TabContainer/upgrade"]
+layout_mode = 2
 
 [node name="Synthesis" type="PanelContainer" parent="Panel/TabContainer"]
 visible = false

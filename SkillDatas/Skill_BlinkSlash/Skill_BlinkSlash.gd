@@ -10,6 +10,19 @@ extends BaseSkill
 
 var slide_direction: Vector2 = Vector2.ZERO
 
+# -----------------------------------------------------------------
+# ★ (새로 추가) _init 함수
+# -----------------------------------------------------------------
+func _init():
+	# 1. 이 스킬은 타겟이 필수입니다.
+	requires_target = true
+	
+	# 2. 이 스킬은 '시간제'로 종료됩니다. (미끄러짐 삭제)
+	ends_on_condition = false
+	
+	# 3. (오류 수정) 중력 배율을 1.0 (100%)로 설정합니다.
+	gravity_multiplier = 1.0
+# -----------------------------------------------------------------
 
 #region 스킬 로직
 func execute(owner: CharacterBody2D, target: Node2D = null):
@@ -82,6 +95,8 @@ func apply_slash_damage(start_pos: Vector2, end_pos: Vector2, owner: CharacterBo
 	if did_hit_enemy:
 		EffectManager.play_screen_shake(12.0, 0.15)
 		EffectManager.play_multi_flash(Color.WHITE, 0.05, 3)
+
+# (process_skill_physics 함수는 삭제됨)
 
 # 히트박스 시각화
 func _debug_draw_hitbox(shape: Shape2D, xform: Transform2D, owner: Node):
