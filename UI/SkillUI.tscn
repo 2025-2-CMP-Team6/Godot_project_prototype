@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://hwvrl37b2dlk"]
+[gd_scene load_steps=9 format=3 uid="uid://hwvrl37b2dlk"]
 
 [ext_resource type="Script" uid="uid://chrq3r3tre42w" path="res://UI/SkillUI.gd" id="1_6m8pb"]
 [ext_resource type="Script" uid="uid://bghevohiykay4" path="res://UI/InventoryDropArea.gd" id="2_5m5hr"]
@@ -24,6 +24,9 @@ TooltipPanel/styles/panel = SubResource("StyleBoxFlat_6m8pb")
 
 [sub_resource type="LabelSettings" id="LabelSettings_6m8pb"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_4qi14"]
+font_size = 48
+
 [node name="SkillUI" type="CanvasLayer" node_paths=PackedStringArray("inventory_grid", "equipped_slot_1", "equipped_slot_2", "equipped_slot_3", "inventory_drop_area", "tab_container", "upgrade_base_slot", "upgrade_material_slot", "upgrade_button", "upgrade_info_label")]
 script = ExtResource("1_6m8pb")
 inventory_grid = NodePath("Panel/SkillContainer/InventoryGrid")
@@ -32,8 +35,8 @@ equipped_slot_2 = NodePath("Panel/TabContainer/equiped/MarginContainer/EquippedS
 equipped_slot_3 = NodePath("Panel/TabContainer/equiped/MarginContainer/EquippedSlots/Slot3")
 inventory_drop_area = NodePath("Panel/SkillContainer")
 tab_container = NodePath("Panel/TabContainer")
-upgrade_base_slot = NodePath("Panel/TabContainer/upgrade/HBoxContainer/UpgradeBaseSlot")
-upgrade_material_slot = NodePath("Panel/TabContainer/upgrade/HBoxContainer/UpgradeMaterialSlot")
+upgrade_base_slot = NodePath("Panel/TabContainer/upgrade/MarginContainer/HBoxContainer/UpgradeBaseSlot")
+upgrade_material_slot = NodePath("Panel/TabContainer/upgrade/MarginContainer/HBoxContainer/UpgradeMaterialSlot")
 upgrade_button = NodePath("Panel/TabContainer/upgrade/UpgradeButton")
 upgrade_info_label = NodePath("Panel/TabContainer/upgrade/UpgradeInfoLabel")
 
@@ -90,7 +93,7 @@ theme_override_constants/margin_bottom = 100
 
 [node name="EquippedSlots" type="HBoxContainer" parent="Panel/TabContainer/equiped/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 180
+theme_override_constants/separation = 300
 alignment = 1
 
 [node name="Slot1" type="PanelContainer" parent="Panel/TabContainer/equiped/MarginContainer/EquippedSlots"]
@@ -144,37 +147,57 @@ horizontal_alignment = 1
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/upgrade"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/upgrade"]
 layout_mode = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
 
-[node name="UpgradeBaseSlot" type="PanelContainer" parent="Panel/TabContainer/upgrade/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/upgrade/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="UpgradeBaseSlot" type="PanelContainer" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer"]
 layout_mode = 2
 script = ExtResource("3_5m5hr")
 slot_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeBaseSlot"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer/UpgradeBaseSlot"]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeBaseSlot/VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer/UpgradeBaseSlot/VBoxContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeBaseSlot/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer/UpgradeBaseSlot/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 horizontal_alignment = 1
 
-[node name="UpgradeMaterialSlot" type="PanelContainer" parent="Panel/TabContainer/upgrade/HBoxContainer"]
+[node name="margin" type="PanelContainer" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="+" type="Label" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "+"
+label_settings = SubResource("LabelSettings_4qi14")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="margin2" type="PanelContainer" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="UpgradeMaterialSlot" type="PanelContainer" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer"]
 layout_mode = 2
 script = ExtResource("3_5m5hr")
 slot_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeMaterialSlot"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer/UpgradeMaterialSlot"]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeMaterialSlot/VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer/UpgradeMaterialSlot/VBoxContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="Panel/TabContainer/upgrade/HBoxContainer/UpgradeMaterialSlot/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="Panel/TabContainer/upgrade/MarginContainer/HBoxContainer/UpgradeMaterialSlot/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 horizontal_alignment = 1
@@ -187,6 +210,7 @@ icon = ExtResource("4_4qi14")
 
 [node name="UpgradeInfoLabel" type="Label" parent="Panel/TabContainer/upgrade"]
 layout_mode = 2
+size_flags_vertical = 8
 
 [node name="Synthesis" type="PanelContainer" parent="Panel/TabContainer"]
 visible = false

@@ -28,7 +28,7 @@ func _ready():
 	if is_instance_valid(tab_container):
 		tab_container.add_theme_font_size_override("font_size", 24)
 
-	# --- 시그널 연결 ---
+	# 시그널 연결
 	if is_instance_valid(equipped_slot_1) and equipped_slot_1.has_signal("skill_dropped_on_slot"):
 		equipped_slot_1.skill_dropped_on_slot.connect(_on_skill_dropped)
 	if is_instance_valid(equipped_slot_2) and equipped_slot_2.has_signal("skill_dropped_on_slot"):
@@ -71,7 +71,7 @@ func refresh_ui(player_node: CharacterBody2D):
 	
 	refresh_upgrade_tab()
 
-
+# 장착 탭
 func update_equip_slot_display(player_skill_slot: Node, ui_equip_slot: Control):
 	if not is_instance_valid(ui_equip_slot): return
 	if not ui_equip_slot.has_method("set_skill_display"): return
@@ -83,6 +83,8 @@ func update_equip_slot_display(player_skill_slot: Node, ui_equip_slot: Control):
 	else:
 		ui_equip_slot.clear_skill_display()
 		
+
+# 강화 탭
 func refresh_upgrade_tab():
 	if is_instance_valid(upgrade_base_slot):
 		if is_instance_valid(current_upgrade_base):
