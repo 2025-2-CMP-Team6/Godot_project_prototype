@@ -1,0 +1,336 @@
+extends CanvasLayer
+class_name SkillGetUI
+
+#region 시그널
+signal closed
+#endregion
+
+#region 노드 참조
+@export var skill_select1: Panel
+@export var skill_select2: Panel
+@export var skill_select3: Panel
+@export var select_button: Button
+@export var background_panel: Panel # 디버깅 및 애니메이션 대상 지정을 위해 배경 패널 참조 추가
+@export var cancel_button: Button
+#endregion
+
+# 현재 선택된 스킬 데이터와 UI 노드 저장용
+var selected_skill_instance: SkillInstance = null
+var selected_slot_node: Panel = null
+
+# 슬롯의 원래 상태(부모, 위치)를 저장하기 위한 변수
+var original_parent: Node = null
+var original_sibling_index: int = -1
+
+# 애니메이션 재생 상태 추적용
+var is_animating: bool = false
+
+# 시각 효과용 색상 설정
+const COLOR_NORMAL = Color(1, 1, 1, 1) # 기본
+const COLOR_HOVER = Color(1.1, 1.1, 1.1, 1) # 마우스 올렸을 때
+const COLOR_SELECTED = Color(1.5, 1.5, 1.5, 1) # 선택됐을 때
+
+func _ready() -> void:
+	visible = false
+	
+	if is_instance_valid(cancel_button):
+		cancel_button.pressed.connect(_on_cancel_button_pressed)
+	
+	if is_instance_valid(select_button):
+		select_button.pressed.connect(_on_select_button_pressed)
+		select_button.disabled = true # 처음엔 선택 못하게 비활성화
+
+#region 애니메이션
+func open_reward_screen() -> void:
+	if is_animating or visible: return # 애니메이션 중에는 열리지 않도록 함
+	is_animating = true
+	
+	_reset_selection()
+	_generate_rewards()
+	
+	# 버튼들의 상태(위치, 투명도, 활성화)를 다시 원래대로 복구합니다.
+	if is_instance_valid(select_button):
+		select_button.modulate = COLOR_NORMAL
+	if is_instance_valid(cancel_button):
+		cancel_button.modulate = COLOR_NORMAL
+		cancel_button.disabled = false
+	
+	# 배경 패널의 상태를 확실하게 초기화합니다.
+	if is_instance_valid(background_panel):
+		background_panel.modulate = COLOR_NORMAL
+		background_panel.position = Vector2(654, 321)
+	# 각 슬롯의 위치, 크기, 투명도를 확실하게 초기화합니다.
+	var slots = [skill_select1, skill_select2, skill_select3]
+	for slot in slots:
+		if is_instance_valid(slot):
+			slot.scale = Vector2.ZERO
+			slot.modulate = COLOR_NORMAL # 알파값 포함 전체 색상 초기화 (가장 중요)
+			slot.position = Vector2.ZERO # y뿐만 아니라 전체 위치 초기화
+
+	var screen_height = get_viewport().get_visible_rect().size.y
+	self.offset.y = - screen_height
+	visible = true
+	call_deferred("_start_open_animation")
+# 오픈 애니메이션
+func _start_open_animation():
+	var tween = create_tween()
+	tween.set_parallel(false)
+
+	# 열기 애니메이션이 끝나면 is_animating을 false로 설정
+	tween.finished.connect(func(): is_animating = false)
+	tween.tween_property(self, "offset:y", 0.0, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	
+	var slots = [skill_select1, skill_select2, skill_select3]
+	for slot in slots:
+		if is_instance_valid(slot):
+			var has_skill = false
+			for child in slot.get_children():
+				if child is Button:
+					has_skill = true
+					break
+			
+			if has_skill:
+				tween.tween_property(slot, "scale", Vector2.ONE, 0.15).from(Vector2.ZERO).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+
+func _reset_selection():
+	selected_skill_instance = null
+	selected_slot_node = null
+	if is_instance_valid(select_button):
+		select_button.disabled = true # 버튼 비활성화
+
+func _generate_rewards():
+	var all_skills = InventoryManager.skill_database.duplicate()
+	var chosen_skills: Array[String] = []
+	
+	if all_skills.size() <= 3:
+		chosen_skills = all_skills
+	else:
+		all_skills.shuffle()
+		chosen_skills.append(all_skills[0])
+		chosen_skills.append(all_skills[1])
+		chosen_skills.append(all_skills[2])
+	
+	_setup_slot(skill_select1, chosen_skills[0] if chosen_skills.size() > 0 else "")
+	_setup_slot(skill_select2, chosen_skills[1] if chosen_skills.size() > 1 else "")
+	_setup_slot(skill_select3, chosen_skills[2] if chosen_skills.size() > 2 else "")
+
+func _setup_slot(slot_node: Panel, skill_path: String):
+	if not is_instance_valid(slot_node): return
+
+	# 기존 버튼/시그널 정리
+	for child in slot_node.get_children():
+		if child is Button:
+			child.queue_free()
+	
+	# 시각 효과 초기화
+	slot_node.modulate = COLOR_NORMAL
+	
+	if skill_path == "":
+		slot_node.visible = false
+		return
+	
+	slot_node.visible = true
+
+	# 스킬 정보 로드
+	var skill_scene = load(skill_path)
+	if not skill_scene: return
+	var temp_skill = skill_scene.instantiate() as BaseSkill
+	if not is_instance_valid(temp_skill): return
+
+	# UI 업데이트
+	var icon_node = slot_node.get_node_or_null("icon")
+	var name_node = slot_node.get_node_or_null("name")
+	var text_node = slot_node.get_node_or_null("text")
+
+	if icon_node and icon_node is TextureRect:
+		icon_node.texture = temp_skill.skill_icon
+	if name_node and name_node is Label:
+		name_node.text = temp_skill.skill_name
+	if text_node and text_node is Label:
+		text_node.text = temp_skill.skill_description
+
+	# 데이터 생성
+	var instance = SkillInstance.new()
+	instance.skill_path = skill_path
+	instance.level = 0
+	
+	# 투명 버튼 생성
+	var btn = Button.new()
+	btn.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	btn.flat = true
+	btn.modulate.a = 0.0
+	
+	# 시그널 연결 (bind를 사용해 어떤 슬롯인지 함께 전달)
+	btn.pressed.connect(_on_slot_clicked.bind(instance, slot_node))
+	btn.mouse_entered.connect(_on_slot_mouse_entered.bind(slot_node))
+	btn.mouse_exited.connect(_on_slot_mouse_exited.bind(slot_node))
+	
+	slot_node.add_child(btn)
+	temp_skill.queue_free()
+#region 이벤트 핸들러
+# 슬롯 클릭
+func _on_slot_clicked(skill_instance: SkillInstance, slot_node: Control): # Panel -> Control
+	selected_skill_instance = skill_instance
+	selected_slot_node = slot_node
+	
+	_update_visuals()
+	
+	if is_instance_valid(select_button):
+		select_button.disabled = false
+
+# 마우스 호버
+func _on_slot_mouse_entered(slot_node: Control):
+	if slot_node != selected_slot_node:
+		if slot_node.has_meta("hover_tween"):
+			var t = slot_node.get_meta("hover_tween") as Tween
+			if t and t.is_valid(): t.kill()
+			
+		var tween = create_tween()
+		slot_node.set_meta("hover_tween", tween)
+		
+		tween.set_parallel(true)
+		tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+		
+		# 3. 속성 변경
+		tween.tween_property(slot_node, "scale", Vector2(1.05, 1.05), 0.15)
+		tween.tween_property(slot_node, "modulate", COLOR_HOVER, 0.15)
+
+# 마우스 호버 종료
+func _on_slot_mouse_exited(slot_node: Control):
+	if slot_node != selected_slot_node:
+		if slot_node.has_meta("hover_tween"):
+			var t = slot_node.get_meta("hover_tween") as Tween
+			if t and t.is_valid(): t.kill()
+			
+		var tween = create_tween()
+		slot_node.set_meta("hover_tween", tween)
+		
+		tween.set_parallel(true)
+		tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+		
+		tween.tween_property(slot_node, "scale", Vector2(1.0, 1.0), 0.15)
+		tween.tween_property(slot_node, "modulate", COLOR_NORMAL, 0.15)
+
+# 버튼 클릭
+func _on_select_button_pressed():
+	if is_animating: return # 애니메이션 중에는 동작하지 않도록 함
+	is_animating = true
+	
+	if selected_skill_instance == null: return
+	
+	print("스킬 확정 획득: " + selected_skill_instance.skill_path)
+	InventoryManager.add_skill_to_inventory(selected_skill_instance)
+	
+	var skill_ui = get_tree().get_first_node_in_group("skill_ui")
+	if is_instance_valid(skill_ui) and skill_ui.has_method("refresh_ui"):
+		var player = get_tree().get_first_node_in_group("player")
+		if player: skill_ui.refresh_ui(player)
+		
+	_start_close_animation(selected_skill_instance, selected_slot_node)
+
+func _on_cancel_button_pressed():
+	if is_animating: return # 애니메이션 중에는 동작하지 않도록 함
+	is_animating = true
+	
+	print("보상 스킵")
+	_start_close_animation(null, null)
+#endregion
+
+# 시각 효과 일괄 업데이트 
+func _update_visuals():
+	var slots = [skill_select1, skill_select2, skill_select3]
+	for slot in slots:
+		if not is_instance_valid(slot): continue
+		
+		# 기존 트윈 정리
+		if slot.has_meta("select_tween"):
+			var t = slot.get_meta("select_tween") as Tween
+			if t and t.is_valid(): t.kill()
+			
+		var tween = create_tween()
+		slot.set_meta("select_tween", tween)
+		tween.set_parallel(true)
+		
+		if slot == selected_slot_node:
+			# 선택된 슬롯
+			tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			tween.tween_property(slot, "scale", Vector2(1.1, 1.1), 0.2) # 10% 확대
+			tween.tween_property(slot, "modulate", COLOR_SELECTED, 0.2)
+		else:
+			# 선택 안 된 슬롯
+			tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+			tween.tween_property(slot, "scale", Vector2(1.0, 1.0), 0.2)
+			tween.tween_property(slot, "modulate", COLOR_NORMAL, 0.2)
+
+# 창 닫기 애니메이션 시작
+func _start_close_animation(selected_instance: SkillInstance, selected_slot: Panel):
+	self.offset.y = 0
+	
+	var screen_center = get_viewport().get_visible_rect().size / 2.0
+	var screen_height = get_viewport().get_visible_rect().size.y
+	var slots = [skill_select1, skill_select2, skill_select3]
+
+	var fall_tween = create_tween().set_parallel(true)
+	
+	# 버튼 비활성화 및 애니메이션 추가
+	if is_instance_valid(select_button):
+		select_button.disabled = true
+		fall_tween.tween_property(select_button, "modulate:a", 0.0, 0.3)
+	if is_instance_valid(cancel_button):
+		cancel_button.disabled = true
+		fall_tween.tween_property(cancel_button, "modulate:a", 0.0, 0.3)
+
+	# 이 노드의 직접 자식도 함께 떨어지도록 애니메이션
+	for child in get_children():
+		if child is Panel and not child in slots:
+			fall_tween.tween_property(child, "position:y", child.position.y + screen_height, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			fall_tween.tween_property(child, "modulate:a", 0.0, 0.4)
+
+	for slot in slots:
+		if slot != selected_slot and is_instance_valid(slot):
+			# 선택되지 않은 슬롯은 아래로 이동하며 페이드 아웃
+			fall_tween.tween_property(slot, "position:y", slot.position.y + screen_height, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			fall_tween.tween_property(slot, "modulate:a", 0.0, 0.4)
+
+	await fall_tween.finished
+	if selected_instance == null:
+		close_reward_screen()
+		return
+
+	# reparenting을 위해 원래 부모와 위치(index) 저장
+	original_parent = selected_slot.get_parent()
+	original_sibling_index = selected_slot.get_index()
+
+	var original_global_pos = selected_slot.global_position
+	original_parent.remove_child(selected_slot)
+	add_child(selected_slot)
+	selected_slot.global_position = original_global_pos
+
+	var target_global_pos = screen_center - selected_slot.size * selected_slot.scale / 2.0
+	var move_tween = create_tween()
+	move_tween.tween_property(selected_slot, "global_position", target_global_pos, 0.4).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+
+	await move_tween.finished
+
+	var exit_tween = create_tween().set_parallel(true)
+	exit_tween.tween_property(selected_slot, "scale", Vector2(1.5, 1.5), 0.5)
+	exit_tween.tween_property(selected_slot, "modulate:a", 0.0, 0.5)
+	
+	await exit_tween.finished
+
+	close_reward_screen()
+
+func close_reward_screen():
+	# 만약 reparenting이 일어났었다면, 노드를 원래 부모와 위치로 복구
+	if is_instance_valid(selected_slot_node) and is_instance_valid(original_parent):
+		if selected_slot_node.get_parent() == self:
+			remove_child(selected_slot_node)
+			original_parent.add_child(selected_slot_node)
+			original_parent.move_child(selected_slot_node, original_sibling_index)
+		# 참조 초기화
+		original_parent = null
+
+	visible = false
+	closed.emit()
+	is_animating = false # 모든 애니메이션과 정리가 끝난 후 상태 초기화

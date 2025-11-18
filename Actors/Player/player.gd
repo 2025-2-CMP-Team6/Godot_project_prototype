@@ -57,6 +57,7 @@ var is_input_locked: bool = false
 
 # --- 외부 HUD 노드 ---
 @export var skill_ui: SkillUI
+@export var skill_get_ui: SkillGetUI
 @export var hud_skill_1_icon: Control
 @export var hud_skill_2_icon: Control
 @export var hud_skill_3_icon: Control
@@ -205,14 +206,6 @@ func state_logic_skill_casting(delta: float):
 
 #region 입력 처리 (Input Handling)
 func handle_inputs():
-	if Input.is_action_just_pressed("ui_inventory"):
-		if skill_ui:
-			skill_ui.visible = not skill_ui.visible
-			is_input_locked = skill_ui.visible
-			if skill_ui.visible:
-				skill_ui.refresh_ui(self)
-		return
-
 	if is_input_locked:
 		return
 	
@@ -272,7 +265,7 @@ func try_cast_skill(slot_node: Node, target: Node2D = null):
 	current_cast_target = target
 	change_state(State.SKILL_CASTING)
 
-# ★ (수정) 부활 시 SkillInstance를 사용해 로드
+#  부활 시 SkillInstance를 사용해 로드
 func _load_skill_into_slot(skill_instance: SkillInstance, slot_number: int):
 	var slot_node: Node = null
 	match slot_number:
@@ -292,7 +285,7 @@ func _load_skill_into_slot(skill_instance: SkillInstance, slot_number: int):
 	
 	if new_skill_node is BaseSkill:
 		if new_skill_node.type == slot_number:
-			# (추가) 레벨과 인스턴스 참조 설정
+			# 레벨과 인스턴스 참조 설정
 			new_skill_node.current_level = skill_instance.level
 			new_skill_node.skill_instance_ref = skill_instance
 			slot_node.add_child(new_skill_node)
@@ -302,9 +295,6 @@ func _load_skill_into_slot(skill_instance: SkillInstance, slot_number: int):
 	else:
 		new_skill_node.queue_free()
 
-# -----------------------------------------------------------------
-# ★ (오류 2 수정) 'skill_path: String' 대신 'SkillInstance'를 받도록 변경
-# -----------------------------------------------------------------
 func equip_skill(skill_to_equip: SkillInstance, slot_number: int):
 	var slot_node: Node = null
 	match slot_number:
@@ -313,7 +303,6 @@ func equip_skill(skill_to_equip: SkillInstance, slot_number: int):
 		3: slot_node = skill_3_slot
 	if not is_instance_valid(slot_node): return
 
-	# ★ (수정) 스왑 로직 (equipped_skills 사용)
 	var old_skill_instance = InventoryManager.equipped_skills[slot_number]
 	if is_instance_valid(old_skill_instance):
 		InventoryManager.add_skill_to_inventory(old_skill_instance)
@@ -323,7 +312,7 @@ func equip_skill(skill_to_equip: SkillInstance, slot_number: int):
 		for child in slot_node.get_children():
 			child.queue_free()
 
-	# ★ (수정) 새 스킬 인스턴스화
+	# 새 스킬 인스턴스화
 	var skill_scene = load(skill_to_equip.skill_path)
 	if skill_scene == null: return
 	var new_skill_node = skill_scene.instantiate()
@@ -332,24 +321,23 @@ func equip_skill(skill_to_equip: SkillInstance, slot_number: int):
 		if new_skill_node.type == slot_number:
 			print(new_skill_node.skill_name + "을(를) " + str(slot_number) + "번 슬롯에 장착!")
 			
-			# ★ (추가) 레벨과 인스턴스 참조 설정
+			# 레벨과 인스턴스 참조 설정
 			new_skill_node.current_level = skill_to_equip.level
 			new_skill_node.skill_instance_ref = skill_to_equip
 			
 			slot_node.add_child(new_skill_node)
 			
-			# ★ (수정) InventoryManager에 'SkillInstance'를 등록
+			#  InventoryManager에 등록
 			InventoryManager.equipped_skills[slot_number] = skill_to_equip
 		else:
 			print("타입 불일치")
 			new_skill_node.queue_free()
-			# ★ (수정) 장착 실패했으므로 'SkillInstance'를 인벤토리로 되돌림
+			#  장착 실패 인벤토리로 되돌림
 			InventoryManager.add_skill_to_inventory(skill_to_equip)
 			return
 	else:
 		new_skill_node.queue_free()
 
-# ★ (수정) SkillInstance를 사용하도록 로직 변경
 func unequip_skill(slot_number: int):
 	var slot_node: Node = null
 	match slot_number:
@@ -360,13 +348,12 @@ func unequip_skill(slot_number: int):
 	if is_instance_valid(slot_node) and slot_node.get_child_count() > 0:
 		print(str(slot_number) + "번 슬롯 장착 해제")
 		
-		# ★ (수정) InventoryManager에서 장착 해제된 SkillInstance를 가져옴
+		#  InventoryManager에서 장착 해제된 SkillInstance를 가져옴
 		var unequipped_instance = InventoryManager.equipped_skills[slot_number]
 		if is_instance_valid(unequipped_instance):
 			InventoryManager.equipped_skills[slot_number] = null
 			InventoryManager.add_skill_to_inventory(unequipped_instance) # 인벤토리에 다시 추가
 			
-		# (씬에서 노드 제거는 공통)
 		for child in slot_node.get_children():
 			child.queue_free()
 #endregion
@@ -386,14 +373,10 @@ func change_state(new_state: State):
 				dash_direction = Vector2.RIGHT
 			can_dash = false
 			
-			# -----------------------------------------------------------------
-			# ★ (오류 1 수정) 대시 버그: 타이머가 valid한지 확인 후 start
-			# -----------------------------------------------------------------
 			if is_instance_valid(duration_timer):
 				duration_timer.wait_time = dash_duration
 				duration_timer.start()
 			else:
-				# (안전장치) 타이머가 @export로 할당되지 않았으면 즉시 종료
 				push_warning("DashDurationTimer가 @export로 할당되지 않았습니다!")
 				_on_dash_duration_timeout()
 				
@@ -461,4 +444,11 @@ func die():
 func _on_i_frames_timeout():
 	is_invincible = false
 	if visuals: visuals.visible = true
+#endregion
+
+#region Public Functions
+func set_input_locked(locked: bool):
+	is_input_locked = locked
+	if locked:
+		velocity = Vector2.ZERO # 입력을 잠글 때 움직임을 즉시 멈춤
 #endregion

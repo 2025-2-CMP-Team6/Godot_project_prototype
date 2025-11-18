@@ -10,8 +10,8 @@ const BULLET_SCENE = preload("res://Actors/Enemies/bullet.tscn")
 #region 속성
 @export var max_health: float = 100.0
 var current_health: float
-
-# (추가) 중력 값
+# 사망 시그널
+signal enemy_died
 @export var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 #endregion
 
@@ -126,6 +126,7 @@ func die():
 	is_invincible = false
 	if sprite:
 		EffectManager.set_hit_flash_amount(sprite, 0.0)
+	emit_signal("enemy_died") # 시그널
 	queue_free()
 
 # 무적 시간이 종료되었을 때 호출됩니다.

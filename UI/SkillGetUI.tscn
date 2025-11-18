@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgv1ef1ng7ngs"]
+
+[ext_resource type="Script" uid="uid://laa5mby47uwa" path="res://UI/SkillGetUI.gd" id="1_y5hbc"]
+[ext_resource type="Texture2D" uid="uid://lr1kpc6otqdj" path="res://graphics/emptySkill.jpg" id="2_4n3n4"]
+[ext_resource type="PackedScene" uid="uid://bur16abmo4xqw" path="res://UI/skillselect.tscn" id="3_0esga"]
+
+[node name="SkillGetUI" type="CanvasLayer" node_paths=PackedStringArray("skill_select1", "skill_select2", "skill_select3", "select_button", "background_panel", "cancel_button")]
+script = ExtResource("1_y5hbc")
+skill_select1 = NodePath("MarginContainer/EquippedSlots/SkillSelect")
+skill_select2 = NodePath("MarginContainer/EquippedSlots/SkillSelect2")
+skill_select3 = NodePath("MarginContainer/EquippedSlots/SkillSelect3")
+select_button = NodePath("Panel/SelectButton")
+background_panel = NodePath("Panel")
+cancel_button = NodePath("Panel/CancelButton")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 654.0
+offset_top = 321.0
+offset_right = 1862.0
+offset_bottom = 1021.0
+
+[node name="SelectButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 572.0
+offset_right = 363.0
+offset_bottom = 681.0
+scale = Vector2(1, 0.8)
+icon = ExtResource("2_4n3n4")
+
+[node name="CancelButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 816.0
+offset_top = 572.0
+offset_right = 923.0
+offset_bottom = 681.0
+scale = Vector2(1, 0.8)
+icon = ExtResource("2_4n3n4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 648.0
+offset_top = 320.0
+offset_right = 1856.0
+offset_bottom = 860.0
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 24
+
+[node name="EquippedSlots" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="SkillSelect" parent="MarginContainer/EquippedSlots" instance=ExtResource("3_0esga")]
+visible = false
+layout_mode = 2
+
+[node name="SkillSelect2" parent="MarginContainer/EquippedSlots" instance=ExtResource("3_0esga")]
+visible = false
+layout_mode = 2
+
+[node name="SkillSelect3" parent="MarginContainer/EquippedSlots" instance=ExtResource("3_0esga")]
+visible = false
+layout_mode = 2
