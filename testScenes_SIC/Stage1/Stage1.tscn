@@ -1,3 +1,49 @@
-[gd_scene format=3 uid="uid://d2kexrpmwtbw0"]
+[gd_scene load_steps=6 format=3 uid="uid://d2kexrpmwtbw0"]
+
+[ext_resource type="PackedScene" uid="uid://fdweqovua6t0" path="res://testScenes_SIC/player_test.tscn" id="1_ie5yo"]
+[ext_resource type="Script" uid="uid://3wb8r3l1jd6n" path="res://testScenes_SIC/Stage1/Stage1.gd" id="1_stage_script"]
+[ext_resource type="Texture2D" uid="uid://1pb8adfxt3ap" path="res://addons/kenney_pico-8-platformer/Default/Tiles/tile_0000.png" id="2_twlq1"]
+[ext_resource type="Texture2D" uid="uid://oyxsqmuuk8dj" path="res://addons/kenney_pico-8-platformer/Default/Tiles/tile_0002.png" id="3_wjadl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjadl"]
+size = Vector2(2560, 64)
 
 [node name="Stage1" type="Node2D"]
+script = ExtResource("1_stage_script")
+
+[node name="BackgroundLayers" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="BackgroundLayers"]
+z_index = -1
+offset_right = 2560.0
+offset_bottom = 1440.0
+texture = ExtResource("2_twlq1")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(1280, 1413)
+scale = Vector2(1.9200001, 1)
+collision_layer = 2
+collision_mask = 0
+
+[node name="GroundSprite" type="Sprite2D" parent="Ground"]
+scale = Vector2(320, 8)
+texture = ExtResource("3_wjadl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_wjadl")
+
+[node name="Player_test" parent="." instance=ExtResource("1_ie5yo")]
+position = Vector2(1280, 1300)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UIContainer" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
