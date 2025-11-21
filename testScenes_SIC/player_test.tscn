@@ -346,7 +346,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player_test" type="CharacterBody2D" node_paths=PackedStringArray("duration_timer", "cooldown_timer", "skill_cast_timer", "state_label", "stamina_bar", "visuals", "lives_container", "i_frames_timer", "skill_1_slot", "skill_2_slot", "skill_3_slot", "camera_node", "screen_flash_rect", "hud_skill_1_icon", "hud_skill_2_icon", "hud_skill_3_icon")]
+[node name="Player_test" type="CharacterBody2D" node_paths=PackedStringArray("duration_timer", "cooldown_timer", "skill_cast_timer", "state_label", "stamina_bar", "visuals", "lives_container", "i_frames_timer", "skill_1_slot", "skill_2_slot", "skill_3_slot", "camera_node", "screen_flash_rect", "hud_skill_1_icon", "hud_skill_2_icon", "hud_skill_3_icon") groups=["player"]]
 collision_mask = 6
 script = ExtResource("1_im2ba")
 duration_timer = NodePath("DashDurationTimer")
@@ -393,9 +393,7 @@ offset_right = 104.0
 offset_bottom = -41.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = true
 position_smoothing_enabled = true
-position_smoothing_speed = 5.0
 
 [node name="StaminaBar" type="ProgressBar" parent="."]
 offset_left = -56.0
