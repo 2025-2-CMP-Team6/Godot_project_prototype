@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2kexrpmwtbw0"]
+[gd_scene load_steps=17 format=3 uid="uid://d2kexrpmwtbw0"]
 
 [ext_resource type="PackedScene" uid="uid://fdweqovua6t0" path="res://testScenes_SIC/player_test.tscn" id="1_ie5yo"]
 [ext_resource type="Script" uid="uid://3wb8r3l1jd6n" path="res://testScenes_SIC/Stage1/Stage1.gd" id="1_stage_script"]
 [ext_resource type="Texture2D" uid="uid://csfttyi8ghxd3" path="res://Portal-Sheet.png" id="4_g1wns"]
 [ext_resource type="Texture2D" uid="uid://cxm7sj15p6nj0" path="res://graphics/resource/Stage1/background_dark_city_more_pixeltic.png" id="4_wjadl"]
 [ext_resource type="Script" uid="uid://cqw1qj4qrccjq" path="res://testScenes_SIC/Stage1/portal_anim.gd" id="5_g1wns"]
+[ext_resource type="Shader" uid="uid://b3xqwchud7pyx" path="res://graphics/resource/Stage1/rain_and_snow_shader.gdshader" id="6_h4ln0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjadl"]
 size = Vector2(9332.812, 517.375)
@@ -59,6 +60,20 @@ animations = [{
 radius = 24.0
 height = 94.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uu262"]
+shader = ExtResource("6_h4ln0")
+shader_parameter/rain_amount = 100.0
+shader_parameter/near_rain_length = 0.00999999977648
+shader_parameter/far_rain_length = 0.1
+shader_parameter/near_rain_width = 0.31300001160762003
+shader_parameter/far_rain_width = 0.5
+shader_parameter/near_rain_transparency = 1.0
+shader_parameter/far_rain_transparency = 0.5
+shader_parameter/rain_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/base_rain_speed = 0.5
+shader_parameter/additional_rain_speed = 0.5
+shader_parameter/slant = 0.2
+
 [node name="Stage1" type="Node2D"]
 script = ExtResource("1_stage_script")
 
@@ -85,7 +100,7 @@ position = Vector2(1755.4684, -7094.6875)
 shape = SubResource("RectangleShape2D_wjadl")
 
 [node name="Player_test" parent="." instance=ExtResource("1_ie5yo")]
-position = Vector2(11591, 2126)
+position = Vector2(-29, 2468)
 scale = Vector2(1.0010989, 1.006192)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -113,5 +128,20 @@ script = ExtResource("5_g1wns")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="portal"]
 position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_wvjil")
+
+[node name="RainEffect" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="RainEffect"]
+material = SubResource("ShaderMaterial_uu262")
+anchors_preset = -1
+anchor_left = -1.6800001
+anchor_top = -3.729
+anchor_right = 5.2050004
+anchor_bottom = 2.5740001
+offset_left = -0.19970703
+offset_top = -0.2397461
+offset_right = 0.19921875
+offset_bottom = 0.4399414
+color = Color(1, 1, 1, 0)
 
 [connection signal="body_entered" from="portal" to="." method="_on_portal_body_entered"]
