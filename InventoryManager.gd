@@ -25,7 +25,7 @@ func _ready():
 	add_skill_to_inventory("res://SkillDatas/Skill_Melee/Skill_Melee.tscn")
 	add_skill_to_inventory("res://SkillDatas/Skill_Melee/Skill_Melee.tscn")
 	add_skill_to_inventory("res://SkillDatas/Skill_Melee/Skill_Melee.tscn")
-	add_skill_to_inventory("res://SkillDatas/Skill_Melee/Skill_Melee.tscn")
+	add_skill_to_inventory("res://SkillDatas/Skill_FireBall/Skill_FireBall.tscn")
 	add_skill_to_inventory("res://SkillDatas/Skill_BlinkSlash/Skill_BlinkSlash.tscn")
 	add_skill_to_inventory("res://SkillDatas/Skill_Parry/Skill_Parry.tscn")
 

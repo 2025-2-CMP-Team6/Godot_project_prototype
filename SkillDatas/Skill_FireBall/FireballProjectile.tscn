@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv80mbtf8xhs7"]
+
+[ext_resource type="Texture2D" uid="uid://ik5r1h2qkx06" path="res://SkillDatas/Skill_FireBall/fa815.png" id="2_ggtn0"]
+
+[sub_resource type="GDScript" id="GDScript_ubpbc"]
+script/source = "extends Area2D
+
+var speed = 600
+var direction = Vector2.RIGHT
+var damage = 0 # 스킬 스크립트에서 받아올 예정
+
+func _physics_process(delta):
+	position += direction * speed * delta
+
+func _on_body_entered(body):
+	if body.is_in_group(\"enemies\"):
+		# 적에게 데미지 주는 로직 (예시)
+		if body.has_method(\"take_damage\"):
+			body.take_damage(damage)
+		queue_free() # 맞으면 삭제
+	elif body.name != \"Player\": # 벽에 맞으면
+		queue_free()
+
+func _on_screen_exited(): # VisibleOnScreenNotifier2D 시그널 연결
+	queue_free()
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3i61r"]
+radius = 6.085267
+height = 15.199093
+
+[node name="FireballProjectile" type="Area2D"]
+script = SubResource("GDScript_ubpbc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.0026897, 1.0026897)
+texture = ExtResource("2_ggtn0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+rotation = -2.2761693
+scale = Vector2(-0.82008433, 1.31335)
+shape = SubResource("CapsuleShape2D_3i61r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
