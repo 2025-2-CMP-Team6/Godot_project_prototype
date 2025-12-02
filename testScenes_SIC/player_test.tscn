@@ -393,6 +393,8 @@ offset_right = 104.0
 offset_bottom = -41.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -256)
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 
 [node name="StaminaBar" type="ProgressBar" parent="."]

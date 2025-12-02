@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0wgft5avfblx"
-path="res://.godot/imported/Boss.png-1f313b43d43d39c2aeaaa7a8eba0b70b.ctex"
+uid="uid://bdenlf4ec5g52"
+path="res://.godot/imported/Sprite-0001.png-a36afed55e821d94282d0da7120d6c54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/Boss.png"
-dest_files=["res://.godot/imported/Boss.png-1f313b43d43d39c2aeaaa7a8eba0b70b.ctex"]
+source_file="res://testScenes_SIC/Stage1/Sprite-0001.png"
+dest_files=["res://.godot/imported/Sprite-0001.png-a36afed55e821d94282d0da7120d6c54.ctex"]
 
 [params]
 

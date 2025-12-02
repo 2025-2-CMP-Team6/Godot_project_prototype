@@ -12,7 +12,7 @@ signal pattern_started(pattern_name: String)
 @export var pattern_timer: Timer
 #endregion
 
-var patterns = ["pattern1", "pattern2", "pattern3"]
+var patterns = ["pattern1", "pattern1", "pattern1"]
 
 func _ready():
 	super._ready()

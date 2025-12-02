@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1t1vldg17p1j"]
+
+[ext_resource type="Script" uid="uid://cvcid3tgl85db" path="res://Actors/Enemies/Boss/boss_meteor.gd" id="1_w1lg8"]
+[ext_resource type="Texture2D" uid="uid://bwf4bpn28sj77" path="res://graphics/icon.svg" id="2_s6w6t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gluic"]
+radius = 20.0
+
+[node name="BossMeteor" type="Area2D" groups=["enemy_attacks"]]
+z_index = 1
+scale = Vector2(5, 5)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_w1lg8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_s6w6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gluic")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

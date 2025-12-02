@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://deraqiym6ih4h"]
 
-[ext_resource type="Texture2D" uid="uid://dd7gbb6gbql8i" path="res://graphics/Boss.png" id="1_rsbw7"]
+[ext_resource type="Texture2D" uid="uid://c0wgft5avfblx" path="res://graphics/Boss.png" id="1_rsbw7"]
 [ext_resource type="Script" uid="uid://cvkqrhuny154i" path="res://Actors/Enemies/Boss/boss.gd" id="1_x4ak8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsbw7"]
@@ -14,9 +14,10 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x4ak8")
 pattern_timer = NodePath("PatternTimer")
+effsize = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -584)
+position = Vector2(8, -16)
 texture = ExtResource("1_rsbw7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -35,12 +36,10 @@ one_shot = true
 wait_time = 2.0
 
 [node name="Hurtbox" type="Area2D" parent="."]
-position = Vector2(0, 56)
 scale = Vector2(9, 9)
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_m4boa")
 
 [connection signal="timeout" from="PatternTimer" to="." method="_on_pattern_timer_timeout"]

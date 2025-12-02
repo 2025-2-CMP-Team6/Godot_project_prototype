@@ -1,6 +1,4 @@
-extends Node2D
-
-@onready var player = $Player_test
+extends World
 
 # Dialogue 리소스 로드
 var dialogue_resource = preload("res://testScenes_SIC/dialogue/test.dialogue")

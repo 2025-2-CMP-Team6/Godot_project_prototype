@@ -5,8 +5,9 @@ class_name BaseEnemy extends CharacterBody2D
 @export var max_health: float = 100.0
 var current_health: float
 @export var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var effsize: float = 1.0
 
-# 사망 시그널 (모든 적 공통)
+# 사망 시그널
 signal enemy_died
 #endregion
 
@@ -76,7 +77,7 @@ func take_damage(amount: float):
 
 	current_health -= amount
 	print(self.name + " 피격! 남은 체력: ", current_health)
-	EffectManager.play_hit_effect(global_position, 1.0)
+	EffectManager.play_hit_effect(global_position, effsize)
 	is_invincible = true
 	if i_frames_timer != null:
 		i_frames_timer.start()

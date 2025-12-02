@@ -78,6 +78,5 @@ func play_hit_effect(pos: Vector2, scale_amount: float = 1.0):
 	effect.global_position = pos
 	effect.scale = Vector2(scale_amount, scale_amount)
 	
-	# 현재 씬(월드)에 추가해야 적이 죽어서 사라져도 이펙트는 남음
 	get_tree().current_scene.add_child(effect)
 #endregion

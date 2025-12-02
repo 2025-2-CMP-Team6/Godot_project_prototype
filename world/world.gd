@@ -1,5 +1,5 @@
 # world.gd
-extends Node2D
+class_name World extends Node2D
 
 # 씬에 배치한 노드들을 가져옵니다.
 @export var player: CharacterBody2D
