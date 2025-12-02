@@ -1,3 +1,61 @@
-[gd_scene format=3 uid="uid://bkau6hrhass7g"]
+[gd_scene load_steps=8 format=3 uid="uid://bkau6hrhass7g"]
+
+[ext_resource type="Texture2D" uid="uid://d2m7w3keylowg" path="res://graphics/resource/Stage2/Jungel Layer 0.png" id="1_js4qc"]
+[ext_resource type="Texture2D" uid="uid://dgsfi0rnxd6uu" path="res://graphics/resource/Stage2/Jungel Layer 1.png" id="2_khtno"]
+[ext_resource type="Texture2D" uid="uid://cwe68ho5vxpui" path="res://graphics/resource/Stage2/Jungel Layer 2.png" id="3_e1cl4"]
+[ext_resource type="Texture2D" uid="uid://cw0uhfmb1nmta" path="res://graphics/resource/Stage2/Jungel Layer 3.png" id="4_vjhlr"]
+[ext_resource type="Texture2D" uid="uid://bg0dllinrjvgd" path="res://graphics/resource/Stage2/Jungel Layer 4.png" id="5_pivpb"]
+[ext_resource type="Texture2D" uid="uid://dn6yw8jie312v" path="res://graphics/resource/Stage2/Jungel Layer 5.png" id="6_7vc0t"]
+[ext_resource type="PackedScene" uid="uid://fdweqovua6t0" path="res://testScenes_SIC/player_test.tscn" id="7_ircvx"]
 
 [node name="Stage2" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground"]
+scroll_offset = Vector2(192, 1349)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
+position = Vector2(1087.5, -634.50006)
+scale = Vector2(6.6640625, 8.210227)
+texture = ExtResource("1_js4qc")
+
+[node name="Parallax2D2" type="Parallax2D" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D2"]
+position = Vector2(199, 1183)
+texture = ExtResource("2_khtno")
+
+[node name="Parallax2D3" type="Parallax2D" parent="ParallaxBackground"]
+scroll_offset = Vector2(609, 1095)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D3"]
+position = Vector2(669.5001, -362.5)
+scale = Vector2(6.716146, 8.244318)
+texture = ExtResource("3_e1cl4")
+
+[node name="Parallax2D4" type="Parallax2D" parent="ParallaxBackground"]
+scroll_offset = Vector2(616, 536)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D4"]
+position = Vector2(661.50006, 207.49998)
+scale = Vector2(6.7161455, 8.096591)
+texture = ExtResource("4_vjhlr")
+
+[node name="Parallax2D5" type="Parallax2D" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D5"]
+position = Vector2(1296.3635, 734.75)
+scale = Vector2(6.6699805, 8.241477)
+texture = ExtResource("5_pivpb")
+
+[node name="Parallax2D6" type="Parallax2D" parent="ParallaxBackground"]
+scroll_offset = Vector2(74, 206)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D6"]
+position = Vector2(1210, 523)
+scale = Vector2(6.6796875, 8.204545)
+texture = ExtResource("6_7vc0t")
+
+[node name="Player_test" parent="." instance=ExtResource("7_ircvx")]
+position = Vector2(1289, 879)

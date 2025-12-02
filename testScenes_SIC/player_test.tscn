@@ -1,7 +1,6 @@
-[gd_scene load_steps=50 format=3 uid="uid://fdweqovua6t0"]
+[gd_scene load_steps=49 format=3 uid="uid://fdweqovua6t0"]
 
 [ext_resource type="Script" uid="uid://dwh0wvo41cee8" path="res://testScenes_SIC/player_test.gd" id="1_im2ba"]
-[ext_resource type="Script" uid="uid://d0u0kmpbano11" path="res://testScenes_SIC/Stage1/stage1_camera.gd" id="2_4m5pk"]
 [ext_resource type="Texture2D" uid="uid://c3uulybwprmo0" path="res://graphics/AnimationSheet_Character.png" id="2_p75ev"]
 [ext_resource type="Script" uid="uid://crv50bot4wkpv" path="res://testScenes_SIC/player_anim.gd" id="3_p75ev"]
 [ext_resource type="PackedScene" uid="uid://byv8rt76sqhox" path="res://UI/SkillHudIcon.tscn" id="4_2jjk8"]
@@ -395,7 +394,6 @@ offset_bottom = -41.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
-script = ExtResource("2_4m5pk")
 
 [node name="StaminaBar" type="ProgressBar" parent="."]
 offset_left = -56.0
