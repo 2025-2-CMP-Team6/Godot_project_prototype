@@ -33,13 +33,16 @@ height = 15.199093
 script = SubResource("GDScript_ubpbc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.0026897, 1.0026897)
+position = Vector2(1, -0.99999976)
+rotation = 0.58667725
+scale = Vector2(1.7513448, 1.7513448)
 texture = ExtResource("2_ggtn0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
-rotation = -2.2761693
-scale = Vector2(-0.82008433, 1.31335)
+position = Vector2(0.99999994, 0)
+rotation = -1.7195659
+scale = Vector2(-1.3993638, 2.4236796)
 shape = SubResource("CapsuleShape2D_3i61r")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-17, -12, 36, 25)

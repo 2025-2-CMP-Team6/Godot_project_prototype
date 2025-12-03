@@ -41,11 +41,23 @@ func execute(owner: CharacterBody2D, target: Node2D = null):
 	bullet.top_level = true # ★ 중요: 플레이어를 따라다니지 않고 월드 좌표계 사용
 	bullet.global_position = owner.global_position # 위치: 플레이어 위치
 	
-	# 3. 방향 설정 (플레이어가 보는 방향)
+	# 3. 방향 설정
 	var direction = Vector2.RIGHT
-	if owner.visuals.scale.x < 0: # 왼쪽 보고 있으면
-		direction = Vector2.LEFT
-		bullet.scale.x = -1 # 총알 이미지도 반전
+	var angle_right = -138.2
+	var angle_left = 138.2
+
+	# owner.visuals.scale.x가 음수인지 확인 (왼쪽을 보고 있는지)
+	if owner.visuals.scale.x < 0: 
+		direction = Vector2.LEFT 
+		
+		# 왼쪽일 때: 스케일 뒤집고, 각도는 양수(+) 사용
+		bullet.scale.x = -abs(bullet.scale.x)
+		bullet.rotation_degrees = angle_left 
+	else:
+		# 오른쪽일 때: 스케일 정상, 각도는 음수(-) 사용
+		bullet.scale.x = abs(bullet.scale.x)
+		bullet.rotation_degrees = angle_right
+
 	
 	# 4. 씬 트리에 추가 (발사!)
 	get_tree().current_scene.add_child(bullet)

@@ -82,7 +82,6 @@ script = ExtResource("1_stage_script")
 skill_get_ui = NodePath("SkillGetUI")
 skill_ui = NodePath("SkillUI")
 stage_bgm = ExtResource("2_irmgc")
-bgm_volume_db = 10.0
 
 [node name="Player" parent="." instance=ExtResource("2_yyxtu")]
 position = Vector2(-1818.0002, 3130)
