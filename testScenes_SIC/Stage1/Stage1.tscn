@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://d2kexrpmwtbw0"]
 
-[ext_resource type="PackedScene" uid="uid://fdweqovua6t0" path="res://testScenes_SIC/player_test.tscn" id="1_ie5yo"]
 [ext_resource type="Script" uid="uid://3wb8r3l1jd6n" path="res://testScenes_SIC/Stage1/Stage1.gd" id="1_stage_script"]
+[ext_resource type="PackedScene" uid="uid://en1mqsrf58ka" path="res://Actors/Player/player.tscn" id="2_yyxtu"]
 [ext_resource type="Texture2D" uid="uid://csfttyi8ghxd3" path="res://Portal-Sheet.png" id="4_g1wns"]
 [ext_resource type="Texture2D" uid="uid://cxm7sj15p6nj0" path="res://graphics/resource/Stage1/background_dark_city_more_pixeltic.png" id="4_wjadl"]
 [ext_resource type="Script" uid="uid://cqw1qj4qrccjq" path="res://testScenes_SIC/Stage1/portal_anim.gd" id="5_g1wns"]
@@ -78,9 +78,12 @@ shader_parameter/slant = 0.2
 
 [node name="Stage1" type="Node2D" node_paths=PackedStringArray("player", "skill_get_ui", "skill_ui")]
 script = ExtResource("1_stage_script")
-player = NodePath("Player_test")
+player = NodePath("")
 skill_get_ui = NodePath("SkillGetUI")
 skill_ui = NodePath("SkillUI")
+
+[node name="Player" parent="." instance=ExtResource("2_yyxtu")]
+position = Vector2(-1818.0002, 3130)
 
 [node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2(1280, 1413)
@@ -104,17 +107,10 @@ shape = SubResource("RectangleShape2D_g1wns")
 position = Vector2(1743.7499, -3112)
 shape = SubResource("RectangleShape2D_wjadl")
 
-[node name="Player_test" parent="." instance=ExtResource("1_ie5yo")]
-position = Vector2(-2212, 2815)
-[node name="Player_test" parent="." node_paths=PackedStringArray("skill_ui", "skill_get_ui") instance=ExtResource("1_ie5yo")]
-position = Vector2(-29, 2468)
-scale = Vector2(1.0010989, 1.006192)
-skill_ui = NodePath("../SkillUI")
-skill_get_ui = NodePath("../SkillGetUI")
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" groups=["CameraMapLimit"]]
 position = Vector2(886.095, 1103.1631)
@@ -148,15 +144,11 @@ anchor_top = -3.729
 anchor_right = 5.2050004
 anchor_bottom = 2.5740001
 offset_left = -0.19970703
-offset_top = 3786.7603
-offset_right = -7353.5146
-offset_bottom = 0.4399414
-color = Color(1, 1, 1, 0)
-metadata/_edit_lock_ = true
 offset_top = -0.2397461
 offset_right = 3.1992188
 offset_bottom = 0.4399414
 color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
 metadata/_edit_use_anchors_ = true
 
 [node name="SkillUI" parent="." instance=ExtResource("7_uu262")]

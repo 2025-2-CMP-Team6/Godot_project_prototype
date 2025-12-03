@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkau6hrhass7g"]
+[gd_scene load_steps=7 format=3 uid="uid://bkau6hrhass7g"]
 
 [ext_resource type="Texture2D" uid="uid://d2m7w3keylowg" path="res://graphics/resource/Stage2/Jungel Layer 0.png" id="1_js4qc"]
 [ext_resource type="Texture2D" uid="uid://dgsfi0rnxd6uu" path="res://graphics/resource/Stage2/Jungel Layer 1.png" id="2_khtno"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cw0uhfmb1nmta" path="res://graphics/resource/Stage2/Jungel Layer 3.png" id="4_vjhlr"]
 [ext_resource type="Texture2D" uid="uid://bg0dllinrjvgd" path="res://graphics/resource/Stage2/Jungel Layer 4.png" id="5_pivpb"]
 [ext_resource type="Texture2D" uid="uid://dn6yw8jie312v" path="res://graphics/resource/Stage2/Jungel Layer 5.png" id="6_7vc0t"]
-[ext_resource type="PackedScene" uid="uid://fdweqovua6t0" path="res://testScenes_SIC/player_test.tscn" id="7_ircvx"]
 
 [node name="Stage2" type="Node2D"]
 
@@ -56,6 +55,3 @@ scroll_offset = Vector2(74, 206)
 position = Vector2(1210, 523)
 scale = Vector2(6.6796875, 8.204545)
 texture = ExtResource("6_7vc0t")
-
-[node name="Player_test" parent="." instance=ExtResource("7_ircvx")]
-position = Vector2(1289, 879)
