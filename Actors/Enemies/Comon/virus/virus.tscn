@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://bdh7rx37q7ghf"]
+
+[ext_resource type="Script" uid="uid://cxvfbor6tlmi5" path="res://Actors/Enemies/BaseEnemy.gd" id="1_sba7h"]
+[ext_resource type="Texture2D" uid="uid://d17iyotjvbsve" path="res://Actors/Enemies/Comon/virus/comon_virus_walk.png" id="2_85b8k"]
+[ext_resource type="Texture2D" uid="uid://mxkcyhtpgwqo" path="res://Actors/Enemies/Comon/virus/comon_virus_idle.png" id="2_wvvw6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvvw6"]
+size = Vector2(64, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvytb"]
+atlas = ExtResource("2_wvvw6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6p3dw"]
+atlas = ExtResource("2_wvvw6")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2ihw"]
+atlas = ExtResource("2_85b8k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufd6t"]
+atlas = ExtResource("2_85b8k")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_721kb"]
+atlas = ExtResource("2_85b8k")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6p7e"]
+atlas = ExtResource("2_85b8k")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvytb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvytb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6p3dw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2ihw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufd6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_721kb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6p7e")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[node name="Virus" type="CharacterBody2D"]
+script = ExtResource("1_sba7h")
+metadata/_custom_type_script = "uid://cxvfbor6tlmi5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wvvw6")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+scale = Vector2(1, 0.9285919)
+sprite_frames = SubResource("SpriteFrames_gvytb")
+animation = &"idle"
+frame_progress = 0.78229976
