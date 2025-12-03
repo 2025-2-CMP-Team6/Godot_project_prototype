@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ik5r1h2qkx06"
-path="res://.godot/imported/fa815.png-94a69cdb678d8f2172b0f433eb28c73b.ctex"
+uid="uid://cbceql0c1ce65"
+path="res://.godot/imported/fc815.png-26368d4137612c519c018e931e8493fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SkillDatas/Skill_FireBall/fa815.png"
-dest_files=["res://.godot/imported/fa815.png-94a69cdb678d8f2172b0f433eb28c73b.ctex"]
+source_file="res://SkillDatas/Skill_FireBall/fc815.png"
+dest_files=["res://.godot/imported/fc815.png-26368d4137612c519c018e931e8493fc.ctex"]
 
 [params]
 
