@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2kexrpmwtbw0"]
+[gd_scene load_steps=21 format=3 uid="uid://d2kexrpmwtbw0"]
 
 [ext_resource type="Script" uid="uid://3wb8r3l1jd6n" path="res://testScenes_SIC/Stage1/Stage1.gd" id="1_stage_script"]
 [ext_resource type="AudioStream" uid="uid://d0gurxkh8locc" path="res://Sounds/bgm/8bit_song.wav" id="2_irmgc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://b3xqwchud7pyx" path="res://graphics/resource/Stage1/rain_and_snow_shader.gdshader" id="6_h4ln0"]
 [ext_resource type="PackedScene" uid="uid://hwvrl37b2dlk" path="res://UI/SkillUI.tscn" id="7_uu262"]
 [ext_resource type="PackedScene" uid="uid://dgv1ef1ng7ngs" path="res://UI/SkillGetUI.tscn" id="8_yyxtu"]
+[ext_resource type="PackedScene" uid="uid://bdh7rx37q7ghf" path="res://Actors/Enemies/Comon/virus/virus.tscn" id="10_4dk8a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjadl"]
 size = Vector2(9332.812, 642.84375)
@@ -157,5 +158,11 @@ visible = false
 
 [node name="SkillGetUI" parent="." instance=ExtResource("8_yyxtu")]
 visible = false
+
+[node name="Virus" parent="." instance=ExtResource("10_4dk8a")]
+position = Vector2(-1168, 3249)
+
+[node name="Virus2" parent="." instance=ExtResource("10_4dk8a")]
+position = Vector2(-957, 3233)
 
 [connection signal="body_entered" from="portal" to="." method="_on_portal_body_entered"]

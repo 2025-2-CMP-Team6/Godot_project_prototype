@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdh7rx37q7ghf"]
+[gd_scene load_steps=25 format=3 uid="uid://bdh7rx37q7ghf"]
 
-[ext_resource type="Script" uid="uid://cxvfbor6tlmi5" path="res://Actors/Enemies/BaseEnemy.gd" id="1_sba7h"]
+[ext_resource type="Script" uid="uid://cady7fgo38muf" path="res://Actors/Enemies/Comon/virus/virus.gd" id="1_ufd6t"]
 [ext_resource type="Texture2D" uid="uid://d17iyotjvbsve" path="res://Actors/Enemies/Comon/virus/comon_virus_walk.png" id="2_85b8k"]
+[ext_resource type="Texture2D" uid="uid://bmyruxu7et08o" path="res://Actors/Enemies/Comon/virus/comon_virus_attak.png" id="2_e2ihw"]
 [ext_resource type="Texture2D" uid="uid://mxkcyhtpgwqo" path="res://Actors/Enemies/Comon/virus/comon_virus_idle.png" id="2_wvvw6"]
+[ext_resource type="Texture2D" uid="uid://dgu34dxoa1dn6" path="res://Actors/Enemies/Comon/virus/comon_virus_attak_wave.png" id="5_721kb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvvw6"]
 size = Vector2(64, 58)
@@ -14,6 +16,26 @@ region = Rect2(0, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6p3dw"]
 atlas = ExtResource("2_wvvw6")
 region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usnwx"]
+atlas = ExtResource("2_e2ihw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe6dr"]
+atlas = ExtResource("2_e2ihw")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loegl"]
+atlas = ExtResource("2_e2ihw")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv42b"]
+atlas = ExtResource("2_e2ihw")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0471"]
+atlas = ExtResource("2_e2ihw")
+region = Rect2(0, 256, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2ihw"]
 atlas = ExtResource("2_85b8k")
@@ -46,6 +68,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_usnwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fe6dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loegl")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_wv42b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0471")
+}],
+"loop": false,
+"name": &"shockwave",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_e2ihw")
 }, {
 "duration": 1.0,
@@ -62,8 +104,45 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="Virus" type="CharacterBody2D"]
-script = ExtResource("1_sba7h")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6p7e"]
+size = Vector2(64, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v647y"]
+atlas = ExtResource("5_721kb")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyqke"]
+atlas = ExtResource("5_721kb")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q2q3"]
+atlas = ExtResource("5_721kb")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gnhd8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v647y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyqke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q2q3")
+}],
+"loop": false,
+"name": &"wave",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ioyle"]
+radius = 94.04786
+
+[node name="Virus" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_ufd6t")
 metadata/_custom_type_script = "uid://cxvfbor6tlmi5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,5 +153,28 @@ shape = SubResource("RectangleShape2D_wvvw6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
 scale = Vector2(1, 0.9285919)
 sprite_frames = SubResource("SpriteFrames_gvytb")
-animation = &"idle"
-frame_progress = 0.78229976
+animation = &"shockwave"
+frame = 4
+frame_progress = 1.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_e6p7e")
+debug_color = Color(0.8885578, 0.2553729, 0.5293614, 0.41960785)
+
+[node name="ShockwaveHolder" type="Node2D" parent="."]
+
+[node name="AttakVisual" type="AnimatedSprite2D" parent="ShockwaveHolder" groups=["enemies"]]
+sprite_frames = SubResource("SpriteFrames_gnhd8")
+animation = &"wave"
+frame = 2
+frame_progress = 1.0
+
+[node name="AttakArea" type="Area2D" parent="ShockwaveHolder"]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShockwaveHolder/AttakArea"]
+shape = SubResource("CircleShape2D_ioyle")
