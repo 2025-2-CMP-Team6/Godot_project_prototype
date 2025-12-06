@@ -1,0 +1,36 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://cikeog0rd1xje"
+path="res://.godot/imported/Game Paused DEMO.otf-e24d9a0f20e22c3476b00a9e658a3904.fontdata"
+
+[deps]
+
+source_file="res://world/StartScreen/Game Paused DEMO.otf"
+dest_files=["res://.godot/imported/Game Paused DEMO.otf-e24d9a0f20e22c3476b00a9e658a3904.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+modulate_color_glyphs=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://cqw1qj4qrccjq" path="res://testScenes_SIC/portal_anim.gd" id="9_vjhlr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js4qc"]
-size = Vector2(5781.5, 298.5)
+size = Vector2(6331.75, 298.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4ln0"]
 atlas = ExtResource("8_e1cl4")
@@ -117,13 +117,27 @@ centered = false
 [node name="Player" parent="." instance=ExtResource("7_js4qc")]
 position = Vector2(1327.9999, 1921.0001)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(-3, 2615)
 collision_layer = 2
 collision_mask = 13
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="Left" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-143, -1062)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_js4qc")
+
+[node name="Bottom" type="CollisionShape2D" parent="Ground"]
 position = Vector2(2890.75, -43.75)
+shape = SubResource("RectangleShape2D_js4qc")
+
+[node name="Right" type="CollisionShape2D" parent="Ground"]
+position = Vector2(5902, -1514)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_js4qc")
+
+[node name="Top" type="CollisionShape2D" parent="Ground"]
+position = Vector2(2875, -2790)
 shape = SubResource("RectangleShape2D_js4qc")
 
 [node name="portal" type="Area2D" parent="."]

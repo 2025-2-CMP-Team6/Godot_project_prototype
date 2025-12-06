@@ -1,21 +1,23 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2kexrpmwtbw0"]
+[gd_scene load_steps=30 format=4 uid="uid://d2kexrpmwtbw0"]
 
 [ext_resource type="Script" uid="uid://3wb8r3l1jd6n" path="res://testScenes_SIC/Stage1/Stage1.gd" id="1_stage_script"]
 [ext_resource type="AudioStream" uid="uid://d0gurxkh8locc" path="res://Sounds/bgm/8bit_song.wav" id="2_irmgc"]
 [ext_resource type="PackedScene" uid="uid://en1mqsrf58ka" path="res://Actors/Player/player.tscn" id="2_yyxtu"]
+[ext_resource type="Texture2D" uid="uid://pj420wxf8h2y" path="res://graphics/resource/Stage1/background.png" id="3_x7txy"]
 [ext_resource type="Texture2D" uid="uid://csfttyi8ghxd3" path="res://Portal-Sheet.png" id="4_g1wns"]
-[ext_resource type="Texture2D" uid="uid://cxm7sj15p6nj0" path="res://graphics/resource/Stage1/background_dark_city_more_pixeltic.png" id="4_wjadl"]
+[ext_resource type="Texture2D" uid="uid://82mnbkckxo68" path="res://graphics/resource/Stage1/city4plan.png" id="4_opubu"]
 [ext_resource type="Script" uid="uid://cqw1qj4qrccjq" path="res://testScenes_SIC/portal_anim.gd" id="5_g1wns"]
+[ext_resource type="Texture2D" uid="uid://u5np12fmr82h" path="res://graphics/resource/Stage1/sun.png" id="5_vpomu"]
 [ext_resource type="Shader" uid="uid://b3xqwchud7pyx" path="res://graphics/resource/Stage1/rain_and_snow_shader.gdshader" id="6_h4ln0"]
+[ext_resource type="Texture2D" uid="uid://2vx6g58fcpjp" path="res://graphics/resource/Stage1/city3plan.png" id="6_mg0fs"]
+[ext_resource type="Texture2D" uid="uid://d22fepkej04hn" path="res://graphics/resource/Stage1/city2plan.png" id="7_18u52"]
 [ext_resource type="PackedScene" uid="uid://hwvrl37b2dlk" path="res://UI/SkillUI.tscn" id="7_uu262"]
+[ext_resource type="Texture2D" uid="uid://ubeunq2pey5t" path="res://graphics/resource/Stage1/smog1.png" id="8_8qep5"]
 [ext_resource type="PackedScene" uid="uid://dgv1ef1ng7ngs" path="res://UI/SkillGetUI.tscn" id="8_yyxtu"]
+[ext_resource type="Texture2D" uid="uid://c18n0a0j2b12x" path="res://graphics/resource/Stage1/city1plan.png" id="9_6cwd0"]
 [ext_resource type="PackedScene" uid="uid://bdh7rx37q7ghf" path="res://Actors/Enemies/Comon/virus/virus.tscn" id="10_4dk8a"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjadl"]
-size = Vector2(5877.7344, 812.4219)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1wns"]
-size = Vector2(153.3984, 6963.5)
+[ext_resource type="Texture2D" uid="uid://ccgl22ktyonn6" path="res://graphics/resource/Stage1/smog2.png" id="10_ypiqe"]
+[ext_resource type="Texture2D" uid="uid://yv0t3xa5481t" path="res://graphics/resource/Stage1/Tileset_1.png" id="18_opubu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4ln0"]
 atlas = ExtResource("4_g1wns")
@@ -78,44 +80,178 @@ shader_parameter/base_rain_speed = 0.5
 shader_parameter/additional_rain_speed = 0.5
 shader_parameter/slant = 0.2
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvidl"]
+size = Vector2(13366, 763)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpomu"]
+texture = ExtResource("18_opubu")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_mg0fs"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 5
+sources/0 = SubResource("TileSetAtlasSource_vpomu")
+
 [node name="Stage1" type="Node2D" node_paths=PackedStringArray("skill_get_ui", "skill_ui")]
 script = ExtResource("1_stage_script")
 skill_get_ui = NodePath("SkillGetUI")
 skill_ui = NodePath("SkillUI")
 stage_bgm = ExtResource("2_irmgc")
 
-[node name="Background" type="Sprite2D" parent="." groups=["CameraMapLimit"]]
-scale = Vector2(5.8527036, 5.2305555)
-texture = ExtResource("4_wjadl")
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" groups=["CameraMapLimit"]]
+scale = Vector2(15, 15)
+texture = ExtResource("3_x7txy")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2" groups=["CameraMapLimit"]]
+scale = Vector2(15, 15)
+texture = ExtResource("4_opubu")
+centered = false
+
+[node name="sun" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/sun"]
+position = Vector2(2027, 24)
+scale = Vector2(15, 15)
+texture = ExtResource("5_vpomu")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3" groups=["CameraMapLimit"]]
+scale = Vector2(15, 15)
+texture = ExtResource("6_mg0fs")
+centered = false
+
+[node name="Parallax2D4" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4" groups=["CameraMapLimit"]]
+scale = Vector2(15, 15)
+texture = ExtResource("7_18u52")
+centered = false
+
+[node name="Parallax2D6" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D6" groups=["CameraMapLimit"]]
+scale = Vector2(15, 15)
+texture = ExtResource("8_8qep5")
+centered = false
+
+[node name="Parallax2D5" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D5" groups=["CameraMapLimit"]]
+scale = Vector2(15, 15)
+texture = ExtResource("9_6cwd0")
+centered = false
+
+[node name="Parallax2D7" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D7" groups=["CameraMapLimit"]]
+scale = Vector2(15, 15)
+texture = ExtResource("10_ypiqe")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("2_yyxtu")]
-position = Vector2(1727.0005, 3498.0002)
-
-[node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2(1280, 1413)
-scale = Vector2(1.9200001, 1)
-collision_layer = 2
-collision_mask = 13
-
-[node name="ground" type="CollisionShape2D" parent="Platform"]
-position = Vector2(2257.1616, 4461.211)
-shape = SubResource("RectangleShape2D_wjadl")
-
-[node name="leftLimit" type="CollisionShape2D" parent="Platform"]
-position = Vector2(-753.26166, 1366.5)
-shape = SubResource("RectangleShape2D_g1wns")
-
-[node name="rightLimit" type="CollisionShape2D" parent="Platform"]
-position = Vector2(5271.875, 1426.75)
-shape = SubResource("RectangleShape2D_g1wns")
-
-[node name="upperLimit" type="CollisionShape2D" parent="Platform"]
-position = Vector2(2271.6797, -1765)
-shape = SubResource("RectangleShape2D_wjadl")
+position = Vector2(1198.9999, 4613)
 
 [node name="portal" type="Area2D" parent="."]
-position = Vector2(1833, 5215)
+position = Vector2(9032, 1089)
 collision_layer = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="portal"]
@@ -131,6 +267,7 @@ position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_wvjil")
 
 [node name="RainEffect" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="RainEffect"]
 material = SubResource("ShaderMaterial_uu262")
@@ -153,9 +290,21 @@ visible = false
 visible = false
 
 [node name="Virus" parent="." instance=ExtResource("10_4dk8a")]
-position = Vector2(-1168, 3249)
+position = Vector2(1651, 4750)
 
 [node name="Virus2" parent="." instance=ExtResource("10_4dk8a")]
-position = Vector2(-957, 3233)
+position = Vector2(1339, 4617)
+
+[node name="MapLimit" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapLimit"]
+position = Vector2(4443, 5796)
+shape = SubResource("RectangleShape2D_tvidl")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AABAACoBAAAAAAQAAABAACsBAAAAAAUAAABBACoBAAABAAQAAABBACsBAAABAAUAAABCACoBAAAAAAQAAABCACsBAAAAAAUAAABDACoBAAABAAQAAABDACsBAAABAAUAAABEACwBAAAAAAQAAABEAC0BAAAAAAUAAABFACwBAAABAAQAAABFAC0BAAABAAUAAABGACwBAAAAAAQAAABGAC0BAAAAAAUAAABHACwBAAABAAQAAABHAC0BAAABAAUAAABIACwBAAAAAAQAAABIAC0BAAAAAAUAAABJACwBAAABAAQAAABJAC0BAAABAAUAAABKAC4BAAAAAAQAAABKAC8BAAAAAAUAAABLAC4BAAABAAQAAABLAC8BAAABAAUAAABMAC4BAAAAAAQAAABMAC8BAAAAAAUAAABNAC4BAAABAAQAAABNAC8BAAABAAUAAABOAC4BAAAAAAQAAABOAC8BAAAAAAUAAABPAC4BAAABAAQAAABPAC8BAAABAAUAAABQADABAAAAAAQAAABQADEBAAAAAAUAAABRADABAAABAAQAAABRADEBAAABAAUAAABSADABAAAAAAQAAABSADEBAAAAAAUAAABTADABAAABAAQAAABTADEBAAABAAUAAABUADABAAAAAAQAAABUADEBAAAAAAUAAABVADABAAABAAQAAABVADEBAAABAAUAAABWADABAAAAAAQAAABWADEBAAAAAAUAAABXADABAAABAAQAAABXADEBAAABAAUAAABYADIBAAAAAAQAAABYADMBAAAAAAUAAABZADIBAAABAAQAAABZADMBAAABAAUAAABaADIBAAAAAAQAAABaADMBAAAAAAUAAABbADIBAAABAAQAAABbADMBAAABAAUAAABcADQBAAAAAAQAAABcADUBAAAAAAUAAABdADQBAAABAAQAAABdADUBAAABAAUAAAA=")
+tile_set = SubResource("TileSet_mg0fs")
 
 [connection signal="body_entered" from="portal" to="." method="_on_portal_body_entered"]

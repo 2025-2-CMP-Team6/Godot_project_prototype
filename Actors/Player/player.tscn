@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://crv50bot4wkpv" path="res://testScenes_SIC/player_anim.gd" id="4_isd1h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(109.07209, 128)
+size = Vector2(78.12495, 116.51672)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onrkg"]
 bg_color = Color(0.6751306, 0.77538246, 1.2880678, 1)
@@ -377,8 +377,8 @@ hud_skill_2_icon = NodePath("HUD/HudContainer/SkillHudIcon2")
 hud_skill_3_icon = NodePath("HUD/HudContainer/SkillHudIcon3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(9.463961, 0)
-scale = Vector2(1.0000002, 1)
+position = Vector2(-3.0048008, 5.741638)
+scale = Vector2(1.0000006, 1)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="RecoveryTimer" type="Timer" parent="."]

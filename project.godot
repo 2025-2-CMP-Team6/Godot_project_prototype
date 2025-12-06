@@ -21,6 +21,7 @@ InventoryManager="*res://InventoryManager.gd"
 EffectManager="*res://EffectManager.gd"
 GameManager="*res://GameManager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+SceneTransition="*res://autoload/SceneTransition.tscn"
 
 [display]
 
