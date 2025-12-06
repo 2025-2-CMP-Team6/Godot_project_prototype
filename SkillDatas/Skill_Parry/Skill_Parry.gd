@@ -18,6 +18,7 @@ func _ready():
 
 #region 스킬 로직
 func execute(owner: CharacterBody2D, target: Node2D = null):
+	super.execute(owner, target) # ★ 필수: 상태값 변경
 	print(owner.name + "가 " + skill_name + " 시전!")
 	if parry_box:
 		parry_box.monitoring = true

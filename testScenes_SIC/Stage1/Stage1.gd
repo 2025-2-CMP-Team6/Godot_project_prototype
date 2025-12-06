@@ -4,6 +4,7 @@ extends World
 var dialogue_resource = preload("res://testScenes_SIC/dialogue/test.dialogue")
 
 func _ready():
+	super() #오디오매니저 세팅을 위해 필요합니다. 인스펙터의 Stage Settings에 원하는 음악을 넣으면 됩니다.
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource, "start")
 
 func _on_portal_body_entered(body):

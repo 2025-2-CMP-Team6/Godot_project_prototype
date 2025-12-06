@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgfad7rjpqgp4"]
+[gd_scene load_steps=5 format=3 uid="uid://dgfad7rjpqgp4"]
 
 [ext_resource type="Script" uid="uid://chmgu6lsnd6pk" path="res://SkillDatas/Skill_Parry/Skill_Parry.gd" id="1_1hlnm"]
-[ext_resource type="Texture2D" uid="uid://bwf4bpn28sj77" path="res://graphics/icon.svg" id="2_2yb0v"]
+[ext_resource type="Texture2D" uid="uid://b8rkkkdbg2nhs" path="res://SkillDatas/Skill_Parry/fc1811.png" id="2_c0y8o"]
+[ext_resource type="AudioStream" uid="uid://ddnxjky21vmxw" path="res://Sounds/effects/sfx_parry.mp3" id="3_c0y8o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hlnm"]
 
@@ -10,10 +11,12 @@ scale = Vector2(0.95491946, 0.9520446)
 script = ExtResource("1_1hlnm")
 skill_name = "패링"
 skill_description = "적의 공격을 튕겨낸다."
-skill_icon = ExtResource("2_2yb0v")
+skill_icon = ExtResource("2_c0y8o")
 cast_duration = 0.2
 cooldown = 1.5
 type = 3
+cast_sound = ExtResource("3_c0y8o")
+sound_volume_db = 10.0
 
 [node name="ParryBox" type="Area2D" parent="."]
 monitorable = false

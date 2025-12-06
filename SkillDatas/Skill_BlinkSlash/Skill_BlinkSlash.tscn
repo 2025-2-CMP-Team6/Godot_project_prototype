@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp2n1tbnw12f4"]
+[gd_scene load_steps=5 format=3 uid="uid://bp2n1tbnw12f4"]
 
 [ext_resource type="Script" uid="uid://o7wombbsoxns" path="res://SkillDatas/Skill_BlinkSlash/Skill_BlinkSlash.gd" id="1_47a4o"]
+[ext_resource type="Texture2D" uid="uid://c43q755qxr0gl" path="res://SkillDatas/Skill_BlinkSlash/fc1134.png" id="2_7l4ec"]
 [ext_resource type="Texture2D" uid="uid://bwf4bpn28sj77" path="res://graphics/icon.svg" id="2_f6qxk"]
+[ext_resource type="AudioStream" uid="uid://et3nufnlyv8w" path="res://Sounds/effects/sfx_knife-slice.mp3" id="3_8luil"]
 
 [node name="Skill_BlinkSlash" type="Node2D"]
 scale = Vector2(0.98290265, 0.9541606)
@@ -9,7 +11,7 @@ script = ExtResource("1_47a4o")
 teleport_distance = 200.0
 slash_visual_texture = ExtResource("2_f6qxk")
 skill_name = "벽력일섬 "
-skill_icon = ExtResource("2_f6qxk")
+skill_icon = ExtResource("2_7l4ec")
 requires_target = true
 max_cast_range = 700.0
-ignore_gravity = true
+cast_sound = ExtResource("3_8luil")

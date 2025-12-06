@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch301youni3rt"]
+[gd_scene load_steps=5 format=3 uid="uid://ch301youni3rt"]
 
 [ext_resource type="Script" uid="uid://cdsm3ar2ciq1r" path="res://SkillDatas/Skill_FireBall/skill_fire_ball.gd" id="1_2o0sc"]
-[ext_resource type="Texture2D" uid="uid://ik5r1h2qkx06" path="res://SkillDatas/Skill_FireBall/fa815.png" id="2_iw7bs"]
+[ext_resource type="Texture2D" uid="uid://cbceql0c1ce65" path="res://SkillDatas/Skill_FireBall/fc815.png" id="2_mxs3i"]
+[ext_resource type="AudioStream" uid="uid://d2lvafl8qh5l8" path="res://Sounds/effects/sound_fireball_whoosh.mp3" id="3_mxs3i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw7bs"]
 
@@ -9,14 +10,16 @@
 script = ExtResource("1_2o0sc")
 skill_name = "FireBall"
 skill_description = "shoot fireball"
-skill_icon = ExtResource("2_iw7bs")
+skill_icon = ExtResource("2_mxs3i")
 stamina_cost = 15.0
 cooldown = 3.0
 type = 2
 damage = 50.0
+cast_sound = ExtResource("3_mxs3i")
 
 [node name="BulletTemplate" type="Area2D" parent="."]
-visible = false
+rotation = -2.4113116
+scale = Vector2(2.64771, 2.64771)
 collision_layer = 0
 collision_mask = 4
 
@@ -28,4 +31,6 @@ shape = SubResource("CapsuleShape2D_iw7bs")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="BulletTemplate"]
 
 [node name="Sprite2D" type="Sprite2D" parent="BulletTemplate"]
-texture = ExtResource("2_iw7bs")
+position = Vector2(-0.25194564, -0.28137028)
+scale = Vector2(0.24517506, 0.24517506)
+texture = ExtResource("2_mxs3i")

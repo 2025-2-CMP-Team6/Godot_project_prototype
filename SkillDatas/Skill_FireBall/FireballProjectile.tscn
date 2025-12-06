@@ -1,7 +1,5 @@
 [gd_scene load_steps=4 format=3 uid="uid://dv80mbtf8xhs7"]
 
-[ext_resource type="Texture2D" uid="uid://ik5r1h2qkx06" path="res://SkillDatas/Skill_FireBall/fa815.png" id="2_ggtn0"]
-
 [sub_resource type="GDScript" id="GDScript_ubpbc"]
 script/source = "extends Area2D
 
@@ -25,6 +23,9 @@ func _on_screen_exited(): # VisibleOnScreenNotifier2D 시그널 연결
 	queue_free()
 "
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vbx22"]
+load_path = "res://.godot/imported/fa815.png-94a69cdb678d8f2172b0f433eb28c73b.ctex"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3i61r"]
 radius = 6.085267
 height = 15.199093
@@ -33,13 +34,16 @@ height = 15.199093
 script = SubResource("GDScript_ubpbc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.0026897, 1.0026897)
-texture = ExtResource("2_ggtn0")
+position = Vector2(1, -0.99999976)
+rotation = 0.58667725
+scale = Vector2(1.7513448, 1.7513448)
+texture = SubResource("CompressedTexture2D_vbx22")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
-rotation = -2.2761693
-scale = Vector2(-0.82008433, 1.31335)
+position = Vector2(0.99999994, 0)
+rotation = -1.7195659
+scale = Vector2(-1.3993638, 2.4236796)
 shape = SubResource("CapsuleShape2D_3i61r")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-17, -12, 36, 25)

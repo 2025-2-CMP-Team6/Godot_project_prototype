@@ -34,7 +34,7 @@ project/assembly_name="teamproject"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/audio_manager/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg")
 
 [importer_defaults]
 
@@ -113,6 +113,7 @@ locale/translations_pot_files=PackedStringArray("res://testScenes_SIC/dialogue/t
 2d_render/layer_3="Enemy"
 2d_render/layer_4="Skill"
 2d_physics/layer_1="Player"
+2d_physics/layer_2="Wall"
 2d_physics/layer_3="Enemy"
 
 [physics]
