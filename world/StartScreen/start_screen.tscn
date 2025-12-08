@@ -601,7 +601,7 @@ position = Vector2(1281, 718)
 scale = Vector2(5.144578, 5.164285)
 sprite_frames = SubResource("SpriteFrames_a4uvx")
 animation = &"startScreenBg"
-frame_progress = 0.581565
+frame_progress = 0.77943337
 script = ExtResource("137_8upoh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
