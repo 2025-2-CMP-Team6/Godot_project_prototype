@@ -62,7 +62,6 @@ rotation = 1.5707964
 scale = Vector2(23.88, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 scale = Vector2(2.6, 2.6)
 texture = ExtResource("6_3uvoy")
 

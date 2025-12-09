@@ -41,6 +41,7 @@ func _on_map_pattern_timer_timeout():
 			var num_fires = randi_range(2, 4)
 			var fireX: float
 			var fireA = get_random_positions(256, 1920, num_fires)
+
 			for i in range(num_fires):
 				var fire = BossFire.instantiate()
 				fireX = fireA[i]
@@ -48,8 +49,6 @@ func _on_map_pattern_timer_timeout():
 				add_child(fire)
 				fire.position = Vector2(fireX, 776)
 
-			# 맵 패턴 3
-			print("Executing map pattern 3")
 	
 	map_pattern_timer.wait_time = randf_range(3.0, 5.0)
 	map_pattern_timer.start()
