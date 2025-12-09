@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d17iyotjvbsve"
-path="res://.godot/imported/comon_virus_walk.png-0ae6f4f10d36d0652a4821410a2730ef.ctex"
+uid="uid://bgkc4d323j4pk"
+path="res://.godot/imported/comon_virus.png-69bfc6a693ce26342c9951fdefb54804.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Actors/Enemies/Comon/virus/comon_virus_walk.png"
-dest_files=["res://.godot/imported/comon_virus_walk.png-0ae6f4f10d36d0652a4821410a2730ef.ctex"]
+source_file="res://graphics/Actors/comon_virus.png"
+dest_files=["res://.godot/imported/comon_virus.png-69bfc6a693ce26342c9951fdefb54804.ctex"]
 
 [params]
 

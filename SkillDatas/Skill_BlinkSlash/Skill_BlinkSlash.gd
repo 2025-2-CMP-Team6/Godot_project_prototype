@@ -54,9 +54,8 @@ func execute(owner: CharacterBody2D, target: Node2D = null):
 		target_position = ray_to
 
 	owner.global_position = target_position
-	
+
 	apply_slash_damage(start_pos, target_position, owner)
-# Skill_BlinkSlash.gd
 
 func apply_slash_damage(start_pos: Vector2, end_pos: Vector2, owner: CharacterBody2D):
 	var length = start_pos.distance_to(end_pos)

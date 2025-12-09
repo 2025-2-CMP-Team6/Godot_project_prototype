@@ -1,17 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://dodw35vp4duix"]
+[gd_scene load_steps=9 format=3 uid="uid://dodw35vp4duix"]
 
 [ext_resource type="PackedScene" uid="uid://en1mqsrf58ka" path="res://Actors/Player/player.tscn" id="1_4717r"]
 [ext_resource type="Script" uid="uid://co8st7l6w22j6" path="res://world/world.gd" id="1_fn3g3"]
-[ext_resource type="PackedScene" uid="uid://10p01la5f8rw" path="res://Actors/Enemies/enemy.tscn" id="3_4717r"]
 [ext_resource type="PackedScene" uid="uid://hwvrl37b2dlk" path="res://UI/SkillUI.tscn" id="3_h5o24"]
 [ext_resource type="Texture2D" uid="uid://bq86qdbosfr7h" path="res://graphics/grid.jpg" id="3_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://dgv1ef1ng7ngs" path="res://UI/SkillGetUI.tscn" id="4_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://c0sv0dk5utfr3" path="res://Block/wall.tscn" id="5_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://bb44trwnidu06" path="res://Actors/Enemies/Comon/virus/FlyEnemy.tscn" id="8_4papg"]
+[ext_resource type="PackedScene" uid="uid://dai8mvtukr1k" path="res://Actors/Enemies/Comon/virus/RangeVirus.tscn" id="8_ai45w"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player", "enemy", "skill_get_ui", "skill_ui")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player", "skill_get_ui", "skill_ui")]
 script = ExtResource("1_fn3g3")
 player = NodePath("Player")
-enemy = NodePath("Enemy")
 skill_get_ui = NodePath("SkillGetUI")
 skill_ui = NodePath("SkillUI")
 
@@ -25,10 +25,6 @@ visible = false
 
 [node name="SkillGetUI" parent="." instance=ExtResource("4_sc4t8")]
 visible = false
-
-[node name="Enemy" parent="." instance=ExtResource("3_4717r")]
-position = Vector2(503, 150)
-max_health = 30.0
 
 [node name="ParallaxLayer" type="Parallax2D" parent="."]
 z_index = -10
@@ -46,3 +42,21 @@ region_rect = Rect2(0, 0, 4000, 4000)
 z_index = -1
 position = Vector2(1648, 352)
 scale = Vector2(71.16, 1)
+
+[node name="RangeVirus" parent="." instance=ExtResource("8_ai45w")]
+position = Vector2(928, 168)
+
+[node name="FlyEnemy" parent="." instance=ExtResource("8_4papg")]
+position = Vector2(1152, -56)
+
+[node name="FlyEnemy2" parent="." instance=ExtResource("8_4papg")]
+position = Vector2(1152, -56)
+
+[node name="FlyEnemy3" parent="." instance=ExtResource("8_4papg")]
+position = Vector2(1152, -56)
+
+[node name="FlyEnemy4" parent="." instance=ExtResource("8_4papg")]
+position = Vector2(1152, -56)
+
+[node name="FlyEnemy5" parent="." instance=ExtResource("8_4papg")]
+position = Vector2(1152, -56)

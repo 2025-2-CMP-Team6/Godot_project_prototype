@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://deraqiym6ih4h"]
 
-[ext_resource type="Texture2D" uid="uid://c0wgft5avfblx" path="res://graphics/Boss.png" id="1_rsbw7"]
+[ext_resource type="Texture2D" uid="uid://c0wgft5avfblx" path="res://graphics/Actors/Boss.png" id="1_rsbw7"]
 [ext_resource type="Script" uid="uid://cvkqrhuny154i" path="res://Actors/Enemies/Boss/boss.gd" id="1_x4ak8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsbw7"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=49 format=3 uid="uid://ba68j1v0gpdt2"]
 
-[ext_resource type="Texture2D" uid="uid://c3uulybwprmo0" path="res://graphics/AnimationSheet_Character.png" id="2_p75ev"]
+[ext_resource type="Texture2D" uid="uid://c3uulybwprmo0" path="res://graphics/Actors/AnimationSheet_Character.png" id="2_p75ev"]
 [ext_resource type="Script" uid="uid://crv50bot4wkpv" path="res://testScenes_SIC/player_anim.gd" id="3_p75ev"]
 [ext_resource type="PackedScene" uid="uid://byv8rt76sqhox" path="res://UI/SkillHudIcon.tscn" id="4_2jjk8"]
 
