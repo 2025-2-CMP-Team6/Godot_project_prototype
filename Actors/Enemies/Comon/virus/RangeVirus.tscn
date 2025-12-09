@@ -162,7 +162,7 @@ debug_color = Color(0.8885578, 0.2553729, 0.5293614, 0.41960785)
 
 [node name="ShockwaveHolder" type="Node2D" parent="."]
 
-[node name="AttakVisual" type="AnimatedSprite2D" parent="ShockwaveHolder" groups=["enemies"]]
+[node name="AttakVisual" type="AnimatedSprite2D" parent="ShockwaveHolder"]
 sprite_frames = SubResource("SpriteFrames_gnhd8")
 animation = &"wave"
 frame = 2

@@ -3,27 +3,26 @@ class_name World extends Node2D
 
 # 씬에 배치한 노드들을 가져옵니다.
 @export var player: CharacterBody2D
-@export var enemy: CharacterBody2D
 @export var skill_get_ui: SkillGetUI
 @export var skill_ui: SkillUI
 
 # 인스펙터에서 스테이지별 음악을 넣을 수 있는 변수
 @export_category("Stage Settings")
-@export var stage_bgm: AudioStream  # 여기에 mp3 파일을 넣기
+@export var stage_bgm: AudioStream # 여기에 mp3 파일을 넣기
 @export var bgm_volume_db: float = -10.0 # 기본 볼륨 설정
 
 # 오디오 매니저 변수
-var _audio_manager: AudioManager 
+var _audio_manager: AudioManager
 var _bgm_key: String = "StageBGM"
 
 # 음악 세팅 함수
 func _setup_stage_music():
 	if stage_bgm == null:
-		return 
+		return
 
 	# AudioManager 생성 및 씬에 추가
 	_audio_manager = AudioManager.new()
-	add_child(_audio_manager) 
+	add_child(_audio_manager)
 
 	# AudioManagerPlus (배경음악용) 설정
 	var bgm_plus = AudioManagerPlus.new()
@@ -39,17 +38,23 @@ func _setup_stage_music():
 func _ready():
 	# 오디오 설정 및 재생
 	_setup_stage_music()
-	
-	if is_instance_valid(enemy):
-		enemy.enemy_died.connect(_on_enemy_died)
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	if enemies.size() > 0:
+		for enemy in enemies:
+			if not enemy.enemy_died.is_connected(_on_enemy_died):
+				enemy.enemy_died.connect(_on_enemy_died)
+	else:
+		print("주의: 맵에 'enemies' 그룹인 적이 하나도 없습니다.")
 	if is_instance_valid(skill_get_ui):
 		skill_get_ui.closed.connect(_on_skill_get_ui_closed)
 
 func _on_enemy_died():
-	if is_instance_valid(skill_get_ui):
+	var remaining_enemies = get_tree().get_nodes_in_group("enemies")
+	if remaining_enemies.size() <= 1:
+		print("모든 적 처치 완료! 보상 선택 창 오픈")
 		skill_get_ui.open_reward_screen()
-		if is_instance_valid(player):
-			player.set_input_locked(true)
+	else:
+		print("적이 사망했습니다. 남은 적: " + str(remaining_enemies.size() - 1))
 
 func _on_skill_get_ui_closed():
 	if is_instance_valid(player) and (not is_instance_valid(skill_ui) or not skill_ui.visible):
