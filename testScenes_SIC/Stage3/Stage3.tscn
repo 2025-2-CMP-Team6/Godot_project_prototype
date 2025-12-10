@@ -1,10 +1,116 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3gnlfh1n8f8j"]
+[gd_scene load_steps=10 format=3 uid="uid://d3gnlfh1n8f8j"]
 
+[ext_resource type="Script" uid="uid://cbas35sfacvvi" path="res://testScenes_SIC/Stage3/Stage3.gd" id="1_cej1a"]
 [ext_resource type="Texture2D" uid="uid://bp3afg2epb7jc" path="res://testScenes_SIC/Stage3/Assets/Environment/background.png" id="1_rvv5c"]
 [ext_resource type="Texture2D" uid="uid://bo77fjadcab3q" path="res://testScenes_SIC/Stage3/Assets/Environment/mountains.png" id="2_oitkq"]
 [ext_resource type="Texture2D" uid="uid://dg4a7dwtnou72" path="res://testScenes_SIC/Stage3/Assets/Environment/graveyard.png" id="3_nmnnk"]
+[ext_resource type="Texture2D" uid="uid://drirhortw73xm" path="res://testScenes_SIC/Stage3/Assets/Environment/tileset.png" id="4_oitkq"]
+[ext_resource type="PackedScene" uid="uid://en1mqsrf58ka" path="res://Actors/Player/player.tscn" id="5_nmnnk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nmnnk"]
+texture = ExtResource("4_oitkq")
+21:1/0 = 0
+22:1/0 = 0
+19:2/0 = 0
+20:2/0 = 0
+21:2/0 = 0
+22:2/0 = 0
+23:2/0 = 0
+24:2/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+19:3/0 = 0
+20:3/0 = 0
+21:3/0 = 0
+22:3/0 = 0
+23:3/0 = 0
+24:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+22:4/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+22:5/0 = 0
+23:5/0 = 0
+24:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+20:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+23:6/0 = 0
+24:6/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+18:7/0 = 0
+19:7/0 = 0
+20:7/0 = 0
+21:7/0 = 0
+22:7/0 = 0
+23:7/0 = 0
+24:7/0 = 0
+25:7/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+17:8/0 = 0
+18:8/0 = 0
+19:8/0 = 0
+20:8/0 = 0
+21:8/0 = 0
+22:8/0 = 0
+23:8/0 = 0
+24:8/0 = 0
+25:8/0 = 0
+26:8/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_cej1a"]
+sources/0 = SubResource("TileSetAtlasSource_nmnnk")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cej1a"]
+size = Vector2(5735, 374)
 
 [node name="Stage3" type="Node2D"]
+script = ExtResource("1_cej1a")
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -30,3 +136,18 @@ position = Vector2(0, 1537)
 scale = Vector2(15, 15)
 texture = ExtResource("3_nmnnk")
 centered = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_cej1a")
+
+[node name="Player" parent="." instance=ExtResource("5_nmnnk")]
+position = Vector2(1232, 2527)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(556, 3399)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2317, -204)
+shape = SubResource("RectangleShape2D_cej1a")
