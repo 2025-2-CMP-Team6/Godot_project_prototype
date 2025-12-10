@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://d2kexrpmwtbw0"]
+[gd_scene load_steps=31 format=4 uid="uid://d2kexrpmwtbw0"]
 
 [ext_resource type="Script" uid="uid://3wb8r3l1jd6n" path="res://testScenes_SIC/Stage1/Stage1.gd" id="1_stage_script"]
 [ext_resource type="AudioStream" uid="uid://d0gurxkh8locc" path="res://Sounds/bgm/8bit_song.wav" id="2_irmgc"]
@@ -267,6 +267,9 @@ sources/0 = SubResource("TileSetAtlasSource_vpomu")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opubu"]
 size = Vector2(108.36, 9.41)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpomu"]
+size = Vector2(10844.5, 950.5)
+
 [node name="Stage1" type="Node2D" node_paths=PackedStringArray("skill_get_ui", "skill_ui")]
 script = ExtResource("1_stage_script")
 skill_get_ui = NodePath("SkillGetUI")
@@ -401,7 +404,7 @@ scale = Vector2(100, 100)
 shape = SubResource("RectangleShape2D_opubu")
 
 [node name="Bottom" type="CollisionShape2D" parent="MapLimit"]
-position = Vector2(4746, 5669)
+position = Vector2(4636.9995, 7848.999)
 scale = Vector2(100, 100)
 shape = SubResource("RectangleShape2D_opubu")
 
@@ -417,4 +420,12 @@ rotation = 1.5707964
 scale = Vector2(100, 100)
 shape = SubResource("RectangleShape2D_opubu")
 
+[node name="FallPrevention" type="Area2D" parent="."]
+position = Vector2(-618, 5825)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallPrevention"]
+position = Vector2(5314, 374)
+shape = SubResource("RectangleShape2D_vpomu")
+
 [connection signal="body_entered" from="portal" to="." method="_on_portal_body_entered"]
+[connection signal="body_entered" from="FallPrevention" to="." method="_on_fall_prevention_body_entered"]
