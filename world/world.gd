@@ -70,7 +70,7 @@ func _unhandled_input(event):
 			if is_instance_valid(player):
 				player.set_input_locked(true)
 		return
-		
+
 	# 스킬창 테스트
 	if Input.is_action_just_pressed("ui_inventory"):
 		if is_instance_valid(skill_ui):
@@ -80,3 +80,62 @@ func _unhandled_input(event):
 			if skill_ui.visible:
 				skill_ui.refresh_ui(player)
 		return
+
+# 카메라 인트로 효과: 맵 전체를 보여주고 플레이어로 줌인
+# 모든 스테이지에서 재사용 가능
+func camera_intro_effect(
+	initial_zoom: Vector2 = Vector2(0.272, 0.3),
+	show_duration: float = 3.0,
+	zoom_duration: float = 2.0,
+	enable_parallax_transition: bool = true
+):
+	# 플레이어 노드 찾기
+	var stage_player = player if player != null else get_node_or_null("Player")
+	if stage_player == null:
+		print("경고: Player 노드를 찾을 수 없습니다.")
+		return
+
+	# 플레이어의 카메라 찾기
+	var camera = stage_player.get_node_or_null("Camera2D")
+	if camera == null:
+		print("경고: Player의 Camera2D를 찾을 수 없습니다.")
+		return
+
+	# Background 노드 찾기
+	var background = get_node_or_null("Background")
+	var parallax_nodes = []
+	var original_scroll_scales = []
+
+	# Parallax 효과가 활성화되어 있고 Background 노드가 있으면 처리
+	if enable_parallax_transition and background != null:
+		for child in background.get_children():
+			if child is Parallax2D:
+				parallax_nodes.append(child)
+				original_scroll_scales.append(child.scroll_scale)
+				child.scroll_scale = Vector2(1.0, 1.0)
+
+	# 초기 줌 아웃 설정 (맵 전체를 보여주기 위해)
+	var target_zoom = Vector2(1.0, 1.0)  # 플레이어 중심 일반 줌
+	camera.zoom = initial_zoom
+
+	# 맵 전체를 잠시 보여주기 위해 대기
+	await get_tree().create_timer(show_duration).timeout
+
+	# 플레이어 중심으로 줌 인 애니메이션
+	var zoom_tween = create_tween()
+	zoom_tween.set_ease(Tween.EASE_IN_OUT)
+	zoom_tween.set_trans(Tween.TRANS_CUBIC)
+	zoom_tween.tween_property(camera, "zoom", target_zoom, zoom_duration)
+
+	# Parallax2D 노드들의 scroll_scale을 부드럽게 복원 (줌과 동시에)
+	if enable_parallax_transition and parallax_nodes.size() > 0:
+		var parallax_tween = create_tween()
+		parallax_tween.set_ease(Tween.EASE_IN_OUT)
+		parallax_tween.set_trans(Tween.TRANS_CUBIC)
+		parallax_tween.set_parallel(true)  # 모든 트윈을 동시에 실행
+
+		for i in range(parallax_nodes.size()):
+			parallax_tween.tween_property(parallax_nodes[i], "scroll_scale", original_scroll_scales[i], zoom_duration)
+
+	# 애니메이션 완료까지 대기
+	await zoom_tween.finished
