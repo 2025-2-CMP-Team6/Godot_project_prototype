@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://ecveoa8kk6kl"]
+
+[ext_resource type="Script" uid="uid://cejwa0qd53fao" path="res://SkillDatas/Skill_IceBall/skill_Ice_ball.gd" id="1_8k5p6"]
+[ext_resource type="AudioStream" uid="uid://1mou3ople5kk" path="res://Sounds/effects/sfx_iceball.mp3" id="2_8k5p6"]
+[ext_resource type="Texture2D" uid="uid://djnwjye6p6lpq" path="res://SkillDatas/Skill_IceBall/fc783.png" id="3_rthd6"]
+
+[sub_resource type="Resource" id="Resource_vdjab"]
+metadata/__load_path__ = "res://SkillDatas/Skill_IceBall/fc815.png"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw7bs"]
+
+[node name="SkillIceBall" type="Node2D"]
+script = ExtResource("1_8k5p6")
+skill_name = "IceBall"
+skill_description = "shoot iceball"
+skill_icon = SubResource("Resource_vdjab")
+stamina_cost = 15.0
+cooldown = 3.0
+type = 2
+damage = 50.0
+cast_sound = ExtResource("2_8k5p6")
+sound_volume_db = 3.0
+
+[node name="BulletTemplate" type="Area2D" parent="."]
+rotation = -2.4113116
+scale = Vector2(2.64771, 2.64771)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletTemplate"]
+rotation = 0.84159577
+scale = Vector2(0.5408372, 0.70230526)
+shape = SubResource("CapsuleShape2D_iw7bs")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="BulletTemplate"]
+
+[node name="Sprite2D" type="Sprite2D" parent="BulletTemplate"]
+position = Vector2(-0.25194564, -0.28137028)
+scale = Vector2(0.24517506, 0.24517506)
+texture = ExtResource("3_rthd6")

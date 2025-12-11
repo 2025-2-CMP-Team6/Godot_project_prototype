@@ -16,6 +16,7 @@ const BaseSkill = preload("res://SkillDatas/BaseSkill.gd")
 @export var max_stamina: float = 100.0
 @export var dash_cost: float = 35.0
 @export var stamina_regen_rate: float = 20.0
+@export var hit_sound: AudioStream
 #endregion
 
 #region 상태 관리 변수
@@ -51,6 +52,8 @@ var is_input_locked: bool = false
 @export var hud_skill_1_icon: Control
 @export var hud_skill_2_icon: Control
 @export var hud_skill_3_icon: Control
+
+@export var sfx_player: AudioStreamPlayer
 #endregion
 
 
@@ -410,6 +413,14 @@ func update_lives_ui():
 func lose_life():
 	if is_invincible or GameManager.state == GameManager.State.DASH or current_lives <= 0:
 		return
+		
+	if sfx_player and hit_sound:
+		sfx_player.stream = hit_sound
+		# 피치(음정)를 0.9 ~ 1.1 사이로 랜덤하게 조절하면 
+		# 매번 똑같은 소리가 나지 않아 덜 지루하고 자연스럽습니다.
+		sfx_player.pitch_scale = randf_range(0.9, 1.1) 
+		sfx_player.play()
+		
 	current_lives -= 1
 	print("생명 1 잃음! 남은 생명: ", current_lives)
 	update_lives_ui()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv80mbtf8xhs7"]
+[gd_scene load_steps=4 format=3 uid="uid://drnudrw8au70r"]
 
 [sub_resource type="GDScript" id="GDScript_ubpbc"]
 script/source = "extends Area2D
@@ -24,7 +24,6 @@ func _on_screen_exited(): # VisibleOnScreenNotifier2D 시그널 연결
 "
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vbx22"]
-load_path = "res://.godot/imported/fa815.png-94a69cdb678d8f2172b0f433eb28c73b.ctex"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3i61r"]
 radius = 6.085267

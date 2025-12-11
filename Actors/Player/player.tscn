@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://en1mqsrf58ka"]
+[gd_scene load_steps=52 format=3 uid="uid://en1mqsrf58ka"]
 
 [ext_resource type="Script" uid="uid://wkfijdxl0av1" path="res://Actors/Player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bmvvtay7oilmh" path="res://graphics/life_icon.png" id="2_v1key"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3uulybwprmo0" path="res://graphics/Actors/AnimationSheet_Character.png" id="3_n7l8t"]
 [ext_resource type="PackedScene" uid="uid://byv8rt76sqhox" path="res://UI/SkillHudIcon.tscn" id="4_b63gh"]
 [ext_resource type="Script" uid="uid://crv50bot4wkpv" path="res://testScenes_SIC/player_anim.gd" id="4_isd1h"]
+[ext_resource type="AudioStream" uid="uid://b0qxvcf0rkv6r" path="res://Sounds/effects/s_hurt-sound-435314.mp3" id="7_8gtf5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_isd1h"]
 radius = 39.062454
@@ -349,7 +350,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("duration_timer", "cooldown_timer", "skill_cast_timer", "state_label", "stamina_bar", "visuals", "lives_container", "i_frames_timer", "skill_1_slot", "skill_2_slot", "skill_3_slot", "camera_node", "screen_flash_rect", "hud_skill_1_icon", "hud_skill_2_icon", "hud_skill_3_icon") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("duration_timer", "cooldown_timer", "skill_cast_timer", "state_label", "stamina_bar", "visuals", "lives_container", "i_frames_timer", "skill_1_slot", "skill_2_slot", "skill_3_slot", "camera_node", "screen_flash_rect", "hud_skill_1_icon", "hud_skill_2_icon", "hud_skill_3_icon", "sfx_player") groups=["player"]]
 position = Vector2(23.999998, 24)
 scale = Vector2(0.99840045, 0.99016076)
 collision_mask = 6
@@ -360,6 +361,7 @@ dash_speed = 2000.0
 dash_duration = 0.2
 max_lives = 5
 life_icon = ExtResource("2_v1key")
+hit_sound = ExtResource("7_8gtf5")
 duration_timer = NodePath("DashDurationTimer")
 cooldown_timer = NodePath("DashCooldownTimer")
 skill_cast_timer = NodePath("SkillCastTimer")
@@ -376,6 +378,7 @@ screen_flash_rect = NodePath("HUD/ScreenFlashRect")
 hud_skill_1_icon = NodePath("HUD/HudContainer/SkillHudIcon1")
 hud_skill_2_icon = NodePath("HUD/HudContainer/SkillHudIcon2")
 hud_skill_3_icon = NodePath("HUD/HudContainer/SkillHudIcon3")
+sfx_player = NodePath("AudioStreamPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.0048008, 5.741638)
@@ -476,3 +479,6 @@ offset_left = 2392.0
 offset_top = 1264.0
 offset_right = 2492.0
 offset_bottom = 1364.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 2.0
