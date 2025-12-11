@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://6eaujc344ayw"]
+
+[ext_resource type="Script" uid="uid://sv3ncrjl43mb" path="res://SkillDatas/Skill_MultiShot/skill_MultiShot.gd" id="1_wwh3k"]
+[ext_resource type="Texture2D" uid="uid://o1gnqi6bbo7f" path="res://SkillDatas/Skill_MultiShot/MultiShot.png" id="2_e7tlp"]
+[ext_resource type="Texture2D" uid="uid://dk6slswpvceci" path="res://SkillDatas/Skill_MultiShot/fc847.png" id="2_gssjx"]
+[ext_resource type="AudioStream" uid="uid://be665vsqb8kn3" path="res://Sounds/effects/sfx_PiercingShot.mp3" id="3_y8h6j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw7bs"]
+
+[node name="SkillMultiShot" type="Node2D"]
+rotation = 0.0006974566
+script = ExtResource("1_wwh3k")
+skill_name = "MultiShot"
+skill_description = "shoot Multi Shot"
+skill_icon = ExtResource("2_e7tlp")
+stamina_cost = 15.0
+cooldown = 3.0
+type = 2
+damage = 50.0
+cast_sound = ExtResource("3_y8h6j")
+
+[node name="BulletTemplate" type="Area2D" parent="."]
+rotation = -2.4113116
+scale = Vector2(2.64771, 2.64771)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletTemplate"]
+rotation = 0.84159577
+scale = Vector2(0.5408372, 0.70230526)
+shape = SubResource("CapsuleShape2D_iw7bs")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="BulletTemplate"]
+
+[node name="Sprite2D" type="Sprite2D" parent="BulletTemplate"]
+position = Vector2(-0.25194564, -0.28137028)
+rotation = 1.6173699
+scale = Vector2(0.24517506, 0.24517506)
+texture = ExtResource("2_gssjx")
