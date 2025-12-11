@@ -1,11 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ecveoa8kk6kl"]
+[gd_scene load_steps=5 format=3 uid="uid://ecveoa8kk6kl"]
 
 [ext_resource type="Script" uid="uid://cejwa0qd53fao" path="res://SkillDatas/Skill_IceBall/skill_Ice_ball.gd" id="1_8k5p6"]
 [ext_resource type="AudioStream" uid="uid://1mou3ople5kk" path="res://Sounds/effects/sfx_iceball.mp3" id="2_8k5p6"]
 [ext_resource type="Texture2D" uid="uid://djnwjye6p6lpq" path="res://SkillDatas/Skill_IceBall/fc783.png" id="3_rthd6"]
-
-[sub_resource type="Resource" id="Resource_vdjab"]
-metadata/__load_path__ = "res://SkillDatas/Skill_IceBall/fc815.png"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw7bs"]
 
@@ -13,7 +10,7 @@ metadata/__load_path__ = "res://SkillDatas/Skill_IceBall/fc815.png"
 script = ExtResource("1_8k5p6")
 skill_name = "IceBall"
 skill_description = "shoot iceball"
-skill_icon = SubResource("Resource_vdjab")
+skill_icon = ExtResource("3_rthd6")
 stamina_cost = 15.0
 cooldown = 3.0
 type = 2
