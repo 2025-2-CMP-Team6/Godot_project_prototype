@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://chrq3r3tre42w" path="res://UI/SkillUI.gd" id="1_6m8pb"]
 [ext_resource type="Script" uid="uid://bghevohiykay4" path="res://UI/InventoryDropArea.gd" id="2_5m5hr"]
 [ext_resource type="PackedScene" uid="uid://djshs3mel8s1h" path="res://UI/skillslot.tscn" id="3_hvqun"]
-[ext_resource type="Texture2D" uid="uid://lr1kpc6otqdj" path="res://graphics/emptySkill.jpg" id="4_4qi14"]
+[ext_resource type="Texture2D" uid="uid://cyr0dpuqer51h" path="res://graphics/Yes-1.png.png" id="4_4qi14"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6m8pb"]
 content_margin_left = 8.0

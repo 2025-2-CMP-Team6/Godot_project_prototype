@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgv1ef1ng7ngs"]
+[gd_scene load_steps=5 format=3 uid="uid://dgv1ef1ng7ngs"]
 
 [ext_resource type="Script" uid="uid://laa5mby47uwa" path="res://UI/SkillGetUI.gd" id="1_y5hbc"]
-[ext_resource type="Texture2D" uid="uid://lr1kpc6otqdj" path="res://graphics/emptySkill.jpg" id="2_4n3n4"]
+[ext_resource type="Texture2D" uid="uid://cyr0dpuqer51h" path="res://graphics/Yes-1.png.png" id="2_d328u"]
 [ext_resource type="PackedScene" uid="uid://bur16abmo4xqw" path="res://UI/skillselect.tscn" id="3_0esga"]
+[ext_resource type="Texture2D" uid="uid://b541cot13862p" path="res://graphics/Yes-2.png.png" id="3_ygqnk"]
 
 [node name="SkillGetUI" type="CanvasLayer" node_paths=PackedStringArray("skill_select1", "skill_select2", "skill_select3", "select_button", "background_panel", "cancel_button")]
 script = ExtResource("1_y5hbc")
@@ -26,7 +27,7 @@ offset_top = 572.0
 offset_right = 363.0
 offset_bottom = 681.0
 scale = Vector2(1, 0.8)
-icon = ExtResource("2_4n3n4")
+icon = ExtResource("2_d328u")
 
 [node name="CancelButton" type="Button" parent="Panel"]
 layout_mode = 0
@@ -35,7 +36,7 @@ offset_top = 572.0
 offset_right = 923.0
 offset_bottom = 681.0
 scale = Vector2(1, 0.8)
-icon = ExtResource("2_4n3n4")
+icon = ExtResource("3_ygqnk")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_left = 648.0
