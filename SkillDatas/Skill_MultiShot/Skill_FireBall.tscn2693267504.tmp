@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch301youni3rt"]
+
+[ext_resource type="Script" uid="uid://cdsm3ar2ciq1r" path="res://SkillDatas/Skill_FireBall/skill_fire_ball.gd" id="1_2o0sc"]
+[ext_resource type="Texture2D" uid="uid://ik5r1h2qkx06" path="res://SkillDatas/Skill_FireBall/fa815.png" id="2_iw7bs"]
+
+[node name="SkillFireBall" type="Node2D"]
+script = ExtResource("1_2o0sc")
+skill_name = "FireBall"
+skill_description = "shoot fireball"
+skill_icon = ExtResource("2_iw7bs")
+stamina_cost = 15.0
+cooldown = 3.0
+type = 2
+requires_target = null
+ends_on_condition = null
+damage = 50.0
+max_cast_range = null
+gravity_multiplier = null
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]

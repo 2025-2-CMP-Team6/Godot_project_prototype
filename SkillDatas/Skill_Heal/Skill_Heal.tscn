@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgntcdcxow06x"]
+
+[ext_resource type="Texture2D" uid="uid://ctjb4aj3qu041" path="res://SkillDatas/Skill_Heal/fc968.png" id="1_dspnn"]
+[ext_resource type="Script" uid="uid://1p2urx2tv44t" path="res://SkillDatas/Skill_Heal/skill_heal.gd" id="1_o5hv4"]
+[ext_resource type="Texture2D" uid="uid://t0s3qc8e42qg" path="res://SkillDatas/Skill_Heal/fc1073.png" id="2_lv3lo"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o5hv4"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.78
+gravity = Vector3(0, -20, 0)
+scale_min = 0.0
+scale_max = 0.049999997
+
+[node name="Skill_Heal" type="Node2D"]
+script = ExtResource("1_o5hv4")
+skill_icon = ExtResource("2_lv3lo")
+
+[node name="HealParticles" type="GPUParticles2D" parent="."]
+rotation = 0.70300806
+texture = ExtResource("1_dspnn")
+process_material = SubResource("ParticleProcessMaterial_o5hv4")
