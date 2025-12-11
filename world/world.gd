@@ -1,6 +1,8 @@
 # world.gd
 class_name World extends Node2D
 
+@export var is_test_mode: bool = false
+
 # 씬에 배치한 노드들을 가져옵니다.
 @export var player: CharacterBody2D
 @export var skill_get_ui: SkillGetUI
@@ -36,12 +38,15 @@ func _setup_stage_music():
 	_audio_manager.play_plus(_bgm_key)
 
 func _ready():
-	# InventoryManager가 이미 skill_database를 로딩. 그걸 이용함.
-	var all_skills = InventoryManager.skill_database
 	
-	print("--- 월드 진입: 테스트 스킬 지급 ---")
-	for skill_path in all_skills:
-		InventoryManager.add_skill_to_inventory(skill_path)
+	# 체크박스가 켜진 경우에만 테스트 스킬 지급
+	if is_test_mode:
+		var all_skills = InventoryManager.skill_database
+		
+		print("--- [테스트 모드 ON] 스킬 지급 시작 ---")
+		for skill_path in all_skills:
+			InventoryManager.add_skill_to_inventory(skill_path)
+
 	# 오디오 설정 및 재생
 	_setup_stage_music()
 	var enemies = get_tree().get_nodes_in_group("enemies")
