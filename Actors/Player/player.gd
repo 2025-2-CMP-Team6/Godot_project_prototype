@@ -78,9 +78,15 @@ func _ready():
 	if stamina_bar:
 		stamina_bar.max_value = max_stamina
 		stamina_bar.value = current_stamina
+		# 스태미나 바가 타일이나 다른 요소에 가려지지 않도록 z_index 설정
+		stamina_bar.z_index = 100
 
 	current_lives = max_lives
 	update_lives_ui()
+
+	# 생명 UI도 z_index 설정
+	if lives_container:
+		lives_container.z_index = 100
 
 	if is_instance_valid(hud_skill_1_icon):
 		hud_skill_1_icon.setup_hud(skill_1_slot, "LMB")

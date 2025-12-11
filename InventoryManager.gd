@@ -18,16 +18,18 @@ var equipped_skills: Dictionary = {
 #region 초기화 및 스킬 DB
 func _ready():
 	load_skills_from_directory(SKILL_DIRECTORY)
-	
-	add_skill_to_inventory("res://SkillDatas/Skill_Melee/Skill_Melee.tscn")
-	add_skill_to_inventory("res://SkillDatas/Skill_Heal/Skill_Heal.tscn")
-	add_skill_to_inventory("res://SkillDatas/Skill_ThunderSlash/Skill_ThunderSlash.tscn")
-	add_skill_to_inventory("res://SkillDatas/Skill_MultiShot/Skill_MultiShot.tscn")
-	add_skill_to_inventory("res://SkillDatas/Skill_PiercingShot/Skill_PiercingShot.tscn")
-	add_skill_to_inventory("res://SkillDatas/Skill_IceBall/Skill_IceBall.tscn")
-	add_skill_to_inventory("res://SkillDatas/Skill_FireBall/Skill_FireBall.tscn")
+
+	# 테스트용: 게임 시작 시 모든 스킬을 인벤토리에 추가 (주석 처리됨)
+	# 스킬은 보상창에서 선택했을 때만 인벤토리에 추가되어야 함
+	# add_skill_to_inventory("res://SkillDatas/Skill_Melee/Skill_Melee.tscn")
+	# add_skill_to_inventory("res://SkillDatas/Skill_Heal/Skill_Heal.tscn")
+	# add_skill_to_inventory("res://SkillDatas/Skill_ThunderSlash/Skill_ThunderSlash.tscn")
+	# add_skill_to_inventory("res://SkillDatas/Skill_MultiShot/Skill_MultiShot.tscn")
+	# add_skill_to_inventory("res://SkillDatas/Skill_PiercingShot/Skill_PiercingShot.tscn")
+	# add_skill_to_inventory("res://SkillDatas/Skill_IceBall/Skill_IceBall.tscn")
+	# add_skill_to_inventory("res://SkillDatas/Skill_FireBall/Skill_FireBall.tscn")
 	add_skill_to_inventory("res://SkillDatas/Skill_BlinkSlash/Skill_BlinkSlash.tscn")
-	add_skill_to_inventory("res://SkillDatas/Skill_Parry/Skill_Parry.tscn")
+	# add_skill_to_inventory("res://SkillDatas/Skill_Parry/Skill_Parry.tscn")
 
 func load_skills_from_directory(path: String):
 	var dir = DirAccess.open(path)
