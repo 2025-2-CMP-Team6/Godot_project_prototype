@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://chrq3r3tre42w" path="res://UI/SkillUI.gd" id="1_6m8pb"]
 [ext_resource type="Script" uid="uid://bghevohiykay4" path="res://UI/InventoryDropArea.gd" id="2_5m5hr"]
 [ext_resource type="PackedScene" uid="uid://djshs3mel8s1h" path="res://UI/skillslot.tscn" id="3_hvqun"]
-[ext_resource type="Texture2D" uid="uid://b8vqxr174b80m" path="res://graphics/Yes.png" id="4_4qi14"]
+[ext_resource type="Texture2D" uid="uid://cyr0dpuqer51h" path="res://graphics/Yes-1.png.png" id="4_4qi14"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6m8pb"]
 content_margin_left = 8.0
@@ -82,11 +82,10 @@ offset_top = -0.99554443
 offset_right = 1201.3335
 offset_bottom = 389.24283
 scale = Vector2(0.9986842, 1)
-current_tab = 1
+current_tab = 0
 drag_to_rearrange_enabled = true
 
 [node name="equiped" type="PanelContainer" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -112,6 +111,7 @@ layout_mode = 2
 slot_index = 3
 
 [node name="upgrade" type="PanelContainer" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
