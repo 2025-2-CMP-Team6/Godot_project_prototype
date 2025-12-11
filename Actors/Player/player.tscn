@@ -1,7 +1,8 @@
-[gd_scene load_steps=52 format=3 uid="uid://en1mqsrf58ka"]
+[gd_scene load_steps=53 format=3 uid="uid://en1mqsrf58ka"]
 
 [ext_resource type="Script" uid="uid://wkfijdxl0av1" path="res://Actors/Player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bmvvtay7oilmh" path="res://graphics/life_icon.png" id="2_v1key"]
+[ext_resource type="Texture2D" uid="uid://c0uqcdy4c7km1" path="res://graphics/GoldHeart.png" id="3_awv0x"]
 [ext_resource type="Script" uid="uid://d0u0kmpbano11" path="res://testScenes_SIC/map_camera.gd" id="3_isd1h"]
 [ext_resource type="Texture2D" uid="uid://c3uulybwprmo0" path="res://graphics/Actors/AnimationSheet_Character.png" id="3_n7l8t"]
 [ext_resource type="PackedScene" uid="uid://byv8rt76sqhox" path="res://UI/SkillHudIcon.tscn" id="4_b63gh"]
@@ -360,6 +361,7 @@ dash_speed = 2000.0
 dash_duration = 0.2
 max_lives = 5
 life_icon = ExtResource("2_v1key")
+gold_life_icon = ExtResource("3_awv0x")
 hit_sound = ExtResource("7_8gtf5")
 duration_timer = NodePath("DashDurationTimer")
 cooldown_timer = NodePath("DashCooldownTimer")

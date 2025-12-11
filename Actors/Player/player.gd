@@ -12,6 +12,7 @@ const BaseSkill = preload("res://SkillDatas/BaseSkill.gd")
 @export var dash_cooldown: float = 0.8
 @export var max_lives: int = 3
 @export var life_icon: Texture
+@export var gold_life_icon: Texture
 @export var i_frames_duration: float = 1.0
 @export var max_stamina: float = 100.0
 @export var dash_cost: float = 35.0
@@ -414,6 +415,12 @@ func update_lives_ui():
 			icon.texture = life_icon
 			icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			icon.custom_minimum_size = Vector2(32, 32)
+			
+				# 최대 체력 이상, 추가 체력 처리
+			if i >= max_lives and gold_life_icon != null:
+				icon.texture = gold_life_icon
+				icon.modulate = Color(1, 1, 1) 
+				
 			lives_container.add_child(icon)
 
 func lose_life():

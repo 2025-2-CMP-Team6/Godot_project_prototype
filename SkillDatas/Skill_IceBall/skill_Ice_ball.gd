@@ -29,7 +29,7 @@ func _ready():
 func execute(owner: CharacterBody2D, target: Node2D = null):
 	super.execute(owner, target) # ★ 필수: 상태값 변경
 	
-	print(skill_name + " 발동! (파이어볼)")
+	print(skill_name + " 발동! 아이스볼")
 	
 	# [실행 로직]
 	# 1. 총알 복제 (Instantiate 대신 Duplicate 사용)
@@ -64,7 +64,7 @@ func execute(owner: CharacterBody2D, target: Node2D = null):
 	
 	# 5. 날아가게 만들기 (Tween 사용)
 	var tween = create_tween()
-	var distance = 800.0 # 사거리
+	var distance = 1000.0 # 사거리
 	var travel_time = 1.0 # 탄속 (작을수록 빠름)
 	
 	# 현재 위치에서 방향*거리 만큼 이동시켜라
@@ -77,46 +77,50 @@ func execute(owner: CharacterBody2D, target: Node2D = null):
 			# 1. 데미지 주기
 			if body.has_method("take_damage"):
 				body.take_damage(damage)
-			
+	
+			body.modulate = Color(0.5, 1, 1) 
+			print("적 동결! (파란색)")
+
 			# 2. 슬로우 효과 추가 
-			# 적에게 apply_slow 함수가 있다고 가정하거나, 직접 속도를 깎음
 			if body.has_method("apply_slow"):
 				body.apply_slow(0.5, 2.0) # 2초 동안 50% 느려짐
-			elif "speed" in body:
-				body.speed *= 0.5 # (임시) 속도 반토막
-				
-			# 3. 이펙트 (파란색으로 깜빡임)
-			body.modulate = Color.CYAN
+			
 			
 			print("적 동결!")
 			bullet.queue_free() # 맞으면 삭제
+			
+		# [4] 3초 뒤 원상복구
+			var duration = 2.0
+			var timer = get_tree().create_timer(duration)
+			
+			timer.timeout.connect(func():
+				# 3초 뒤에 적이 살아있는지 확인 (죽었으면 에러 남)
+				if is_instance_valid(body):
+					# A. 색상 복구 (이게 없어서 안 돌아왔던 것!)
+					body.modulate = Color.WHITE 
+					print("적 해동됨! (원래 속도 복귀)")
+					)
+					
 		elif body != owner:
-			bullet.queue_free()
+				bullet.queue_free() # 벽에 맞으면 삭제
 	)
 
 	# 7. 종료 타이머 설정 (플레이어 경직 시간)
 	if not ends_on_condition:
-		# cast_duration 만큼 지나면 _on_skill_finished 호출
 		get_tree().create_timer(cast_duration).timeout.connect(_on_skill_finished)
 
 # 스킬이 끝났을 때 호출할 함수
 func _on_skill_finished():
-	# 투사체 방식은 발사 후 할 게 별로 없지만, 
-	# 만약 캐스팅 바 같은 UI가 있다면 여기서 끕니다.
 	pass
 #endregion
 
 #region 3. 물리 처리 (Physics)
 # 스킬 시전 중 매 프레임 실행됩니다.
 func process_skill_physics(owner: CharacterBody2D, delta: float):
-	# 시전 시간(Cast Duration) 동안 플레이어 멈추기 (선딜레이)
-	# 이동키를 눌러도 못 움직이게 속도를 0으로 고정
 	owner.velocity.x = 0
 #endregion
 
 #region 4. 충돌 처리 (Collision)
-# ★ 투사체 방식에서는 사용하지 않습니다. 
-# (위의 execute 함수 안에서 bullet.body_entered로 처리했습니다)
 func _on_hitbox_area_entered(area):
 	pass
 #endregion

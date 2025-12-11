@@ -56,9 +56,9 @@ theme = SubResource("Theme_6m8pb")
 custom_minimum_size = Vector2(0, 320)
 layout_mode = 0
 offset_left = 25.985558
-offset_top = 444.9912
+offset_top = 435.0362
 offset_right = 1335.5645
-offset_bottom = 764.9912
+offset_bottom = 768.69244
 scale = Vector2(0.8791844, 0.7289725)
 script = ExtResource("2_5m5hr")
 

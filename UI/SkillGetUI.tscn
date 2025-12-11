@@ -22,20 +22,20 @@ offset_bottom = 1021.0
 
 [node name="SelectButton" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 256.0
-offset_top = 572.0
-offset_right = 363.0
-offset_bottom = 681.0
-scale = Vector2(1, 0.8)
+offset_left = 265.0
+offset_top = 552.0
+offset_right = 372.0
+offset_bottom = 661.0
+scale = Vector2(0.9763219, 0.9397441)
 icon = ExtResource("2_d328u")
 
 [node name="CancelButton" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 816.0
-offset_top = 572.0
-offset_right = 923.0
-offset_bottom = 681.0
-scale = Vector2(1, 0.8)
+offset_left = 825.0
+offset_top = 552.0
+offset_right = 932.0
+offset_bottom = 661.0
+scale = Vector2(0.9763219, 0.9397441)
 icon = ExtResource("3_ygqnk")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

@@ -11,6 +11,7 @@
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player", "skill_get_ui", "skill_ui")]
 script = ExtResource("1_fn3g3")
+is_test_mode = true
 player = NodePath("Player")
 skill_get_ui = NodePath("SkillGetUI")
 skill_ui = NodePath("SkillUI")
@@ -21,6 +22,7 @@ skill_ui = NodePath("../SkillUI")
 skill_get_ui = NodePath("../SkillGetUI")
 
 [node name="SkillUI" parent="." instance=ExtResource("3_h5o24")]
+visible = false
 
 [node name="SkillGetUI" parent="." instance=ExtResource("4_sc4t8")]
 

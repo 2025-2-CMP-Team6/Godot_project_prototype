@@ -3,7 +3,7 @@ extends BaseSkill
 
 #region 스킬 고유 속성
 @export var teleport_distance: float = 60.0
-@export var safety_margin: float = 16.0
+@export var safety_margin: float = 50.0
 @export var hitbox_width: float = 50.0
 @export var slash_visual_texture: Texture
 #endregion

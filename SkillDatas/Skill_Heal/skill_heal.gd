@@ -1,63 +1,89 @@
 extends BaseSkill
 
-#region 스킬 설정
-@export var heal_amount: float = 30.0 # 회복량
-@onready var particles = $HealParticles # 파티클 노드 가져오기
+#region 스킬 고유 설정
+@onready var particles = $HealParticles 
 #endregion
 
+# 쿨타임 차단용 내부 변수
+var _cancel_activation: bool = false
+
 func _init():
-	skill_name = "치유"
-	skill_description = "체력을 회복합니다."
-	cooldown = 5.0
-	stamina_cost = 20.0
-	type = 1 # 번: 특수/방어기
-	requires_target = false # 나한테 쓰는 거니까 타겟 불필요
-	cast_duration = 0.5 # 0.5초 동안 폼 잡기
-	
-	# 힐은 제자리에 서서 쓰는 게 국룰 (0.0이면 공중부양, 1.0이면 착지)
+	skill_name = "Heal"
+	type = 3 
+	requires_target = false 
+	cast_duration = 0.5
 	gravity_multiplier = 1.0 
 
 func _ready():
 	super._ready()
-	
-	# 시작할 때 파티클 꺼두기
 	if particles:
 		particles.emitting = false
+		particles.one_shot = true
 
-#region 스킬 실행
 func execute(owner: CharacterBody2D, target: Node2D = null):
-	super.execute(owner, target) # 소리 재생 및 상태 변경
-	
-	# 1. 체력 회복 로직
-	# (플레이어 스크립트에 heal 함수가 있다고 가정)
-	if owner.has_method("heal"):
-		owner.heal(heal_amount)
-	elif "health" in owner:
-		# heal 함수 없으면 직접 변수 수정
-		owner.health += heal_amount
-		# 최대 체력 넘치지 않게 (max_health 변수가 있다면)
-		if "max_health" in owner and owner.health > owner.max_health:
-			owner.health = owner.max_health
+	# [1단계] 체력이 꽉 찼는지 검사
+	if _is_hp_full(owner):
+		print("체력이 가득 차서 스킬을 쓸 수 없습니다.")
+		play_error_sound()
+		_cancel_activation = true
+		
+		# 스태미나 환불 
+		if "current_stamina" in owner:
+			owner.current_stamina += stamina_cost
+			# 최대치 넘지 않게 보정
+			if "max_stamina" in owner:
+				owner.current_stamina = min(owner.current_stamina, owner.max_stamina)
+		
+		# 캐스팅 모션 즉시 취소 (강제 IDLE 전환)
+		if owner.has_method("change_state"):
+			owner.change_state(GameManager.State.IDLE)
 			
-	print("체력 " + str(heal_amount) + " 회복!")
+		return
 
-	# 2. 이펙트 재생 (초록색 반짝반짝 ✨)
+	# 정상 발동 
+	super.execute(owner, target)
+	_cancel_activation = false 
+	
+	print("힐 스킬 발동!")
+
+	# 플레이어 상태 동기화
+	if owner.has_method("change_state"):
+		owner.change_state(GameManager.State.SKILL_CASTING)
+
+	# 체력 회복 로직
+	if "current_lives" in owner:
+		owner.current_lives += 1
+		owner.update_lives_ui()
+		print(" - 생명 회복! 현재: ", owner.current_lives)
+		
+	# 이펙트 재생
 	if particles:
-		particles.restart() # 파티클 다시 시작
+		particles.restart()
 		particles.emitting = true
 	
-	# 3. 종료 타이머
-	# 힐은 즉발이지만, 시전 동작(cast_duration) 후 종료 처리
+	# 종료 예약
 	get_tree().create_timer(cast_duration).timeout.connect(_on_skill_finished)
+
+func start_cooldown():
+	# 만약 발동 취소된 상태라면? 쿨타임 타이머를 켜지 않습니다.
+	if _cancel_activation:
+		_cancel_activation = false # 초기화
+		return 
+
+	super.start_cooldown()
+
+func _is_hp_full(owner) -> bool:
+	# 하트(Lives) 시스템인 경우
+	if "current_lives" in owner and "max_lives" in owner:
+		return owner.current_lives >= owner.max_lives
+		
+	# 체력바(HP) 시스템인 경우
+	if "health" in owner and "max_health" in owner:
+		return owner.health >= owner.max_health
+		
+	return false # 변수가 없으면 일단 발동시킴
 
 func _on_skill_finished():
 	is_active = false
-	# 파티클은 one_shot이라 알아서 꺼지지만 확실하게
-	if particles: particles.emitting = false
-#endregion
-
-#region 물리 처리
-func process_skill_physics(owner: CharacterBody2D, delta: float):
-	# 시전 시간 동안 멈춰있기 (기도하는 느낌)
-	owner.velocity.x = move_toward(owner.velocity.x, 0, 50)
-#endregion
+	if particles:
+		particles.emitting = false

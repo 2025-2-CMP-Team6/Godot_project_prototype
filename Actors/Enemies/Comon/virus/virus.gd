@@ -159,3 +159,11 @@ func _on_attack_area_body_entered(body):
 		print(">> 플레이어 파동 적중")
 		if body.has_method("lose_life"):
 			body.lose_life()
+
+func apply_slow(slow_ratio: float, duration: float):
+	print("으악! 이동 속도가 느려졌다!")
+	move_speed *= slow_ratio # 0.5가 들어오면 속도 반토막
+	
+	# 일정 시간 뒤 원상복구 (타이머 사용)
+	await get_tree().create_timer(duration).timeout
+	move_speed /= slow_ratio # 다시 원래대로

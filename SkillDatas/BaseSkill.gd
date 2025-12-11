@@ -24,6 +24,13 @@ class_name BaseSkill
 @export var random_pitch: bool = true # 피치 섞을지 여부(지루함 감소)
 #endregion
 
+# 에러/실패 사운드
+@export var error_sound: AudioStream 
+@export var error_volume_db: float = 0.0 
+@export var error_pitch_scale: float = 1.0
+@export var error_random_pitch: bool = false 
+#endregion
+
 var cooldown_timer: Timer
 var is_active: bool = false
 
@@ -36,22 +43,29 @@ var skill_instance_ref: SkillInstance = null
 # 오디오 플레이어 매니
 var _audio_manager: AudioManager
 
-# 사운드 설정 함수
+# 사운드 설정 함수 
 func _setup_sound():
-	if cast_sound:
-		# 매니저 실행, 자식으로 추가
+	if (cast_sound or error_sound) and _audio_manager == null:
 		_audio_manager = AudioManager.new()
 		add_child(_audio_manager)
 
-		# 2. 소리 설정(AudioManagerPlus) 생성가
+	# 시전 소리 등록
+	if cast_sound:
 		var sound_config = AudioManagerPlus.new()
 		sound_config.stream = cast_sound
 		sound_config.volume_db = sound_volume_db
 		sound_config.pitch_scale = sound_pitch_scale
-		sound_config.audio_name = "skill_cast" # 식별할 이름
-		
-		# 소리 등록
+		sound_config.audio_name = "skill_cast"
 		_audio_manager.add_plus("skill_cast", sound_config)
+
+	# 에러 소리 등록
+	if error_sound:
+		var error_config = AudioManagerPlus.new()
+		error_config.stream = error_sound
+		error_config.volume_db = error_volume_db
+		error_config.pitch_scale = error_pitch_scale
+		error_config.audio_name = "skill_error" 
+		_audio_manager.add_plus("skill_error", error_config)
 		
 # 재생 함수
 func _play_sound():
@@ -65,6 +79,15 @@ func _play_sound():
 		
 		# 재생 명령
 		_audio_manager.play_plus("skill_cast")
+		
+# ★ 에러 소리 재생
+func play_error_sound():
+	if _audio_manager and error_sound:
+		if error_random_pitch:
+			var config = _audio_manager.get_plus("skill_error")
+			if config:
+				config.pitch_scale = error_pitch_scale + randf_range(-0.1, 0.1)
+		_audio_manager.play_plus("skill_error")
 
 func _ready():
 	cooldown_timer = Timer.new()

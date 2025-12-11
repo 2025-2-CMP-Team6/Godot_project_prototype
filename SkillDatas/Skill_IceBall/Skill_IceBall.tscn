@@ -14,7 +14,7 @@ skill_icon = ExtResource("3_rthd6")
 stamina_cost = 15.0
 cooldown = 3.0
 type = 2
-damage = 50.0
+damage = 5.0
 cast_sound = ExtResource("2_8k5p6")
 sound_volume_db = 3.0
 

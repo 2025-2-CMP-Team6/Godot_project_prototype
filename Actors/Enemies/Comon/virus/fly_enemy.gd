@@ -244,3 +244,13 @@ func _draw():
 	elif current_state == State.LOCK:
 		draw_line(Vector2.ZERO, (locked_target_pos - global_position).normalized() * attack_trigger_range, Color(1, 0, 0, 0.8), attack_width)
 #endregion
+
+func apply_slow(slow_ratio: float, duration: float):
+	print("으악! 이동 속도가 느려졌다!")
+	fly_speed *= slow_ratio # 0.5가 들어오면 속도 반토막
+	dash_speed *= slow_ratio
+	
+	# 일정 시간 뒤 원상복구 (타이머 사용)
+	await get_tree().create_timer(duration).timeout
+	fly_speed /= slow_ratio # 다시 원래대로
+	dash_speed /= slow_ratio # 다시 원래대로
