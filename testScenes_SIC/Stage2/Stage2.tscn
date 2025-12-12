@@ -1074,7 +1074,7 @@ position = Vector2(3414, 2282)
 max_health = 40.0
 
 [node name="Virus4" parent="." instance=ExtResource("13_ircvx")]
-position = Vector2(4123, 2273)
+position = Vector2(4047, 2280)
 max_health = 40.0
 
 [node name="RangeVirus4" parent="." instance=ExtResource("16_c7gl0")]
