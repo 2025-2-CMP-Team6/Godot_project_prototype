@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bq86qdbosfr7h" path="res://graphics/grid.jpg" id="3_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://dgv1ef1ng7ngs" path="res://UI/SkillGetUI.tscn" id="4_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://c0sv0dk5utfr3" path="res://Block/wall.tscn" id="5_mmdvd"]
-[ext_resource type="PackedScene" uid="uid://gsr1s4f7uduw" path="res://Actors/Enemies/MiddleBoss/TutorialBoss.tscn" id="6_ai45w"]
+[ext_resource type="PackedScene" uid="uid://gsr1s4f7uduw" path="res://Actors/Enemies/MiddleBoss/TutorialBoss/TutorialBoss.tscn" id="6_ai45w"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player", "skill_get_ui", "skill_ui")]
 script = ExtResource("1_fn3g3")

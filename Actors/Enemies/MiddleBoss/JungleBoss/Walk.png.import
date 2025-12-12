@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mmuy24w1vjnr"
-path="res://.godot/imported/EnemyBox 1 64x48.png-b47a1eae226681ea763662796998845f.ctex"
+uid="uid://5je10unhayok"
+path="res://.godot/imported/Walk.png-0abaefadd4adf8f511fa450d9ed5acdf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Actors/Enemies/MiddleBoss/EnemyBox 1 64x48.png"
-dest_files=["res://.godot/imported/EnemyBox 1 64x48.png-b47a1eae226681ea763662796998845f.ctex"]
+source_file="res://Actors/Enemies/MiddleBoss/JungleBoss/Walk.png"
+dest_files=["res://.godot/imported/Walk.png-0abaefadd4adf8f511fa450d9ed5acdf.ctex"]
 
 [params]
 

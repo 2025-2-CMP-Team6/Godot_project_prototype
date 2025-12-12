@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://gsr1s4f7uduw"]
 
-[ext_resource type="Script" uid="uid://cmnlrutev6vf3" path="res://Actors/Enemies/MiddleBoss/TutorialBoss.gd" id="1_l5dpf"]
-[ext_resource type="Texture2D" uid="uid://mmuy24w1vjnr" path="res://Actors/Enemies/MiddleBoss/EnemyBox 1 64x48.png" id="2_vq45v"]
+[ext_resource type="Script" uid="uid://cmnlrutev6vf3" path="res://Actors/Enemies/MiddleBoss/TutorialBoss/TutorialBoss.gd" id="1_l5dpf"]
+[ext_resource type="Texture2D" uid="uid://mmuy24w1vjnr" path="res://Actors/Enemies/MiddleBoss/JungleBoss/EnemyBox 1 64x48.png" id="2_vq45v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5dpf"]
 radius = 7.75

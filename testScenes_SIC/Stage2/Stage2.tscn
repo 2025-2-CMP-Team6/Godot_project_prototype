@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bkau6hrhass7g"]
+[gd_scene load_steps=31 format=4 uid="uid://bkau6hrhass7g"]
 
 [ext_resource type="Texture2D" uid="uid://d2m7w3keylowg" path="res://graphics/resource/Stage2/Jungel Layer 0.png" id="1_js4qc"]
 [ext_resource type="Script" uid="uid://t0rk8kka8da0" path="res://testScenes_SIC/Stage2/Stage2.gd" id="1_vjhlr"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dgv1ef1ng7ngs" path="res://UI/SkillGetUI.tscn" id="11_skillgetui"]
 [ext_resource type="Texture2D" uid="uid://c4po2jkkxgnyo" path="res://testScenes_SIC/Stage2/props.png" id="12_7vc0t"]
 [ext_resource type="PackedScene" uid="uid://bdh7rx37q7ghf" path="res://Actors/Enemies/Comon/virus/virus.tscn" id="13_ircvx"]
+[ext_resource type="PackedScene" uid="uid://dai8mvtukr1k" path="res://Actors/Enemies/Comon/virus/RangeVirus.tscn" id="16_c7gl0"]
+[ext_resource type="PackedScene" uid="uid://c7e52tyh64gk" path="res://Actors/Enemies/MiddleBoss/JungleBoss/JungleBoss.tscn" id="17_uwilw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js4qc"]
 size = Vector2(11917.875, 298.5)
@@ -985,7 +987,7 @@ texture = ExtResource("6_7vc0t")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("7_js4qc")]
-position = Vector2(10095.999, 4196)
+position = Vector2(1630.9999, 1432)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(-3, 2615)
@@ -1042,11 +1044,35 @@ tile_set = SubResource("TileSet_4waes")
 [node name="Virus" parent="." instance=ExtResource("13_ircvx")]
 position = Vector2(7779, 3409)
 
+[node name="Virus2" parent="." instance=ExtResource("13_ircvx")]
+position = Vector2(8357, 3385)
+
 [node name="SkillUI" parent="." instance=ExtResource("10_skillui")]
 visible = false
 
 [node name="SkillGetUI" parent="." instance=ExtResource("11_skillgetui")]
 visible = false
+
+[node name="RangeVirus" parent="." instance=ExtResource("16_c7gl0")]
+position = Vector2(6311, 2938)
+
+[node name="RangeVirus2" parent="." instance=ExtResource("16_c7gl0")]
+position = Vector2(6031, 2925)
+
+[node name="RangeVirus3" parent="." instance=ExtResource("16_c7gl0")]
+position = Vector2(5632, 2936)
+
+[node name="Virus3" parent="." instance=ExtResource("13_ircvx")]
+position = Vector2(3254, 2269)
+
+[node name="Virus4" parent="." instance=ExtResource("13_ircvx")]
+position = Vector2(4123, 2273)
+
+[node name="RangeVirus4" parent="." instance=ExtResource("16_c7gl0")]
+position = Vector2(3702, 2262)
+
+[node name="JungleBoss" parent="." instance=ExtResource("17_uwilw")]
+position = Vector2(875, 1413)
 
 [connection signal="body_entered" from="portal" to="." method="_on_portal_body_entered"]
 [connection signal="body_entered" from="FallPrevention" to="." method="_on_fall_prevention_body_entered"]

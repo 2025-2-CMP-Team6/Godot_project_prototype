@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://ccgl22ktyonn6" path="res://graphics/resource/Stage1/smog2.png" id="10_ypiqe"]
 [ext_resource type="Texture2D" uid="uid://rwtqajnu2k00" path="res://testScenes_SIC/Stage1/GandalfHardcore City Tiles/Building Tiles 32x32.png" id="18_mg0fs"]
 [ext_resource type="Texture2D" uid="uid://bf46f0polhm8l" path="res://testScenes_SIC/Stage1/GandalfHardcore City Tiles/Decoration 32x32.png" id="19_18u52"]
-[ext_resource type="PackedScene" uid="uid://gsr1s4f7uduw" path="res://Actors/Enemies/MiddleBoss/TutorialBoss.tscn" id="20_mg0fs"]
+[ext_resource type="PackedScene" uid="uid://gsr1s4f7uduw" path="res://Actors/Enemies/MiddleBoss/TutorialBoss/TutorialBoss.tscn" id="20_mg0fs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4ln0"]
 atlas = ExtResource("4_g1wns")
