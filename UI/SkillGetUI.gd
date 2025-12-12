@@ -10,7 +10,7 @@ signal closed
 @export var skill_select2: Panel
 @export var skill_select3: Panel
 @export var select_button: Button
-@export var background_panel: Panel # 디버깅 및 애니메이션 대상 지정을 위해 배경 패널 참조 추가
+@export var background_panel: Panel
 @export var cancel_button: Button
 #endregion
 
@@ -100,15 +100,12 @@ func _reset_selection():
 		select_button.disabled = true # 버튼 비활성화
 
 func _generate_rewards():
-	# 1. 데이터베이스에서 중복을 제거한 고유 스킬 목록을 생성합니다.
-	#    플레이어 소유 여부는 고려하지 않습니다.
 	var all_db_skills = InventoryManager.skill_database
 	var unique_skills: Array[String] = []
 	for skill_path in all_db_skills:
 		if not skill_path in unique_skills:
 			unique_skills.append(skill_path)
 
-	# 2. 보상으로 제시할 스킬들을 선택합니다.
 	var chosen_skills: Array[String] = []
 	if unique_skills.size() <= 3:
 		chosen_skills = unique_skills
@@ -123,15 +120,14 @@ func _generate_rewards():
 func _setup_slot(slot_node: Panel, skill_path: String):
 	if not is_instance_valid(slot_node): return
 
-	# 1. 이전에 동적으로 생성된 클릭용 버튼을 찾아 제거합니다.
 	var old_button = slot_node.get_node_or_null("ClickButton")
 	if is_instance_valid(old_button):
 		old_button.queue_free()
 	
-	# 2. 시각 효과 및 UI 내용을 초기화합니다.
 	slot_node.modulate = COLOR_NORMAL
 	var icon_node = slot_node.get_node_or_null("icon")
 	var name_node = slot_node.get_node_or_null("name")
+	var type_node = slot_node.get_node_or_null("type")
 	var text_node = slot_node.get_node_or_null("text")
 	
 	if icon_node is TextureRect: icon_node.texture = null
@@ -143,7 +139,6 @@ func _setup_slot(slot_node: Panel, skill_path: String):
 		slot_node.visible = false
 		return
 	
-	# 3. 스킬 정보를 로드하고 UI를 업데이트합니다.
 	slot_node.visible = true
 	var skill_scene = load(skill_path)
 	if not skill_scene: return
@@ -172,6 +167,11 @@ func _setup_slot(slot_node: Panel, skill_path: String):
 				icon_node.scale = Vector2.ONE
 	if name_node and name_node is Label:
 		name_node.text = temp_skill.skill_name
+	if type_node and type_node is Label:
+		var type_text = ""
+		for i in range(temp_skill.type):
+			type_text += "I"
+		type_node.text = type_text
 	if text_node and text_node is Label:
 		text_node.text = temp_skill.skill_description
 
@@ -180,7 +180,7 @@ func _setup_slot(slot_node: Panel, skill_path: String):
 	instance.skill_path = skill_path
 	instance.level = 0
 	
-	var btn = Button.new()
+	var btn = SkillTooltipButton.new()
 	btn.name = "ClickButton" # 버튼을 식별할 수 있도록 이름 지정
 	btn.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	btn.flat = true
@@ -190,6 +190,13 @@ func _setup_slot(slot_node: Panel, skill_path: String):
 	btn.pressed.connect(_on_slot_clicked.bind(instance, slot_node))
 	btn.mouse_entered.connect(_on_slot_mouse_entered.bind(slot_node))
 	btn.mouse_exited.connect(_on_slot_mouse_exited.bind(slot_node))
+	
+	# 툴팁 데이터 설정
+	btn.skill_name = temp_skill.skill_name
+	btn.skill_desc = temp_skill.skill_description
+	btn.skill_icon = temp_skill.skill_icon
+	btn.tooltip_text = temp_skill.skill_description
+	
 	slot_node.add_child(btn)
 
 	temp_skill.queue_free()
@@ -360,3 +367,35 @@ func close_reward_screen():
 	visible = false
 	closed.emit()
 	is_animating = false # 모든 애니메이션과 정리가 끝난 후 상태 초기화
+
+#region 툴팁용 버튼 클래스
+class SkillTooltipButton extends Button:
+	var skill_name: String = ""
+	var skill_desc: String = ""
+	var skill_icon: Texture = null
+	
+	func _make_custom_tooltip(_for_text):
+		var scene = load("res://UI/SkillSelect.tscn")
+		if not scene: return null
+		
+		var tooltip = scene.instantiate()
+		
+		var icon_node = tooltip.get_node_or_null("icon")
+		var name_node = tooltip.get_node_or_null("name")
+		var text_node = tooltip.get_node_or_null("text")
+		
+		if icon_node:
+			if icon_node is TextureRect:
+				icon_node.texture = skill_icon
+				icon_node.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			elif icon_node is Sprite2D:
+				icon_node.texture = skill_icon
+				
+		if name_node is Label:
+			name_node.text = skill_name
+			
+		if text_node is Label:
+			text_node.text = skill_desc
+			
+		return tooltip
+#endregion

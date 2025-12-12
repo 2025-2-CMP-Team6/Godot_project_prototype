@@ -90,6 +90,37 @@ func setup_card_ui():
 		add_theme_stylebox_override("panel", default_stylebox)
 #endregion
 
+#region 툴팁
+func _make_custom_tooltip(_for_text):
+	var scene = load("res://UI/SkillSelect.tscn")
+	if not scene:
+		return null
+		
+	var tooltip = scene.instantiate()
+	
+	var icon_node = tooltip.get_node_or_null("icon")
+	var name_node = tooltip.get_node_or_null("name")
+	var text_node = tooltip.get_node_or_null("text")
+	
+	if icon_node:
+		if icon_node is TextureRect:
+			icon_node.texture = skill_icon
+			icon_node.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		elif icon_node is Sprite2D:
+			icon_node.texture = skill_icon
+			
+	if name_node is Label:
+		if skill_instance and skill_instance.level > 0:
+			name_node.text = skill_name + " + " + str(skill_instance.level)
+		else:
+			name_node.text = skill_name
+			
+	if text_node is Label:
+		text_node.text = skill_description
+		
+	return tooltip
+#endregion
+
 #region 드래그 앤 드롭
 func _get_drag_data(at_position):
 	var drag_data = {

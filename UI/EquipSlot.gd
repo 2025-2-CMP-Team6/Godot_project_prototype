@@ -14,6 +14,12 @@ var hover_stylebox: StyleBoxFlat
 # 노드 참조
 @onready var icon_rect: TextureRect = $VBoxContainer/Icon
 @onready var name_label: Label = $VBoxContainer/NameLabel
+
+# 툴팁 표시를 위한 데이터
+var _tooltip_name: String = ""
+var _tooltip_desc: String = ""
+var _tooltip_level: int = 0
+var _tooltip_icon: Texture = null
 #endregion
 # UI/EquipSlot.gd
 
@@ -144,6 +150,41 @@ func _get_drag_data(at_position):
 	return null
 #endregion
 
+#region 툴팁
+func _make_custom_tooltip(_for_text):
+	# 스킬 정보가 없으면 기본 텍스트 툴팁 사용
+	if _tooltip_name == "":
+		return null
+
+	var scene = load("res://UI/SkillSelect.tscn")
+	if not scene:
+		return null
+		
+	var tooltip = scene.instantiate()
+	
+	var icon_node = tooltip.get_node_or_null("icon")
+	var name_node = tooltip.get_node_or_null("name")
+	var text_node = tooltip.get_node_or_null("text")
+	
+	if icon_node:
+		if icon_node is TextureRect:
+			icon_node.texture = _tooltip_icon
+			icon_node.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		elif icon_node is Sprite2D:
+			icon_node.texture = _tooltip_icon
+			
+	if name_node is Label:
+		if _tooltip_level > 0:
+			name_node.text = _tooltip_name + " + " + str(_tooltip_level)
+		else:
+			name_node.text = _tooltip_name
+			
+	if text_node is Label:
+		text_node.text = _tooltip_desc
+		
+	return tooltip
+#endregion
+
 #region UI 업데이트
 func set_skill_display(icon: Texture, name: String, description: String, level: int = 0):
 	if level > 0:
@@ -152,6 +193,11 @@ func set_skill_display(icon: Texture, name: String, description: String, level: 
 		name_label.text = name
 		
 	icon_rect.texture = icon
+	
+	_tooltip_name = name
+	_tooltip_desc = description
+	_tooltip_level = level
+	_tooltip_icon = icon
 	self.tooltip_text = description
 
 func clear_skill_display():
@@ -169,5 +215,10 @@ func clear_skill_display():
 			display_text = "[Slot " + str(slot_index) + "]"
 	name_label.text = display_text
 	icon_rect.texture = null
+	
+	_tooltip_name = ""
+	_tooltip_desc = ""
+	_tooltip_level = 0
+	_tooltip_icon = null
 	self.tooltip_text = "비어있는 슬롯"
 #endregion
