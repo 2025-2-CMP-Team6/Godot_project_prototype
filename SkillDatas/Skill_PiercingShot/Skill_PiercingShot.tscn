@@ -9,13 +9,12 @@
 [node name="SkillPiercingShot" type="Node2D"]
 rotation = 0.0006974566
 script = ExtResource("1_fg1et")
-skill_name = "PiercingShot"
-skill_description = "shoot Piercing Shot"
+skill_name = "Piercing Shot"
+skill_description = "Fires a powerful arrow that pierces through all enemies in its path."
 skill_icon = ExtResource("2_2sktd")
 stamina_cost = 15.0
 cooldown = 3.0
 type = 2
-damage = 50.0
 cast_sound = ExtResource("3_jsqvy")
 
 [node name="BulletTemplate" type="Area2D" parent="."]

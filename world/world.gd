@@ -1,6 +1,7 @@
 # world.gd
 class_name World extends Node2D
 
+#test mode 활성화 시 모든 스킬 인벤토리에 존재
 @export var is_test_mode: bool = false
 
 # 씬에 배치한 노드들을 가져옵니다.
@@ -47,11 +48,28 @@ func _ready():
 	
 	# 체크박스가 켜진 경우에만 테스트 스킬 지급
 	if is_test_mode:
-		var all_skills = InventoryManager.skill_database
+		print("=== [⚠️ TEST MODE ACTIVATED] ===")
 		
-		print("--- [테스트 모드 ON] 스킬 지급 시작 ---")
+		# A. 모든 스킬 지급
+		var all_skills = InventoryManager.skill_database
+		print("--- 1. 모든 스킬 인벤토리 지급 ---")
 		for skill_path in all_skills:
 			InventoryManager.add_skill_to_inventory(skill_path)
+			
+		# B. 스킬창 강제 해금 
+		skill_ui_unlocked = true
+		print("--- 2. 스킬창(K) 잠금 해제 완료 ---")
+		
+		# C. 플레이어 입력 잠금 강제 해제 
+		if is_instance_valid(player):
+			player.set_input_locked(false)
+			print("--- 3. 플레이어 조작 잠금 강제 해제 ---")
+			
+		# D. 포탈 즉시 활성화 
+		portal_enabled = true 
+		print("--- 4. 포탈 즉시 활성화 ---")
+		
+		print("==================================")
 
 	# 오디오 설정 및 재생
 	_setup_stage_music()

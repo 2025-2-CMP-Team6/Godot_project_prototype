@@ -31,8 +31,11 @@ scale_max = 0.5
 
 [node name="SkillGreatHeal" type="Node2D"]
 script = ExtResource("1_3bw16")
+skill_name = "GreatHeal"
+skill_description = "Restores 3 HP. Excess healing grants up to 2 Temporary HP (Shield)."
 skill_icon = ExtResource("2_3bw16")
-cooldown = 0.3
+stamina_cost = 50.0
+cooldown = 30.0
 type = 3
 cast_sound = ExtResource("3_3bw16")
 sound_volume_db = 2.0

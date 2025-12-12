@@ -10,13 +10,13 @@
 [node name="SkillMultiShot" type="Node2D"]
 rotation = 0.0006974566
 script = ExtResource("1_wwh3k")
-skill_name = "MultiShot"
-skill_description = "shoot Multi Shot"
+skill_name = "Multi-Shot"
+skill_description = "Fires 3 arrows simultaneously in a cone shape."
 skill_icon = ExtResource("2_e7tlp")
-stamina_cost = 15.0
-cooldown = 3.0
+stamina_cost = 20.0
+cooldown = 7.0
 type = 2
-damage = 50.0
+damage = 15.0
 cast_sound = ExtResource("3_y8h6j")
 
 [node name="BulletTemplate" type="Area2D" parent="."]
@@ -29,8 +29,6 @@ collision_mask = 4
 rotation = 0.84159577
 scale = Vector2(0.5408372, 0.70230526)
 shape = SubResource("CapsuleShape2D_iw7bs")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="BulletTemplate"]
 
 [node name="Sprite2D" type="Sprite2D" parent="BulletTemplate"]
 position = Vector2(-0.25194564, -0.28137028)

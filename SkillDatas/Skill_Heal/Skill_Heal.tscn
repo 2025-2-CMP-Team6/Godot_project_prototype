@@ -18,8 +18,12 @@ scale_max = 0.5
 
 [node name="SkillHeal" type="Node2D"]
 script = ExtResource("1_o5hv4")
+skill_name = "Heal"
+skill_description = "Restores 1 HP."
 skill_icon = ExtResource("2_jn5r3")
+stamina_cost = 20.0
 cooldown = 10.0
+type = 3
 cast_sound = ExtResource("3_y4ofc")
 sound_volume_db = 2.0
 error_sound = ExtResource("2_y4ofc")

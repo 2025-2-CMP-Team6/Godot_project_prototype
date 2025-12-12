@@ -9,11 +9,11 @@
 [node name="Skill_Parry" type="Node2D"]
 scale = Vector2(0.95491946, 0.9520446)
 script = ExtResource("1_1hlnm")
-skill_name = "패링"
-skill_description = "적의 공격을 튕겨낸다."
+skill_name = "Parry"
+skill_description = "Blocks an incoming attack at the perfect moment. Successful parries negate damage."
 skill_icon = ExtResource("2_c0y8o")
 cast_duration = 0.2
-cooldown = 1.5
+cooldown = 3.0
 type = 3
 cast_sound = ExtResource("3_c0y8o")
 sound_volume_db = 10.0

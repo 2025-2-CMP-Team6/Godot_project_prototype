@@ -8,11 +8,11 @@
 
 [node name="SkillIceBall" type="Node2D"]
 script = ExtResource("1_8k5p6")
-skill_name = "IceBall"
-skill_description = "shoot iceball"
+skill_name = "Frost Bolt"
+skill_description = "Fires an ice orb. Hits slow the enemy's movement speed for 2 seconds."
 skill_icon = ExtResource("3_rthd6")
 stamina_cost = 15.0
-cooldown = 3.0
+cooldown = 4.0
 type = 2
 damage = 5.0
 cast_sound = ExtResource("2_8k5p6")

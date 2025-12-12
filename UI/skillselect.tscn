@@ -5,6 +5,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_kbr0l"]
 
 [sub_resource type="SystemFont" id="SystemFont_kbr0l"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_6sbc0"]
 font = SubResource("SystemFont_kbr0l")
@@ -28,7 +29,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="icon" type="Sprite2D" parent="."]
-position = Vector2(192, 128)
+position = Vector2(196, 128)
 texture = ExtResource("1_kbr0l")
 
 [node name="name" type="Label" parent="."]
@@ -64,3 +65,4 @@ offset_right = 400.0
 offset_bottom = 512.0
 text = "skill discription"
 horizontal_alignment = 1
+autowrap_mode = 3

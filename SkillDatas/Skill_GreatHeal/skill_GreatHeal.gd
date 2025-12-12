@@ -3,7 +3,7 @@ extends BaseSkill
 #region 스킬 설정
 @export var heal_amount: int = 3     
 @export var max_overheal: int = 2      # 최대 추가체력
-@onready var particles = $HealParticles 
+@onready var particles = $GreatHealParticles 
 #endregion
 
 # 쿨타임/스태미나 차단용 플래그
