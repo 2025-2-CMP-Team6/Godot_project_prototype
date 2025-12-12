@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgfad7rjpqgp4"]
+[gd_scene load_steps=7 format=3 uid="uid://dgfad7rjpqgp4"]
 
 [ext_resource type="Script" uid="uid://chmgu6lsnd6pk" path="res://SkillDatas/Skill_Parry/Skill_Parry.gd" id="1_1hlnm"]
 [ext_resource type="Texture2D" uid="uid://b8rkkkdbg2nhs" path="res://SkillDatas/Skill_Parry/fc1811.png" id="2_c0y8o"]
 [ext_resource type="AudioStream" uid="uid://ddnxjky21vmxw" path="res://Sounds/effects/sfx_parry.mp3" id="3_c0y8o"]
+[ext_resource type="Script" uid="uid://dkl7vd0jkmplk" path="res://SkillUpgradeData.gd" id="3_ids4y"]
+
+[sub_resource type="Resource" id="Resource_ltuxn"]
+script = ExtResource("3_ids4y")
+stat_name = &"cooldown"
+stat_values_by_level = Array[float]([5.0, 5.0, 4.0, 4.0, 3.0])
+metadata/_custom_type_script = "uid://dkl7vd0jkmplk"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hlnm"]
 
@@ -13,8 +20,9 @@ skill_name = "Parry"
 skill_description = "Blocks an incoming attack at the perfect moment. Successful parries negate damage."
 skill_icon = ExtResource("2_c0y8o")
 cast_duration = 0.2
-cooldown = 3.0
+cooldown = 5.0
 type = 3
+upgrades = Array[ExtResource("3_ids4y")]([SubResource("Resource_ltuxn")])
 cast_sound = ExtResource("3_c0y8o")
 sound_volume_db = 10.0
 

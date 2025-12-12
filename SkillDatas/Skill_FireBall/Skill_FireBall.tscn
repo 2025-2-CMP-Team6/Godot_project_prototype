@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_xq621"]
 script = ExtResource("3_ia0o5")
-stat_name = &"Damage"
+stat_name = &"damage"
 stat_values_by_level = Array[float]([10.0, 12.0, 14.0, 16.0, 20.0])
 metadata/_custom_type_script = "uid://dkl7vd0jkmplk"
 

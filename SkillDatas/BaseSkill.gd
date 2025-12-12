@@ -37,7 +37,11 @@ var cooldown_timer: Timer
 var is_active: bool = false
 
 # ★ (추가) 이 스킬 노드의 현재 레벨 (SkillInstance로부터 받아옴)
-var current_level: int = 0
+var current_level: int = 0:
+	set(value):
+		current_level = value
+		# 변수 값이 바뀌자마자 스탯 적용 함수 강제 실행!
+		apply_upgrades(current_level)
 
 # ★ (추가) 이 스킬이 참조하는 인벤토리의 원본 데이터 (SkillInstance)
 var skill_instance_ref: SkillInstance = null
@@ -126,6 +130,7 @@ func get_cooldown_time_left() -> float:
 	return 0.0
 #endregion
 
+#스킬 업그레이드
 func apply_upgrades(level: int):
 	for data in upgrades:
 		if data.stat_name in self:

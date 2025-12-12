@@ -1,9 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://6eaujc344ayw"]
+[gd_scene load_steps=8 format=3 uid="uid://6eaujc344ayw"]
 
 [ext_resource type="Script" uid="uid://sv3ncrjl43mb" path="res://SkillDatas/Skill_MultiShot/skill_MultiShot.gd" id="1_wwh3k"]
 [ext_resource type="Texture2D" uid="uid://o1gnqi6bbo7f" path="res://SkillDatas/Skill_MultiShot/MultiShot.png" id="2_e7tlp"]
 [ext_resource type="Texture2D" uid="uid://dk6slswpvceci" path="res://SkillDatas/Skill_MultiShot/fc847.png" id="2_gssjx"]
+[ext_resource type="Script" uid="uid://dkl7vd0jkmplk" path="res://SkillUpgradeData.gd" id="3_obr6r"]
 [ext_resource type="AudioStream" uid="uid://be665vsqb8kn3" path="res://Sounds/effects/sfx_PiercingShot.mp3" id="3_y8h6j"]
+
+[sub_resource type="Resource" id="Resource_v8qp7"]
+script = ExtResource("3_obr6r")
+stat_name = &"damage"
+stat_values_by_level = Array[float]([15.0, 16.0, 17.0, 18.0, 20.0])
+metadata/_custom_type_script = "uid://dkl7vd0jkmplk"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw7bs"]
 
@@ -17,6 +24,7 @@ stamina_cost = 20.0
 cooldown = 7.0
 type = 2
 damage = 15.0
+upgrades = Array[ExtResource("3_obr6r")]([SubResource("Resource_v8qp7")])
 cast_sound = ExtResource("3_y8h6j")
 
 [node name="BulletTemplate" type="Area2D" parent="."]
