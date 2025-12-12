@@ -827,8 +827,9 @@ size = Vector2(20, 995)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18u52"]
 size = Vector2(30, 28)
 
-[node name="Stage1" type="Node2D" node_paths=PackedStringArray("skill_get_ui", "skill_ui")]
+[node name="Stage1" type="Node2D" node_paths=PackedStringArray("player", "skill_get_ui", "skill_ui")]
 script = ExtResource("1_stage_script")
+player = NodePath("Player")
 skill_get_ui = NodePath("SkillGetUI")
 skill_ui = NodePath("SkillUI")
 stage_bgm = ExtResource("2_irmgc")
@@ -920,6 +921,7 @@ position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_wvjil")
 
 [node name="RainEffect" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="RainEffect"]
 material = SubResource("ShaderMaterial_uu262")

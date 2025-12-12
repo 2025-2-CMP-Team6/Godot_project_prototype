@@ -928,8 +928,9 @@ texture = ExtResource("12_7vc0t")
 [sub_resource type="TileSet" id="TileSet_4waes"]
 sources/0 = SubResource("TileSetAtlasSource_ircvx")
 
-[node name="Stage2" type="Node2D" node_paths=PackedStringArray("skill_get_ui", "skill_ui")]
+[node name="Stage2" type="Node2D" node_paths=PackedStringArray("player", "skill_get_ui", "skill_ui")]
 script = ExtResource("1_vjhlr")
+player = NodePath("Player")
 skill_get_ui = NodePath("SkillGetUI")
 skill_ui = NodePath("SkillUI")
 
