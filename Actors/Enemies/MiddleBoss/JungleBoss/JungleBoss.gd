@@ -13,8 +13,8 @@ extends BaseEnemy
 
 # 광폭화 관련 설정
 @export var enrage_health_threshold: float = 70.0 # 광폭화 발동 체력 (절반)
-@export var enraged_move_speed_multiplier: float = 1.75 # 광폭화시 이동속도 배율
-@export var enraged_attack_cooldown_multiplier: float = 0.5 # 광폭화시 공격쿨타임 배율
+@export var enraged_move_speed_multiplier: float = 3 # 광폭화시 이동속도 배율
+@export var enraged_attack_cooldown_multiplier: float = 0.1 # 광폭화시 공격쿨타임 배율
 #endregion
 
 #region 보스 상태 enum

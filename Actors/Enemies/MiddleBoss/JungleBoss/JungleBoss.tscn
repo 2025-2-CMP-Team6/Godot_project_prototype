@@ -196,11 +196,13 @@ scale = Vector2(2, 2)
 collision_layer = 20
 collision_mask = 7
 script = ExtResource("1_jungleBoss")
+enraged_move_speed_multiplier = 5.0
+enraged_attack_cooldown_multiplier = 0.05
 max_health = 150.0
 is_boss = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 29)
+position = Vector2(16.5, 28)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_sda0d")
 
@@ -212,7 +214,7 @@ frame_progress = 0.29714608
 [node name="Hurtbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, 29)
+position = Vector2(16.5, 28)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_sda0d")
 

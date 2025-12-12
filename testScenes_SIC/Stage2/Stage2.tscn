@@ -974,6 +974,7 @@ centered = false
 scroll_scale = Vector2(0.5, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D5"]
+position = Vector2(90, -76)
 scale = Vector2(30, 30)
 texture = ExtResource("5_pivpb")
 centered = false
@@ -987,7 +988,8 @@ texture = ExtResource("6_7vc0t")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("7_js4qc")]
-position = Vector2(1630.9999, 1432)
+position = Vector2(1591, 1334.9999)
+scale = Vector2(0.998, 0.99)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(-3, 2615)
