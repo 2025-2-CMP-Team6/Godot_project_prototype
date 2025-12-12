@@ -16,6 +16,8 @@ class_name BaseSkill
 @export var max_cast_range: float = 0.0
 @export var gravity_multiplier: float = 1.0
 
+@export var upgrades: Array[SkillUpgradeData]
+
 # 스킬 사운드 설정
 @export_group("Sound Settings")
 @export var cast_sound: AudioStream # 여기에 파일을 넣
@@ -123,3 +125,11 @@ func get_cooldown_time_left() -> float:
 		return cooldown_timer.time_left
 	return 0.0
 #endregion
+
+func apply_upgrades(level: int):
+	for data in upgrades:
+		if data.stat_name in self:
+			if level < data.stat_values_by_level.size():
+				# 값 덮어쓰기
+				self.set(data.stat_name, data.stat_values_by_level[level])
+				print("스킬 업그레이드 적용: ", data.stat_name, " -> ", data.stat_values_by_level[level])

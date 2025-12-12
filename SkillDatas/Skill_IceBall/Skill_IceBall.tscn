@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://ecveoa8kk6kl"]
+[gd_scene load_steps=7 format=3 uid="uid://ecveoa8kk6kl"]
 
 [ext_resource type="Script" uid="uid://cejwa0qd53fao" path="res://SkillDatas/Skill_IceBall/skill_Ice_ball.gd" id="1_8k5p6"]
 [ext_resource type="AudioStream" uid="uid://1mou3ople5kk" path="res://Sounds/effects/sfx_iceball.mp3" id="2_8k5p6"]
+[ext_resource type="Script" uid="uid://dkl7vd0jkmplk" path="res://SkillUpgradeData.gd" id="3_1i5v0"]
 [ext_resource type="Texture2D" uid="uid://djnwjye6p6lpq" path="res://SkillDatas/Skill_IceBall/fc783.png" id="3_rthd6"]
+
+[sub_resource type="Resource" id="Resource_rthd6"]
+script = ExtResource("3_1i5v0")
+stat_name = &"Damage"
+stat_values_by_level = Array[float]([5.0, 7.0, 9.0, 10.0, 12.0])
+metadata/_custom_type_script = "uid://dkl7vd0jkmplk"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw7bs"]
 
@@ -15,6 +22,7 @@ stamina_cost = 15.0
 cooldown = 4.0
 type = 2
 damage = 5.0
+upgrades = Array[ExtResource("3_1i5v0")]([SubResource("Resource_rthd6")])
 cast_sound = ExtResource("2_8k5p6")
 sound_volume_db = 3.0
 
