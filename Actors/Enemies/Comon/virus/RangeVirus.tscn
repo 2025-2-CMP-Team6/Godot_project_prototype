@@ -141,6 +141,7 @@ animations = [{
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_6a2mq")
+max_health = 20.0
 projectile_texture = ExtResource("2_u3dxx")
 metadata/_custom_type_script = "uid://cxvfbor6tlmi5"
 

@@ -988,7 +988,7 @@ texture = ExtResource("6_7vc0t")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("7_js4qc")]
-position = Vector2(1591, 1334.9999)
+position = Vector2(10196, 4156)
 scale = Vector2(0.998, 0.99)
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -1065,7 +1065,7 @@ position = Vector2(6031, 2925)
 position = Vector2(5632, 2936)
 
 [node name="Virus3" parent="." instance=ExtResource("13_ircvx")]
-position = Vector2(3254, 2269)
+position = Vector2(3414, 2282)
 
 [node name="Virus4" parent="." instance=ExtResource("13_ircvx")]
 position = Vector2(4123, 2273)
