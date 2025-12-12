@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dufskxw4nyuor"]
+[gd_scene load_steps=7 format=3 uid="uid://dufskxw4nyuor"]
 
 [ext_resource type="Script" uid="uid://dcvtg52yd46f4" path="res://SkillDatas/Skill_ThunderSlash/Skill_ThunderSlash.gd" id="1_3ppo0"]
 [ext_resource type="Texture2D" uid="uid://bwf4bpn28sj77" path="res://graphics/icon.svg" id="2_hfhjg"]
 [ext_resource type="Texture2D" uid="uid://bgux6h4qxf5s1" path="res://SkillDatas/Skill_ThunderSlash/fc1134.png" id="3_hol8l"]
 [ext_resource type="AudioStream" uid="uid://et3nufnlyv8w" path="res://Sounds/effects/sfx_knife-slice.mp3" id="4_vital"]
+[ext_resource type="Script" uid="uid://dkl7vd0jkmplk" path="res://SkillUpgradeData.gd" id="5_hfhjg"]
+
+[sub_resource type="Resource" id="Resource_hol8l"]
+script = ExtResource("5_hfhjg")
+stat_name = &"cooldown"
+stat_values_by_level = Array[float]([10.0, 9.0, 8.0, 8.0, 7.0])
+metadata/_custom_type_script = "uid://dkl7vd0jkmplk"
 
 [node name="Skill_ThunderSlash" type="Node2D"]
 scale = Vector2(0.98290265, 0.9541606)
@@ -18,3 +25,4 @@ stamina_cost = 20.0
 cooldown = 10.0
 requires_target = true
 max_cast_range = 700.0
+upgrades = Array[ExtResource("5_hfhjg")]([SubResource("Resource_hol8l")])

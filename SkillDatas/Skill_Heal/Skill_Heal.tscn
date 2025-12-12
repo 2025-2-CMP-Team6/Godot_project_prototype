@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_owtfr"]
 script = ExtResource("3_nfc4w")
-stat_name = &"Cooldown"
+stat_name = &"cooldown"
 stat_values_by_level = Array[float]([20.0, 18.0, 18.0, 16.0, 14.0])
 metadata/_custom_type_script = "uid://dkl7vd0jkmplk"
 
