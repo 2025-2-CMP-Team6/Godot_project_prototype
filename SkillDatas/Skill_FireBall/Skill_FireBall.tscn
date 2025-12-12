@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch301youni3rt"]
+[gd_scene load_steps=7 format=3 uid="uid://ch301youni3rt"]
 
 [ext_resource type="Script" uid="uid://cdsm3ar2ciq1r" path="res://SkillDatas/Skill_FireBall/skill_fire_ball.gd" id="1_2o0sc"]
 [ext_resource type="Texture2D" uid="uid://cbceql0c1ce65" path="res://SkillDatas/Skill_FireBall/fc815.png" id="2_mxs3i"]
+[ext_resource type="Script" uid="uid://dkl7vd0jkmplk" path="res://SkillUpgradeData.gd" id="3_ia0o5"]
 [ext_resource type="AudioStream" uid="uid://d2lvafl8qh5l8" path="res://Sounds/effects/sound_fireball_whoosh.mp3" id="3_mxs3i"]
+
+[sub_resource type="Resource" id="Resource_xq621"]
+script = ExtResource("3_ia0o5")
+stat_name = &"Damage"
+stat_values_by_level = Array[float]([10.0, 12.0, 14.0, 16.0, 20.0])
+metadata/_custom_type_script = "uid://dkl7vd0jkmplk"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw7bs"]
 
@@ -14,7 +21,7 @@ skill_icon = ExtResource("2_mxs3i")
 stamina_cost = 15.0
 cooldown = 3.0
 type = 2
-damage = 50.0
+upgrades = Array[ExtResource("3_ia0o5")]([SubResource("Resource_xq621")])
 cast_sound = ExtResource("3_mxs3i")
 
 [node name="BulletTemplate" type="Area2D" parent="."]

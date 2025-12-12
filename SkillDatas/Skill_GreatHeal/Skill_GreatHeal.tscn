@@ -1,11 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxdeohufkwv2d"]
+[gd_scene load_steps=11 format=3 uid="uid://bxdeohufkwv2d"]
 
 [ext_resource type="Script" uid="uid://ktmgxpeg5sql" path="res://SkillDatas/Skill_GreatHeal/skill_GreatHeal.gd" id="1_3bw16"]
 [ext_resource type="Texture2D" uid="uid://csd841rdfuj0t" path="res://SkillDatas/Skill_GreatHeal/fc974.png" id="2_3bw16"]
 [ext_resource type="AudioStream" uid="uid://bsn8el5s4ukx1" path="res://Sounds/effects/sfx_heal_big.mp3" id="3_3bw16"]
+[ext_resource type="Script" uid="uid://dkl7vd0jkmplk" path="res://SkillUpgradeData.gd" id="3_yublb"]
 [ext_resource type="AudioStream" uid="uid://c54ja4m363e8u" path="res://Sounds/effects/sfx_error.mp3" id="4_fqnv7"]
 [ext_resource type="Texture2D" uid="uid://blh6vpledymjf" path="res://SkillDatas/Skill_GreatHeal/fc970.png" id="5_q887i"]
 [ext_resource type="Texture2D" uid="uid://ctjb4aj3qu041" path="res://SkillDatas/Skill_Heal/fc968.png" id="6_8sva7"]
+
+[sub_resource type="Resource" id="Resource_5hq6c"]
+script = ExtResource("3_yublb")
+stat_name = &"Cooldown"
+stat_values_by_level = Array[float]([30.0, 25.0, 23.0, 23.0, 20.0])
+metadata/_custom_type_script = "uid://dkl7vd0jkmplk"
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jn5r3"]
 particle_flag_disable_z = true
@@ -37,6 +44,7 @@ skill_icon = ExtResource("2_3bw16")
 stamina_cost = 50.0
 cooldown = 30.0
 type = 3
+upgrades = Array[ExtResource("3_yublb")]([SubResource("Resource_5hq6c")])
 cast_sound = ExtResource("3_3bw16")
 sound_volume_db = 2.0
 error_sound = ExtResource("4_fqnv7")
