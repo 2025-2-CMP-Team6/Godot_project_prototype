@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://bkau6hrhass7g"]
+[gd_scene load_steps=33 format=4 uid="uid://bkau6hrhass7g"]
 
 [ext_resource type="Texture2D" uid="uid://d2m7w3keylowg" path="res://graphics/resource/Stage2/Jungel Layer 0.png" id="1_js4qc"]
 [ext_resource type="Script" uid="uid://t0rk8kka8da0" path="res://testScenes_SIC/Stage2/Stage2.gd" id="1_vjhlr"]
@@ -932,6 +932,9 @@ sources/0 = SubResource("TileSetAtlasSource_ircvx")
 
 [sub_resource type="ImageTexture" id="ImageTexture_uwilw"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwilw"]
+size = Vector2(20, 56)
+
 [node name="Stage2" type="Node2D" node_paths=PackedStringArray("player", "skill_get_ui", "skill_ui")]
 script = ExtResource("1_vjhlr")
 player = NodePath("Player")
@@ -990,7 +993,7 @@ texture = ExtResource("6_7vc0t")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("7_js4qc")]
-position = Vector2(1419.0002, 1417.9999)
+position = Vector2(10085, 4170)
 scale = Vector2(0.998, 0.99)
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -1060,15 +1063,15 @@ visible = false
 visible = false
 
 [node name="RangeVirus" parent="." instance=ExtResource("16_c7gl0")]
-position = Vector2(6311, 2938)
+position = Vector2(6292, 2944)
 max_health = 30.0
 
 [node name="RangeVirus2" parent="." instance=ExtResource("16_c7gl0")]
-position = Vector2(6031, 2925)
+position = Vector2(6002, 2943)
 max_health = 30.0
 
 [node name="RangeVirus3" parent="." instance=ExtResource("16_c7gl0")]
-position = Vector2(5632, 2936)
+position = Vector2(5735, 2944)
 max_health = 30.0
 
 [node name="Virus3" parent="." instance=ExtResource("13_ircvx")]
@@ -1089,6 +1092,39 @@ position = Vector2(875, 1413)
 [node name="CameraMapLimit" type="Sprite2D" parent="." groups=["CameraMapLimit"]]
 scale = Vector2(11521, 5281)
 texture = SubResource("ImageTexture_uwilw")
+
+[node name="MonsterFallPrevention" type="StaticBody2D" parent="."]
+position = Vector2(8531, 3445)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterFallPrevention"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_uwilw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="MonsterFallPrevention"]
+position = Vector2(-2015, -495)
+shape = SubResource("RectangleShape2D_uwilw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="MonsterFallPrevention"]
+position = Vector2(-2997, -496)
+shape = SubResource("RectangleShape2D_uwilw")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="MonsterFallPrevention"]
+position = Vector2(-4256, -1154)
+shape = SubResource("RectangleShape2D_uwilw")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="MonsterFallPrevention"]
+position = Vector2(-5368, -1150)
+shape = SubResource("RectangleShape2D_uwilw")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="MonsterFallPrevention"]
+position = Vector2(-6863, -1939)
+shape = SubResource("RectangleShape2D_uwilw")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="MonsterFallPrevention"]
+position = Vector2(-8119, -1935)
+shape = SubResource("RectangleShape2D_uwilw")
 
 [connection signal="body_entered" from="portal" to="." method="_on_portal_body_entered"]
 [connection signal="body_entered" from="FallPrevention" to="." method="_on_fall_prevention_body_entered"]

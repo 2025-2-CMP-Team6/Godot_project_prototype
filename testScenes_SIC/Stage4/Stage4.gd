@@ -4,6 +4,7 @@ extends World
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super() # World 클래스의 _ready() 호출 (적 신호 연결, 음악 재생 등)
+	skill_ui_unlocked = true
 	var stage_player = player if player != null else get_node_or_null("Player")
 	if stage_player and stage_player.has_method("set_input_locked"):
 		stage_player.set_input_locked(false)

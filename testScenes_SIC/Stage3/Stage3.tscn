@@ -696,8 +696,11 @@ size = Vector2(95, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l5ddo"]
 size = Vector2(64, 20)
 
-[node name="Stage3" type="Node2D"]
+[node name="Stage3" type="Node2D" node_paths=PackedStringArray("player", "skill_get_ui", "skill_ui")]
 script = ExtResource("1_cej1a")
+player = NodePath("Player")
+skill_get_ui = NodePath("SkillGetUI")
+skill_ui = NodePath("SkillUI")
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
