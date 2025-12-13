@@ -1,5 +1,5 @@
 # stage_boss.gd
-extends Node2D
+extends World
 
 enum Pattern {METEOR, AIMED_LASER, FIRE}
 
@@ -13,6 +13,12 @@ var map_patterns = [Pattern.METEOR, Pattern.AIMED_LASER, Pattern.FIRE]
 
 
 func _ready():
+	super() # World 클래스의 _ready() 호출 (적 신호 연결, 음악 재생 등)
+	var stage_player = player if player != null else get_node_or_null("Player")
+	if stage_player and stage_player.has_method("set_input_locked"):
+		stage_player.set_input_locked(false)
+		print("Stage4 시작: 플레이어 입력 잠금 해제")
+		
 	if map_pattern_timer:
 		map_pattern_timer.timeout.connect(_on_map_pattern_timer_timeout)
 		map_pattern_timer.wait_time = randf_range(3.0, 5.0)
