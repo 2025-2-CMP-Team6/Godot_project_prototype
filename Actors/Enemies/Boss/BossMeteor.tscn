@@ -1,7 +1,73 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1t1vldg17p1j"]
+[gd_scene load_steps=15 format=3 uid="uid://c1t1vldg17p1j"]
 
 [ext_resource type="Script" uid="uid://cvcid3tgl85db" path="res://Actors/Enemies/Boss/boss_meteor.gd" id="1_w1lg8"]
 [ext_resource type="Texture2D" uid="uid://bwf4bpn28sj77" path="res://graphics/icon.svg" id="2_s6w6t"]
+[ext_resource type="Texture2D" uid="uid://cxwh32nd0wpb2" path="res://Actors/Enemies/Boss/16_sunburn_spritesheet.png" id="2_x35ct"]
+[ext_resource type="Script" uid="uid://cxv4dde4keuli" path="res://Actors/Enemies/Boss/BossMeteor.gd" id="3_4rp3n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4rc5"]
+atlas = ExtResource("2_x35ct")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckgxi"]
+atlas = ExtResource("2_x35ct")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrg37"]
+atlas = ExtResource("2_x35ct")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlm6x"]
+atlas = ExtResource("2_x35ct")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rskr0"]
+atlas = ExtResource("2_x35ct")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g8he"]
+atlas = ExtResource("2_x35ct")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6djl"]
+atlas = ExtResource("2_x35ct")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr8ld"]
+atlas = ExtResource("2_x35ct")
+region = Rect2(700, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cew6a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4rc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckgxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrg37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlm6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rskr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g8he")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6djl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr8ld")
+}],
+"loop": true,
+"name": &"burn",
+"speed": 10.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gluic"]
 radius = 20.0
@@ -13,7 +79,15 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_w1lg8")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
+sprite_frames = SubResource("SpriteFrames_cew6a")
+animation = &"burn"
+frame_progress = 0.38759947
+script = ExtResource("3_4rp3n")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 0, 1)
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("2_s6w6t")
