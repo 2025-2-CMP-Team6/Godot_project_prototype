@@ -1,21 +1,21 @@
 # boss_virus.gd
 extends BaseEnemy
 
-#region 보스 전용 설정
+#region Boss-Specific Settings
 @export var attack_interval_min: float = 2.0
 @export var attack_interval_max: float = 4.0
 #endregion
 
-#region 노드 참조
+#region Node References
 @export var pattern_timer: Timer
 @export var teleport_timer: Timer
 #endregion
 
-#region 투사체
+#region Projectiles
 const BULLET_SCENE = preload("res://Actors/Enemies/bullet.tscn")
 #endregion
 
-#region 상태
+#region State
 var patterns = [1, 2, 3]
 var player: Node2D
 
@@ -40,7 +40,7 @@ func _ready():
 func _physics_process(delta: float):
 	pass
 
-# 보스 패턴
+# Boss patterns
 func start_attack_pattern():
 	if pattern_timer:
 		pattern_timer.wait_time = randf_range(attack_interval_min, attack_interval_max)
@@ -65,7 +65,7 @@ func boss_tp():
 
 func _on_teleport_timer_timeout():
 	position.x = randi_range(-1200, 1200)
-	# 텔레포트가 끝나면 다음 패턴 타이머 시작
+	# After teleport ends, start the next pattern timer
 	pattern_timer.wait_time = randf_range(attack_interval_min, attack_interval_max)
 	pattern_timer.start()
 
@@ -87,7 +87,7 @@ func boss_spiral_shot():
 		
 		await get_tree().create_timer(interval).timeout
 	
-	# 패턴이 끝나면 다음 패턴 타이머 시작
+	# After the pattern ends, start the next pattern timer
 	pattern_timer.wait_time = randf_range(attack_interval_min, attack_interval_max)
 	pattern_timer.start()
 

@@ -1,10 +1,12 @@
-[gd_scene load_steps=151 format=3 uid="uid://c3g8y7x2h4oaa"]
+[gd_scene load_steps=153 format=3 uid="uid://c3g8y7x2h4oaa"]
 
 [ext_resource type="Script" uid="uid://dnhl1fr6mtlm5" path="res://world/StartScreen/start_screen.gd" id="1_start"]
+[ext_resource type="AudioStream" uid="uid://3rjoqfsoumu8" path="res://world/StartScreen/pixel-song-21-72593.mp3" id="2_2yytl"]
 [ext_resource type="Texture2D" uid="uid://syohtkb3t3qk" path="res://graphics/asdf.png" id="2_7jabd"]
 [ext_resource type="FontFile" uid="uid://cikeog0rd1xje" path="res://world/StartScreen/Game Paused DEMO.otf" id="2_o4cl2"]
 [ext_resource type="Texture2D" uid="uid://dh3tu8ob8beny" path="res://world/StartScreen/startscreenBg/frame_000_delay-0.05s.png" id="2_s8if6"]
 [ext_resource type="Texture2D" uid="uid://dm62f1oi37nxn" path="res://world/StartScreen/startscreenBg/frame_001_delay-0.05s.png" id="3_8upoh"]
+[ext_resource type="AudioStream" uid="uid://boggpnrdt7f18" path="res://world/StartScreen/game-start-6104.mp3" id="3_eh2bf"]
 [ext_resource type="Texture2D" uid="uid://dt07m07m5cqqx" path="res://world/StartScreen/startscreenBg/frame_002_delay-0.05s.png" id="4_fo4fc"]
 [ext_resource type="Texture2D" uid="uid://qjfpcadtov4i" path="res://world/StartScreen/startscreenBg/frame_003_delay-0.05s.png" id="5_r3lkc"]
 [ext_resource type="Texture2D" uid="uid://bv1fw5ik1rm4b" path="res://world/StartScreen/startscreenBg/frame_004_delay-0.05s.png" id="6_2yytl"]
@@ -595,6 +597,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_start")
+stage_bgm = ExtResource("2_2yytl")
+start_button_effect_sound = ExtResource("3_eh2bf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1281, 718)
