@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bowtn8lw4uimt"]
+[gd_scene load_steps=27 format=4 uid="uid://bowtn8lw4uimt"]
 
 [ext_resource type="Texture2D" uid="uid://ep6ahel71vai" path="res://testScenes_SIC/Stage4/Assets/ENVIRONMENT/backgrounds.png" id="1_jr3b3"]
 [ext_resource type="Script" uid="uid://do4hv03l3nqn3" path="res://testScenes_SIC/Stage4/Stage4.gd" id="1_sorpw"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bb44trwnidu06" path="res://Actors/Enemies/Comon/virus/FlyEnemy.tscn" id="8_57cng"]
 [ext_resource type="PackedScene" uid="uid://dgv1ef1ng7ngs" path="res://UI/SkillGetUI.tscn" id="9_57cng"]
 [ext_resource type="PackedScene" uid="uid://hwvrl37b2dlk" path="res://UI/SkillUI.tscn" id="10_wgo3s"]
+[ext_resource type="PackedScene" uid="uid://dpo0uibgqtdie" path="res://Actors/Enemies/Comon/virus/HoverEnemy.tscn" id="12_ijavk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sorpw"]
 size = Vector2(1244, 113.5)
@@ -590,13 +591,43 @@ shape = SubResource("CapsuleShape2D_ijavk")
 position = Vector2(89.00012, 1121)
 metadata/_edit_lock_ = true
 
-[node name="FlyEnemy" parent="." instance=ExtResource("8_57cng")]
-position = Vector2(615, 1089)
-
 [node name="SkillGetUI" parent="." instance=ExtResource("9_57cng")]
 visible = false
 
 [node name="SkillUI" parent="." instance=ExtResource("10_wgo3s")]
 visible = false
+
+[node name="FlyEnemy" parent="." instance=ExtResource("8_57cng")]
+position = Vector2(1343, 998)
+
+[node name="FlyEnemy2" parent="." instance=ExtResource("8_57cng")]
+position = Vector2(2828, 974)
+
+[node name="FlyEnemy3" parent="." instance=ExtResource("8_57cng")]
+position = Vector2(2042, 1006)
+
+[node name="HoverEnemy" parent="." instance=ExtResource("12_ijavk")]
+position = Vector2(7208, 891)
+
+[node name="HoverEnemy2" parent="." instance=ExtResource("12_ijavk")]
+position = Vector2(6531, 868)
+
+[node name="HoverEnemy3" parent="." instance=ExtResource("12_ijavk")]
+position = Vector2(5705, 874)
+
+[node name="HoverEnemy4" parent="." instance=ExtResource("12_ijavk")]
+position = Vector2(4917, 892)
+
+[node name="FlyEnemy4" parent="." instance=ExtResource("8_57cng")]
+position = Vector2(9189, 591)
+
+[node name="FlyEnemy5" parent="." instance=ExtResource("8_57cng")]
+position = Vector2(11156, 661)
+
+[node name="HoverEnemy5" parent="." instance=ExtResource("12_ijavk")]
+position = Vector2(10489, 643)
+
+[node name="HoverEnemy6" parent="." instance=ExtResource("12_ijavk")]
+position = Vector2(9900, 596)
 
 [connection signal="body_entered" from="portal" to="." method="_on_portal_body_entered"]
