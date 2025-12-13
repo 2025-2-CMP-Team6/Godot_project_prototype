@@ -64,7 +64,7 @@ script = ExtResource("2_5m5hr")
 
 [node name="InventoryGrid" type="GridContainer" parent="Panel/SkillContainer"]
 layout_mode = 2
-columns = 9
+columns = 8
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0

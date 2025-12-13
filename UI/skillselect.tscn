@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bur16abmo4xqw"]
+[gd_scene load_steps=8 format=3 uid="uid://bur16abmo4xqw"]
 
 [ext_resource type="Texture2D" uid="uid://bwf4bpn28sj77" path="res://graphics/icon.svg" id="1_kbr0l"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbr0l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l7vvw"]
+font_size = 24
+
 [sub_resource type="LabelSettings" id="LabelSettings_kbr0l"]
+font_size = 24
 
 [sub_resource type="SystemFont" id="SystemFont_kbr0l"]
 subpixel_positioning = 0
@@ -10,6 +16,9 @@ subpixel_positioning = 0
 [sub_resource type="LabelSettings" id="LabelSettings_6sbc0"]
 font = SubResource("SystemFont_kbr0l")
 font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_jft4k"]
+font_size = 24
 
 [node name="SkillSelect" type="Panel"]
 custom_minimum_size = Vector2(360, 500)
@@ -27,6 +36,7 @@ grow_vertical = 2
 pivot_offset = Vector2(200, 270)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kbr0l")
 
 [node name="icon" type="Sprite2D" parent="."]
 position = Vector2(196, 128)
@@ -34,10 +44,11 @@ texture = ExtResource("1_kbr0l")
 
 [node name="name" type="Label" parent="."]
 layout_mode = 0
-offset_top = 214.0
+offset_top = 200.0
 offset_right = 400.0
-offset_bottom = 237.0
+offset_bottom = 234.0
 text = "skill name"
+label_settings = SubResource("LabelSettings_l7vvw")
 horizontal_alignment = 1
 
 [node name="TYPEtext" type="Label" parent="."]
@@ -51,19 +62,20 @@ horizontal_alignment = 1
 
 [node name="type" type="Label" parent="."]
 layout_mode = 0
-offset_top = 262.0
+offset_top = 272.0
 offset_right = 400.0
-offset_bottom = 350.0
+offset_bottom = 360.0
 text = "I"
 label_settings = SubResource("LabelSettings_6sbc0")
 horizontal_alignment = 1
 
 [node name="text" type="Label" parent="."]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 334.0
-offset_right = 384.0
-offset_bottom = 512.0
+offset_left = 32.0
+offset_top = 344.0
+offset_right = 368.0
+offset_bottom = 504.0
 text = "skill discription"
+label_settings = SubResource("LabelSettings_jft4k")
 horizontal_alignment = 1
 autowrap_mode = 3

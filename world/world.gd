@@ -45,7 +45,6 @@ func _setup_stage_music():
 	_audio_manager.play_plus(_bgm_key)
 
 func _ready():
-	
 	# Give test skills only when the checkbox is enabled
 	if is_test_mode:
 		print("=== [⚠️ TEST MODE ACTIVATED] ===")
@@ -66,7 +65,7 @@ func _ready():
 			print("--- 3. Player control lock released ---")
 			
 		# D. Enable portal immediately
-		portal_enabled = true 
+		portal_enabled = true
 		print("--- 4. Portal enabled immediately ---")
 		
 		print("==================================")
@@ -166,7 +165,7 @@ func camera_intro_effect(
 				child.scroll_scale = Vector2(1.0, 1.0)
 
 	# Set initial zoom-out (to show the whole map)
-	var target_zoom = Vector2(1.0, 1.0)  # Normal zoom centered on the player
+	var target_zoom = Vector2(1.0, 1.0) # Normal zoom centered on the player
 	camera.zoom = initial_zoom
 
 	# Wait to show the whole map briefly
@@ -183,7 +182,7 @@ func camera_intro_effect(
 		var parallax_tween = create_tween()
 		parallax_tween.set_ease(Tween.EASE_IN_OUT)
 		parallax_tween.set_trans(Tween.TRANS_CUBIC)
-		parallax_tween.set_parallel(true)  # Run all tweens simultaneously
+		parallax_tween.set_parallel(true) # Run all tweens simultaneously
 
 		for i in range(parallax_nodes.size()):
 			parallax_tween.tween_property(parallax_nodes[i], "scroll_scale", original_scroll_scales[i], zoom_duration)
